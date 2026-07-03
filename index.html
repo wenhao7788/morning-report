@@ -23,7 +23,8 @@
   --card-shadow-hover: 0 6px 24px rgba(0,0,0,0.10);
   --radius: 12px;
   --radius-sm: 8px;
-  --max-width: 1280px;
+  --max-width: 1440px;
+  --content-padding: clamp(12px, 2.5vw, 28px);
 }
 
 *, *::before, *::after {
@@ -53,7 +54,7 @@ body {
 .hero {
   background: var(--hero-gradient);
   color: #fff;
-  padding: 48px 24px 56px;
+  padding: 48px var(--content-padding) 56px;
   position: relative;
   overflow: hidden;
 }
@@ -148,7 +149,7 @@ body {
   background: rgba(255,255,255,0.92);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
-  padding: 0 24px;
+  padding: 0 var(--content-padding);
 }
 
 .nav-inner {
@@ -200,7 +201,7 @@ body {
 .main {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 36px 24px 60px;
+  padding: 36px var(--content-padding) 60px;
 }
 
 /* ============================================
@@ -241,7 +242,7 @@ body {
    ============================================ */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 16px;
 }
 
@@ -377,7 +378,7 @@ body {
 }
 
 .ecom-grid {
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
 }
 
 /* ============================================
@@ -500,7 +501,7 @@ body {
 .footer {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 24px 24px 40px;
+  padding: 24px var(--content-padding) 40px;
   text-align: center;
   font-size: 0.75rem;
   color: var(--text-muted);
