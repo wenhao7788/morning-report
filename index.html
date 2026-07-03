@@ -23,8 +23,8 @@
   --card-shadow-hover: 0 6px 24px rgba(0,0,0,0.10);
   --radius: 12px;
   --radius-sm: 8px;
-  --max-width: 1440px;
-  --content-padding: clamp(12px, 2.5vw, 28px);
+  --max-width: 1800px;
+  --content-padding: clamp(16px, 2vw, 32px);
 }
 
 *, *::before, *::after {
@@ -54,7 +54,7 @@ body {
 .hero {
   background: var(--hero-gradient);
   color: #fff;
-  padding: 48px var(--content-padding) 56px;
+  padding: 40px var(--content-padding) 48px;
   position: relative;
   overflow: hidden;
 }
@@ -201,7 +201,7 @@ body {
 .main {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 36px var(--content-padding) 60px;
+  padding: 28px var(--content-padding) 48px;
 }
 
 /* ============================================
@@ -242,7 +242,7 @@ body {
    ============================================ */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 16px;
 }
 
@@ -378,7 +378,7 @@ body {
 }
 
 .ecom-grid {
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
 }
 
 /* ============================================
