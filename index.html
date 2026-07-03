@@ -36,14 +36,19 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
 .section-title{font-size:1rem;font-weight:700;color:var(--text)}
 .section-badge{margin-left:auto;font-size:.72rem;font-weight:600;color:var(--text-muted);background:var(--bg);padding:3px 10px;border-radius:10px}
 
-/* 电商运营网格 — 全宽自适应，小屏幕1列中大屏3列+ */
-.ecom-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:36px}
-.ecom-card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:box-shadow .2s}
+/* 电商运营两栏布局 */
+.ecom-layout{display:grid;grid-template-columns:1fr 1.6fr;gap:16px;margin-bottom:36px;align-items:start}
+.ecom-left{display:flex;flex-direction:column;gap:12px}
+.ecom-left .ecom-card{flex:1}
+.ecom-right{display:flex}
+.ecom-right .ecom-card-m4{flex:1;height:100%}
+
+.ecom-card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:box-shadow .2s;display:flex;flex-direction:column}
 .ecom-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.07)}
-.ecom-card-head{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--border-light);background:linear-gradient(to right,var(--badge-color-bg,#fef3e2),transparent)}
+.ecom-card-head{display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid var(--border-light);background:linear-gradient(to right,var(--badge-color-bg,#fef3e2),transparent)}
 .ecom-card-badge{font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:8px;background:color-mix(in srgb,var(--badge-color,#e67e22)12%,#fff);color:var(--badge-color,#e67e22);white-space:nowrap}
 .ecom-card-label{font-size:.84rem;font-weight:700;color:var(--text)}
-.ecom-card-body{padding:14px 16px}
+.ecom-card-body{padding:12px 16px;flex:1}
 .ecom-card-body .report-row{font-size:.8rem;line-height:1.65;color:var(--text-secondary);margin-bottom:2px}
 .ecom-card-body .report-row strong{color:var(--text);font-weight:650}
 .ecom-card-body .report-source{display:block;margin-top:8px;font-size:.69rem;color:var(--text-muted)}
@@ -123,33 +128,24 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
         电商运营速递
         <span class="section-count">3 模块</span>
       </h2>
-      <div class="card-grid ecom-grid">
-    <article class="card ecom-card">
-      <div class="card-header">
-        <span class="card-module-badge" style="--badge-color:#e74c3c">M1 京东后台调整</span>
+      <div class="ecom-layout">
+        <div class="ecom-left">
+    <article class="card ecom-card ">
+      <div class="ecom-card-head">
+        <span class="ecom-card-badge" style="--badge-color:#e74c3c">M1 京东后台调整</span>
+        <span class="ecom-card-label">📈 M1 京东后台调整</span>
       </div>
-      <h3 class="card-title">📈 M1 京东后台调整</h3>
-      <div class="card-report">
+      <div class="ecom-card-body">
         <div class="report-row"><strong>摘要：</strong>本期无新增灯具类目后台重大变更。rule.jd.com本周无专项新规；京麦V10.5.2智能客服灰度属通用升级，不影响灯具运营。7月平台静默修复期持续，预计下一次规则变动在8月清凉节冲刺期前后。</div>
         <span class="report-source">来源：灯具运营每日资讯</span>
       </div>
     </article>
-    <article class="card ecom-card">
-      <div class="card-header">
-        <span class="card-module-badge" style="--badge-color:#f39c12">M4 跨品类偷师</span>
+    <article class="card ecom-card ">
+      <div class="ecom-card-head">
+        <span class="ecom-card-badge" style="--badge-color:#e67e22">C-1 行业简讯</span>
+        <span class="ecom-card-label">🔄 辅助简讯</span>
       </div>
-      <h3 class="card-title">户外运动（骆驼：IP化命名+情感色彩+功能堆叠）</h3>
-      <div class="card-report">
-        <div class="report-row"><strong>案例：</strong>骆驼（CAMEL）户外京东自营旗舰店</div><div class="report-row"><strong>它做对了什么：</strong>骆驼用三条线把户外从"专业装备"变成"生活方式消费品"。① **系列化命名矩阵**：山脉IP（昆仑山/泰岳）背书专业户外，意境IP（云逸/碳越/青岩/星云）吸引年轻用户；② **情感化色彩命名**：用"远山蓝/冰川灰/橡木灰/幻影黑"替代传统色号，把颜色本身变成社交分享标签；③ **标题功能词密集堆叠**：单品标题嵌入4-7个关键词（防泼水+防滑+耐磨+透气+凉感+防晒），兼顾搜索命中与信息密度；④ **明星同款占位**：迪丽热巴/王俊凯同款直接写进标题首屏，降低新客决策成本。整体策略是"专业参数×情绪表达×季节新鲜度"同步打穿。</div><div class="report-row"><strong>怎么迁移到灯具：</strong>- **吸顶灯**：建立系列IP命名（如"光韵·晨曦/银河/极光"），标题从"雷士LED吸顶灯"升级为"雷士全光谱护眼吸顶灯 智能调光 客厅卧室全屋套餐 包安装"；色彩名用"月光白/暖雾灰/星云金"替代"纯白/正白/金色"；详情页首屏用"一盏灯照亮18㎡客厅"等可感知数据替代Ra≥95。</div><div class="report-row"><strong>台灯/大路灯：</strong>功能词堆叠"国AA级照度+RG0无蓝光+无频闪+智能感光+定时休息"，绑定"儿童学习/办公护眼"场景；色彩命名"冰川白/青岩灰"；文案把"照度500lux"翻译成"孩子写作业不揉眼"。</div><div class="report-row"><strong>风扇灯：</strong>季节前缀"2026夏季凉感新品"，标题堆叠"静音+大风距+可反转+包安装+整机5年质保"；场景句"卧室开着灯吹着风，宝宝不踢被子，你不用半夜起来关空调"，把参数变成妈妈可感知的话术。</div><div class="report-row"><strong>来源：</strong>https://camelzy.jd.com/</div><div class="report-row"><strong>吸顶灯：</strong>建立系列IP命名（如"光韵·晨曦/银河/极光"），标题从"雷士LED吸顶灯"升级为"雷士全光谱护眼吸顶灯 智能调光 客厅卧室全屋套餐 包安装"；色彩名用"月光白/暖雾灰/星云金"替代"纯白/正白/金色"；详情页首屏用"一盏灯照亮18㎡客厅"等可感知数据替代Ra≥95。</div><div class="report-row"><strong>台灯/大路灯：</strong>功能词堆叠"国AA级照度+RG0无蓝光+无频闪+智能感光+定时休息"，绑定"儿童学习/办公护眼"场景；色彩命名"冰川白/青岩灰"；文案把"照度500lux"翻译成"孩子写作业不揉眼"。</div><div class="report-row"><strong>风扇灯：</strong>季节前缀"2026夏季凉感新品"，标题堆叠"静音+大风距+可反转+包安装+整机5年质保"；场景句"卧室开着灯吹着风，宝宝不踢被子，你不用半夜起来关空调"，把参数变成妈妈可感知的话术。</div>
-        <span class="report-source">来源：灯具运营每日资讯</span>
-      </div>
-    </article>
-    <article class="card ecom-card">
-      <div class="card-header">
-        <span class="card-module-badge" style="--badge-color:#e67e22">C-1 行业简讯</span>
-      </div>
-      <h3 class="card-title">🔄 辅助简讯</h3>
-      <div class="card-report">
+      <div class="ecom-card-body">
         <div class="report-row"><strong>详情：</strong>清凉家电节倒计时12天（7/15高潮期），风扇灯持续入主推池 — 京东"夏日清凉主推池"含风扇灯，包安装+30天价保+整机2年电机5年质保仍是核心卖点。建议检查我司风扇灯SKU是否已报名会场，主图叠加"清凉节立省+旧灯换新"双角标，每日一张高温预警海报抢占节点。 — 来源：京东家电官方号6/29
 
 照明行业监管趋严 — 北京/山东市监局近期抽查多批次灯具不合格，防触电保护、骚扰电压、谐波电流为高频问题。建议自检详情页认证素材与质检报告是否完整，避免合规风险。 — 来源：什么值得买6/28
@@ -158,6 +154,19 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
         <span class="report-source">来源：TrendForce/知乎</span>
       </div>
     </article>
+        </div>
+        <div class="ecom-right">
+    <article class="card ecom-card ecom-card-m4">
+      <div class="ecom-card-head">
+        <span class="ecom-card-badge" style="--badge-color:#f39c12">M4 跨品类偷师</span>
+        <span class="ecom-card-label">户外运动（骆驼：IP化命名+情感色彩+功能堆叠）</span>
+      </div>
+      <div class="ecom-card-body">
+        <div class="report-row"><strong>案例：</strong>骆驼（CAMEL）户外京东自营旗舰店</div><div class="report-row"><strong>它做对了什么：</strong>骆驼用三条线把户外从"专业装备"变成"生活方式消费品"。① **系列化命名矩阵**：山脉IP（昆仑山/泰岳）背书专业户外，意境IP（云逸/碳越/青岩/星云）吸引年轻用户；② **情感化色彩命名**：用"远山蓝/冰川灰/橡木灰/幻影黑"替代传统色号，把颜色本身变成社交分享标签；③ **标题功能词密集堆叠**：单品标题嵌入4-7个关键词（防泼水+防滑+耐磨+透气+凉感+防晒），兼顾搜索命中与信息密度；④ **明星同款占位**：迪丽热巴/王俊凯同款直接写进标题首屏，降低新客决策成本。整体策略是"专业参数×情绪表达×季节新鲜度"同步打穿。</div><div class="report-row"><strong>怎么迁移到灯具：</strong>- **吸顶灯**：建立系列IP命名（如"光韵·晨曦/银河/极光"），标题从"雷士LED吸顶灯"升级为"雷士全光谱护眼吸顶灯 智能调光 客厅卧室全屋套餐 包安装"；色彩名用"月光白/暖雾灰/星云金"替代"纯白/正白/金色"；详情页首屏用"一盏灯照亮18㎡客厅"等可感知数据替代Ra≥95。</div><div class="report-row"><strong>台灯/大路灯：</strong>功能词堆叠"国AA级照度+RG0无蓝光+无频闪+智能感光+定时休息"，绑定"儿童学习/办公护眼"场景；色彩命名"冰川白/青岩灰"；文案把"照度500lux"翻译成"孩子写作业不揉眼"。</div><div class="report-row"><strong>风扇灯：</strong>季节前缀"2026夏季凉感新品"，标题堆叠"静音+大风距+可反转+包安装+整机5年质保"；场景句"卧室开着灯吹着风，宝宝不踢被子，你不用半夜起来关空调"，把参数变成妈妈可感知的话术。</div><div class="report-row"><strong>来源：</strong>https://camelzy.jd.com/</div><div class="report-row"><strong>吸顶灯：</strong>建立系列IP命名（如"光韵·晨曦/银河/极光"），标题从"雷士LED吸顶灯"升级为"雷士全光谱护眼吸顶灯 智能调光 客厅卧室全屋套餐 包安装"；色彩名用"月光白/暖雾灰/星云金"替代"纯白/正白/金色"；详情页首屏用"一盏灯照亮18㎡客厅"等可感知数据替代Ra≥95。</div><div class="report-row"><strong>台灯/大路灯：</strong>功能词堆叠"国AA级照度+RG0无蓝光+无频闪+智能感光+定时休息"，绑定"儿童学习/办公护眼"场景；色彩命名"冰川白/青岩灰"；文案把"照度500lux"翻译成"孩子写作业不揉眼"。</div><div class="report-row"><strong>风扇灯：</strong>季节前缀"2026夏季凉感新品"，标题堆叠"静音+大风距+可反转+包安装+整机5年质保"；场景句"卧室开着灯吹着风，宝宝不踢被子，你不用半夜起来关空调"，把参数变成妈妈可感知的话术。</div>
+        <span class="report-source">来源：灯具运营每日资讯</span>
+      </div>
+    </article>
+        </div>
       </div>
     </section>
 
