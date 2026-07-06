@@ -35,10 +35,27 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
 
 /* 周度专用 */
 .wc-section{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px}
+
+/* 传统表格（保留用于其他可能的表格）*/
 .wc-table{width:100%;border-collapse:collapse;font-size:.78rem;margin-top:4px}
 .wc-table th{background:var(--primary-light);color:var(--text);font-weight:700;text-align:left;padding:8px 11px;border-bottom:1px solid var(--border);white-space:nowrap}
-.wc-table td{padding:8px 11px;border-bottom:1px solid var(--border-light);color:var(--text-secondary);vertical-align:top;line-height:1.55}
+.wc-table td{padding:8px 11px;border-bottom:1px solid var(--border-light);color:var(--text-secondary);vertical-align:top;line-height:1.55;word-break:break-word}
 .wc-table tr:last-child td{border-bottom:none}
+.wc-table tr:nth-child(even){background:#fafbfc}
+
+/* ====== 策略卡片网格（主图拆解 / 卖点文案专用）====== */
+.strategy-grid{display:flex;flex-direction:column;gap:12px;margin-top:6px}
+.strategy-card{background:linear-gradient(135deg,#fafcff,#f8f9fb);border:1px solid var(--border-light);border-radius:10px;padding:14px 16px;transition:border-color .2s,box-shadow .2s;overflow:hidden}
+.strategy-card:hover{border-color:rgba(232,93,43,.3);box-shadow:0 2px 12px rgba(232,93,43,.07)}
+.scard-header{display:flex;align-items:center;gap:10px;margin-bottom:11px;padding-bottom:10px;border-bottom:1.5px dashed var(--border-light)}
+.scard-product{font-size:.88rem;font-weight:800;color:var(--text);letter-spacing:.3px;background:linear-gradient(135deg,#e85d2b,#ff7a45);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.scard-category{font-size:.72rem;font-weight:600;color:#fff;background:linear-gradient(135deg,#6366f1,#8b5cf6);padding:3px 10px;border-radius:20px;white-space:nowrap;flex-shrink:0}
+.scard-body{display:flex;flex-direction:column;gap:8px}
+.scard-field{display:flex;gap:10px;align-items:flex-start;padding:8px 10px;background:var(--card-bg);border-radius:7px;border:1px solid #f0f1f3;transition:background .15s}
+.scard-field:hover{background:#fdfdfd;border-color:#e8e8ea}
+.scard-label{flex-shrink:0;font-size:.71rem;font-weight:700;color:var(--primary);display:flex;align-items:center;gap:4px;min-width:82px;padding-top:1px}
+.scard-label span{font-size:.8rem}
+.scard-value{flex:1;font-size:.79rem;color:var(--text-secondary);line-height:1.65;word-break:break-word}
 .wc-event{display:flex;gap:12px;padding:11px 13px;border:1px solid var(--border);border-radius:var(--radius-sm);background:#fcfcfd;margin-bottom:9px;align-items:flex-start}
 .wc-date{flex-shrink:0;font-size:.7rem;font-weight:700;color:#fff;background:var(--primary);padding:3px 9px;border-radius:8px;white-space:nowrap;margin-top:2px}
 .wc-event-body{flex:1;min-width:0}
@@ -73,7 +90,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
 .section-divider span{position:relative;display:inline-block;padding:4px 16px;background:var(--bg);font-size:.75rem;font-weight:700;color:var(--text-muted);letter-spacing:.5px}
 .footer{text-align:center;font-size:.72rem;color:var(--text-muted);padding:20px 24px 32px;border-top:1px solid var(--border);background:var(--card-bg)}
 .footer strong{color:var(--text-secondary)}
-@media(max-width:768px){.topbar{padding:10px 16px}.main{padding:16px 16px 28px}.nav-bar{padding:0 16px}.wc-table{font-size:.72rem}}
+@media(max-width:768px){.topbar{padding:10px 16px}.main{padding:16px 16px 28px}.nav-bar{padding:0 16px}.wc-table{font-size:.72rem}.scard-header{flex-direction:column;align-items:flex-start;gap:6px}.scard-field{flex-direction:column;gap:4px;padding:7px 9px}.scard-label{min-width:auto}}
 </style>
 </head>
 <body>
@@ -88,7 +105,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
       <span class="topbar-chip blue">📦 产品发布/更新 1</span>
       <span class="topbar-chip blue">🌐 行业动态 6</span>
       <span class="topbar-chip blue">💡 技巧与观点 6</span></div>
-  <span class="topbar-update">🕐 18:07 更新</span>
+  <span class="topbar-update">🕐 18:17 更新</span>
 </header>
 
 <nav class="nav-bar" id="mainNav"><div class="nav-tabs"><a href="#sec-0" class="nav-tab"><span>🔥</span> 本周核心事件</a>
