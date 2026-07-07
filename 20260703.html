@@ -87,6 +87,25 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
 
 @media(max-width:1200px){.ecom-grid{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}.card-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}}
 @media(max-width:768px){.topbar{padding:10px 16px}.main{padding:16px 16px 28px}.nav-bar{padding:0 16px}.card-grid{grid-template-columns:1fr}.ecom-grid{grid-template-columns:1fr}.ai-item-summary{width:100%;min-width:0}}
+
+/* ===== 历史偷师侧边栏 ===== */
+.content-with-sidebar{display:flex;gap:20px;align-items:flex-start}
+.content-main{flex:1;min-width:0}
+.history-sidebar{width:220px;flex-shrink:0;background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:16px;position:sticky;top:72px}
+.sidebar-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.sidebar-title{font-size:14px;font-weight:700;color:var(--text-primary)}
+.sidebar-count{font-size:11px;color:var(--text-secondary);background:var(--bg);padding:2px 8px;border-radius:10px}
+.sidebar-list{display:flex;flex-direction:column;gap:4px}
+.sidebar-item{display:flex;align-items:center;padding:8px;border-radius:8px;text-decoration:none;color:var(--text-primary);transition:all .15s}
+.sidebar-item:hover{background:var(--hover-bg)}
+.sidebar-latest{background:linear-gradient(135deg,#fef3c7,#fde68a);border:1px solid #f59e0b}
+.sidebar-date{font-size:11px;color:var(--text-secondary);margin-right:8px;white-space:nowrap;font-family:monospace}
+.sidebar-info{display:flex;flex-direction:column;gap:1px;min-width:0}
+.sidebar-brand{font-size:13px;font-weight:600;color:var(--text-primary);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sidebar-cat{font-size:11px;color:var(--text-secondary);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sidebar-badge{font-size:9px;background:#f59e0b;color:#713f12;padding:1px 6px;border-radius:6px;margin-left:auto;flex-shrink:0;font-weight:700}
+@media(max-width:1000px){.content-with-sidebar{flex-direction:column}.history-sidebar{width:100%;position:static;order:-1}}
+
 </style>
 </head>
 <body>
@@ -120,7 +139,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
           <span>💡</span> 技巧与观点 <em>5</em>
         </a></div></nav>
 
-<main class="main">
+<main class="main"><div class="content-with-sidebar">
+  <div class="content-main">
+
 
     <section id="section-ecom" class="report-section">
       <h2 class="section-title" style="--accent:#e67e22">
@@ -301,6 +322,121 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
       </ul>
     </section>
 
+  </div>
+
+<aside class="history-sidebar" id="historySidebar">
+  <div class="sidebar-header">
+    <span class="sidebar-title">📚 历史偷师</span>
+    <span class="sidebar-count">13 期</span>
+  </div>
+  <div class="sidebar-list">
+        <a class="sidebar-item sidebar-latest" href="https://wenhao7788.github.io/morning-report/20260707.html" target="_blank">
+          <span class="sidebar-date">2026-07-07</span>
+          <div class="sidebar-info">
+            <span class="sidebar-brand">Babycare</span>
+            <span class="sidebar-cat">母婴 · 从卖货到陪娃</span>
+          </div>
+          <span class="sidebar-badge">今日</span>
+        </a>
+        <a class="sidebar-item" href="https://wenhao7788.github.io/morning-report/20260706.html" target="_blank">
+          <span class="sidebar-date">2026-07-06</span>
+          <div class="sidebar-info">
+            <span class="sidebar-brand">追觅洗地机</span>
+            <span class="sidebar-cat">小家电 · 1台顶3台</span>
+          </div>
+          
+        </a>
+        <a class="sidebar-item" href="https://wenhao7788.github.io/morning-report/20260705.html" target="_blank">
+          <span class="sidebar-date">2026-07-05</span>
+          <div class="sidebar-info">
+            <span class="sidebar-brand">AI眼镜</span>
+            <span class="sidebar-cat">3C数码 · 三级分类</span>
+          </div>
+          
+        </a>
+        <a class="sidebar-item" href="https://wenhao7788.github.io/morning-report/20260704.html" target="_blank">
+          <span class="sidebar-date">2026-07-04</span>
+          <div class="sidebar-info">
+            <span class="sidebar-brand">林氏家居</span>
+            <span class="sidebar-cat">家具 · 看得见的品质</span>
+          </div>
+          
+        </a>
+        <a class="sidebar-item sidebar-latest" href="https://wenhao7788.github.io/morning-report/20260703.html" target="_blank">
+          <span class="sidebar-date">2026-07-03</span>
+          <div class="sidebar-info">
+            <span class="sidebar-brand">骆驼</span>
+            <span class="sidebar-cat">户外运动 · IP化命名+情感色彩+功能堆叠</span>
+          </div>
+          
+        <span class="sidebar-badge">当日</span></a>
+        <a class="sidebar-item" href="https://wenhao7788.github.io/morning-report/20260702.html" target="_blank">
+          <span class="sidebar-date">2026-07-02</span>
+          <div class="sidebar-info">
+            <span class="sidebar-brand">卡萨帝20年长期主义</span>
+            <span class="sidebar-cat">大家电 · 大家电</span>
+          </div>
+          
+        </a>
+        <a class="sidebar-item" href="https://wenhao7788.github.io/morning-report/20260701.html" target="_blank">
+          <span class="sidebar-date">2026-07-01</span>
+          <div class="sidebar-info">
+            <span class="sidebar-brand">石头G30S</span>
+            <span class="sidebar-cat">智能家居 · 参数→死角场景</span>
+          </div>
+          
+        </a>
+        <a class="sidebar-item" href="https://wenhao7788.github.io/morning-report/20260630.html" target="_blank">
+          <span class="sidebar-date">2026-06-30</span>
+          <div class="sidebar-info">
+            <span class="sidebar-brand">babycare</span>
+            <span class="sidebar-cat">母婴 · 安全信任锚+妈妈情绪话术</span>
+          </div>
+          
+        </a>
+        <a class="sidebar-item" href="https://wenhao7788.github.io/morning-report/20260629.html" target="_blank">
+          <span class="sidebar-date">2026-06-29</span>
+          <div class="sidebar-info">
+            <span class="sidebar-brand">戴森HS09</span>
+            <span class="sidebar-cat">小家电 · 参数→场景</span>
+          </div>
+          
+        </a>
+        <a class="sidebar-item" href="https://wenhao7788.github.io/morning-report/20260628.html" target="_blank">
+          <span class="sidebar-date">2026-06-28</span>
+          <div class="sidebar-info">
+            <span class="sidebar-brand">追觅</span>
+            <span class="sidebar-cat">智能清洁 · 回归主业</span>
+          </div>
+          
+        </a>
+        <a class="sidebar-item" href="https://wenhao7788.github.io/morning-report/20260627.html" target="_blank">
+          <span class="sidebar-date">2026-06-27</span>
+          <div class="sidebar-info">
+            <span class="sidebar-brand">徕芬高速吹风机</span>
+            <span class="sidebar-cat">小家电 · 小家电</span>
+          </div>
+          
+        </a>
+        <a class="sidebar-item" href="https://wenhao7788.github.io/morning-report/20260626.html" target="_blank">
+          <span class="sidebar-date">2026-06-26</span>
+          <div class="sidebar-info">
+            <span class="sidebar-brand">网易严选</span>
+            <span class="sidebar-cat">户外/露营 · 户外/露营</span>
+          </div>
+          
+        </a>
+        <a class="sidebar-item" href="https://wenhao7788.github.io/morning-report/20260625.html" target="_blank">
+          <span class="sidebar-date">2026-06-25</span>
+          <div class="sidebar-info">
+            <span class="sidebar-brand">格力空调</span>
+            <span class="sidebar-cat">大家电 · 大家电</span>
+          </div>
+          
+        </a>
+  </div>
+</aside>
+</div>
 </main>
 
 <footer class="footer"><p>AI资讯 15条 + 电商运营 3模块 | 数据来源：<strong>AI HOT (aihot.virxact.com)</strong> × <strong>京东商家后台</strong> | 生成时间：2026-07-03 北京时间</p></footer>
