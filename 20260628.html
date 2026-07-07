@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI×电商晨报 | 2026-06-28</title>
+<style>
+/* ==========================================
+   CSS Variables & Reset
+   ========================================== */
+:root {
+  --primary: #FF6B35;
+  --primary-dark: #D9381E;
+  --accent: #FF8C42;
+  --bg: #f8f8f9;
+  --card-bg: #ffffff;
+  --text: #1a1a2e;
+  --text-secondary: #666680;
+  --text-muted: #9090a0;
+  --border: #e8e8ec;
+  --hero-gradient: linear-gradient(135deg, #FF5E2C 0%, #E8351E 40%, #C81A12 100%);
+  --card-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  --card-shadow-hover: 0 6px 24px rgba(0,0,0,0.10);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --max-width: 1280px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ==========================================
+   Hero Section
+   ========================================== */
+.hero {
+  background: var(--hero-gradient);
+  color: #fff;
+  padding: 48px 24px 56px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -30%;
+  right: -10%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: -20%;
+  left: -5%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.hero-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-date {
+  font-size: 0.875rem;
+  opacity: 0.85;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+.hero-title {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.hero-subtitle {
+  font-size: 1.125rem;
+  opacity: 0.9;
+  margin-bottom: 24px;
+}
+
+.hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.hero-stat-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(8px);
+  border-radius: 24px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.hero-stat-chip em {
+  font-style: normal;
+  font-size: 0.75rem;
+  opacity: 0.75;
+  margin-left: 2px;
+}
+
+.hero-update {
+  margin-top: 20px;
+  font-size: 0.8125rem;
+  opacity: 0.7;
+}
+
+/* ==========================================
+   Sticky Nav
+   ========================================== */
+.nav-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+}
+
+.nav-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 12px 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.nav-inner::-webkit-scrollbar { display: none; }
+
+.nav-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--text-secondary);
+  background: #f0f0f3;
+  border: 1.5px solid transparent;
+  transition: all 0.2s;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.nav-chip:hover,
+.nav-chip.active {
+  color: #fff;
+  background: var(--nav-color, var(--primary));
+  border-color: var(--nav-color, var(--primary));
+}
+
+.nav-chip em {
+  font-style: normal;
+  font-size: 0.7rem;
+  opacity: 0.7;
+}
+
+/* ============================================
+   Main Content
+   ============================================ */
+.main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 36px 24px 60px;
+}
+
+/* ============================================
+   Section
+   ============================================ */
+.report-section {
+  margin-bottom: 48px;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 3px solid var(--accent, #e0e0e0);
+  color: var(--text);
+}
+
+.section-icon {
+  font-size: 1.5rem;
+}
+
+.section-count {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-left: auto;
+  background: #f0f0f3;
+  padding: 3px 10px;
+  border-radius: 12px;
+}
+
+/* ============================================
+   Card Grid
+   ============================================ */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 16px;
+}
+
+@media (max-width: 768px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================
+   AI Card
+   ============================================ */
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--border);
+  transition: transform 0.25s, box-shadow 0.25s;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.card.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--card-shadow-hover);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.card-num {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--primary);
+  background: rgba(255,107,53,0.08);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.chip {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--chip-color, #888) 10%, #fff);
+  color: var(--chip-color, #888);
+  border: 1px solid color-mix(in srgb, var(--chip-color, #888) 30%, transparent);
+}
+
+.card-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--text);
+  margin-bottom: 8px;
+  flex: 1;
+}
+
+.card-summary {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+.card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: auto;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.2s, gap 0.2s;
+  align-self: flex-start;
+}
+
+.card-link:hover {
+  color: var(--primary-dark);
+  gap: 8px;
+}
+
+/* ============================================
+   E-commerce Card (different style)
+   ============================================ */
+.ecom-card {
+  border-left: 4px solid var(--badge-color, #e67e22);
+}
+
+.card-module-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--badge-color, #e67e22) 12%, #fff);
+  color: var(--badge-color, #e67e22);
+}
+
+.card-report {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.report-row {
+  margin-bottom: 4px;
+}
+
+.report-row strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.report-source {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.ecom-grid {
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+}
+
+/* ============================================
+   AI Condensed List (精简版)
+   ============================================ */
+.ai-condensed-section {
+  margin-bottom: 36px;
+}
+
+.ai-condensed-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ai-item {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  transition: background 0.15s;
+}
+
+.ai-item:hover {
+  background: #f4f4f6;
+}
+
+.ai-item-num {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--primary);
+  background: rgba(255,107,53,0.08);
+  padding: 1px 6px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.ai-item-source {
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--chip-color, #888) 8%, #fff);
+  color: var(--chip-color, #888);
+  border: 1px solid color-mix(in srgb, var(--chip-color, #888) 20%, transparent);
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.ai-item-title {
+  font-weight: 600;
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.ai-item-title:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+.ai-item-summary {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  width: 100%;
+  margin-left: 0;
+}
+
+@media (min-width: 640px) {
+  .ai-item-summary {
+    width: auto;
+    margin-left: 0;
+    flex: 1;
+    min-width: 200px;
+  }
+}
+
+/* ============================================
+   Divider
+   ============================================ */
+.section-divider {
+  text-align: center;
+  margin: 40px 0 28px;
+  position: relative;
+}
+
+.section-divider::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border), transparent);
+}
+
+.section-divider span {
+  position: relative;
+  display: inline-block;
+  padding: 6px 24px;
+  background: var(--bg);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+}
+
+/* ============================================
+   Footer
+   ============================================ */
+.footer {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 24px 24px 40px;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+}
+
+.footer strong {
+  color: var(--text-secondary);
+}
+</style>
+</head>
+<body>
+
+<!-- ===== Hero ===== -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-date">2026年6月28日 周日</div>
+    <h1 class="hero-title">AI × 电商晨报</h1>
+    <p class="hero-subtitle">每日电商运营速递 + AI 资讯速览</p>
+    <div class="hero-stats">
+      <span class="hero-stat-chip">📈 电商运营 <em>(3模块)</em></span>
+      <span class="hero-stat-chip">📦 产品发布/更新 <em>(2条)</em></span>
+      <span class="hero-stat-chip">🌐 行业动态 <em>(5条)</em></span>
+      <span class="hero-stat-chip">📄 论文研究 <em>(1条)</em></span>
+      <span class="hero-stat-chip">💡 技巧与观点 <em>(2条)</em></span>
+    </div>
+    <div class="hero-update">🕐 52 分钟前 更新 · 电商速递 3模块 · AI资讯 10条</div>
+  </div>
+</header>
+
+<!-- ===== Nav ===== -->
+<nav class="nav-wrap" id="mainNav">
+  <div class="nav-inner">
+            <a href="#section-ecom" class="nav-chip" style="--nav-color:#e67e22">
+          <span>📈</span> 电商运营 <em>3</em>
+        </a>
+        <a href="#section-产品发布-更新" class="nav-chip" style="--nav-color:#3498db">
+          <span>📦</span> 产品发布/更新 <em>2</em>
+        </a>
+        <a href="#section-行业动态" class="nav-chip" style="--nav-color:#2ecc71">
+          <span>🌐</span> 行业动态 <em>5</em>
+        </a>
+        <a href="#section-论文研究" class="nav-chip" style="--nav-color:#9b59b6">
+          <span>📄</span> 论文研究 <em>1</em>
+        </a>
+        <a href="#section-技巧与观点" class="nav-chip" style="--nav-color:#f39c12">
+          <span>💡</span> 技巧与观点 <em>2</em>
+        </a>
+  </div>
+</nav>
+
+<!-- ===== Main Content ===== -->
+<main class="main">
+    <section id="section-ecom" class="report-section">
+      <h2 class="section-title" style="--accent:#e67e22">
+        <span class="section-icon">📈</span>
+        电商运营速递
+        <span class="section-count">3 模块</span>
+      </h2>
+      <div class="card-grid ecom-grid">
+    <article class="card ecom-card">
+      <div class="card-header">
+        <span class="card-module-badge" style="--badge-color:#e74c3c">M1 后台调整</span>
+      </div>
+      <h3 class="card-title">本期无新增后台变更</h3>
+      <div class="card-report">
+        <div class="report-row"><strong>备注：</strong>距618高潮期收尾还有1天，关注6/18返场期排期和国补冲刺</div>
+        <span class="report-source">来源：京东商家中心</span>
+      </div>
+    </article>
+    <article class="card ecom-card">
+      <div class="card-header">
+        <span class="card-module-badge" style="--badge-color:#3498db">M2 主图拆解</span>
+      </div>
+      <h3 class="card-title">京东京造 U1 全光谱智能护眼吸顶灯</h3>
+      <div class="card-report">
+        <div class="report-row"><strong>构图逻辑：</strong>左文右图Z型布局：左上品牌+卖点标签 → 中部悬浮产品图 → 右下场景实景</div><div class="report-row"><strong>视觉层级：</strong>1) 产品本体(40%)→ 2) 卖点标签组(Ra≥95/RG0/米家联动)→ 3) 场景氛围图</div><div class="report-row"><strong>色彩搭配：</strong>主色纯白 + 暖灰场景 + 青蓝点缀(米家生态色)。白色产品用暖灰背景避免死白</div><div class="report-row"><strong>文案排布：</strong>标题36px+副标题24px，间距1.5倍行高形成呼吸感。标签组紧凑传递信息量</div><div class="report-row"><strong>可借鉴：</strong>Z型构图/双图策略(悬浮+实景)/参数可视化(图标+色块代替纯文字)</div><div class="report-row"><strong>灯具应用：</strong>吸顶灯用'白底图+底部氛围条'上下分层；台灯用场景虚化沉浸式；风扇灯加风感可视化</div>
+        <span class="report-source">来源：京东商品页</span>
+      </div>
+    </article>
+    <article class="card ecom-card">
+      <div class="card-header">
+        <span class="card-module-badge" style="--badge-color:#9b59b6">M3 卖点文案</span>
+      </div>
+      <h3 class="card-title">欧普吸顶灯系列 — 参数→消费者语言</h3>
+      <div class="card-report">
+        <div class="report-row"><strong>原文：</strong>全光谱LED芯片，Ra≥95高显色，RG0豁免级蓝光，无可视频闪</div><div class="report-row"><strong>Ra≥95→翻译：</strong>颜色更真实，宝宝的绘本和你的红唇不会色差</div><div class="report-row"><strong>RG0→翻译：</strong>对眼睛无害级，孩子可以放心在灯下读绘本到睡着</div><div class="report-row"><strong>结构拆解：</strong>痛点引入→参数佐证→场景化→情绪升华的四段式结构</div><div class="report-row"><strong>关键词：</strong>位置词(全光谱/护眼吸顶灯)→场景词(儿童房/卧室)→转化词(618到手价)</div><div class="report-row"><strong>借鉴应用：</strong>复用句式："大部分灯只负责亮，{产品名}让眼睛舒服"。坚守"参数→感受"公式</div>
+        <span class="report-source">来源：京东欧普官方旗舰店详情页</span>
+      </div>
+    </article>
+      </div>
+    </section>
+
+  <div class="section-divider"><span>▼ AI 资讯速览</span></div>
+
+    <section id="section-产品发布-更新" class="ai-condensed-section">
+      <h2 class="section-title" style="--accent:#3498db">
+        <span class="section-icon">📦</span>
+        产品发布/更新
+        <span class="section-count">2 条</span>
+      </h2>
+      <ul class="ai-condensed-list">
+          <li class="ai-item" data-seq="1">
+            <span class="ai-item-num">#1</span>
+            <span class="ai-item-source" style="--chip-color:#3498db">IT之家</span>
+            <a class="ai-item-title" href="https://www.ithome.com/0/969/334.htm" target="_blank" rel="noopener noreferrer">阿里千问输入法上线 macOS 版：最快 300 字/分，AI 自动润色</a>
+            <span class="ai-item-summary">阿里千问输入法 macOS 版今日上线官网，支持最快 300 字/分的 AI 语音输入，可自动润色、将口语转为工整文字，并支持…</span>
+          </li>
+          <li class="ai-item" data-seq="2">
+            <span class="ai-item-num">#2</span>
+            <span class="ai-item-source" style="--chip-color:#3498db">Runway</span>
+            <a class="ai-item-title" href="https://x.com/runwayml/status/2070855164584726791" target="_blank" rel="noopener noreferrer">Runway API 推出广告本地化 Recipe</a>
+            <span class="ai-item-summary">广告本地化现在可通过 Runway API 以 Recipe 形式使用。 现在您可以通过单次 API 调用翻译静态广告和图形资产。</span>
+          </li>
+      </ul>
+    </section>
+    <section id="section-行业动态" class="ai-condensed-section">
+      <h2 class="section-title" style="--accent:#2ecc71">
+        <span class="section-icon">🌐</span>
+        行业动态
+        <span class="section-count">5 条</span>
+      </h2>
+      <ul class="ai-condensed-list">
+          <li class="ai-item" data-seq="3">
+            <span class="ai-item-num">#3</span>
+            <span class="ai-item-source" style="--chip-color:#2ecc71">cb_doge</span>
+            <a class="ai-item-title" href="https://x.com/cb_doge/status/2070973276562530507" target="_blank" rel="noopener noreferrer">SpaceX 注册 SpaceXAI 商标，将合并 xAI</a>
+            <span class="ai-item-summary">消息：SpaceX 刚刚注册了“SpaceXAI”商标。 埃隆·马斯克表示 xAI 将解散，不再作为独立公司，因此它将只是 SpaceXAI，S…</span>
+          </li>
+          <li class="ai-item" data-seq="4">
+            <span class="ai-item-num">#4</span>
+            <span class="ai-item-source" style="--chip-color:#2ecc71">Berry Xia</span>
+            <a class="ai-item-title" href="https://x.com/berryxia/status/2070916520822321292" target="_blank" rel="noopener noreferrer">苹果Vision负责人跳槽OpenAI，触控OLED MacBook用M5芯片</a>
+            <span class="ai-item-summary">2026年6月26日，Mark Gurman称苹果Vision产品组副总裁Paul Meade下周离职加入OpenAI硬件部门。他负责Vision Pro、无…</span>
+          </li>
+          <li class="ai-item" data-seq="5">
+            <span class="ai-item-num">#5</span>
+            <span class="ai-item-source" style="--chip-color:#2ecc71">IT之家</span>
+            <a class="ai-item-title" href="https://www.ithome.com/0/969/311.htm" target="_blank" rel="noopener noreferrer">国家统计局：1-5月规上工业企业利润增18.8%，电子行业利润增103.9%贡献43.1%</a>
+            <span class="ai-item-summary">1—5月全国规上工业企业利润同比增18.8%。电子行业利润增103.9%，贡献率43.1%，主因全球AI技术变革推动高端算力芯片和存…</span>
+          </li>
+          <li class="ai-item" data-seq="6">
+            <span class="ai-item-num">#6</span>
+            <span class="ai-item-source" style="--chip-color:#2ecc71">AI News</span>
+            <a class="ai-item-title" href="https://the-decoder.com/the-companies-most-likely-to-automate-your-job-are-now-funding-a-1-billion-program-to-retrain-you" target="_blank" rel="noopener noreferrer">“Raise Us”启动：前美商务部长与四州合作筹集10亿美元应对AI就业冲击</a>
+            <span class="ai-item-summary">前美国商务部长Raimondo与前印第安纳州长Holcomb共同发起非营利“Raise Us”，目标为AI经济下工人再培训筹集10亿…</span>
+          </li>
+          <li class="ai-item" data-seq="7">
+            <span class="ai-item-num">#7</span>
+            <span class="ai-item-source" style="--chip-color:#2ecc71">IT之家</span>
+            <a class="ai-item-title" href="https://www.ithome.com/0/969/400.htm" target="_blank" rel="noopener noreferrer">AI 账单失控后 DeepSeek 成“香饽饽”，部分美国企业已 100% 切换</a>
+            <span class="ai-item-summary">美国企业面临 AI 账单失控，开始转向 Token 最小化策略。旧金山公司 Lindy 此前主要调用 Anthropic 的 Claude 模…</span>
+          </li>
+      </ul>
+    </section>
+    <section id="section-论文研究" class="ai-condensed-section">
+      <h2 class="section-title" style="--accent:#9b59b6">
+        <span class="section-icon">📄</span>
+        论文研究
+        <span class="section-count">1 条</span>
+      </h2>
+      <ul class="ai-condensed-list">
+          <li class="ai-item" data-seq="8">
+            <span class="ai-item-num">#8</span>
+            <span class="ai-item-source" style="--chip-color:#9b59b6">MarkTechPost</span>
+            <a class="ai-item-title" href="https://www.marktechpost.com/2026/06/27/deepseek-releases-dspark-a-speculative-decoding-framework-that-accelerates-deepseek-v4-per-user-generation-60-85-over-mtp-1" target="_blank" rel="noopener noreferrer">DeepSeek 开源 DSpark 投机解码框架，加速 DeepSeek-V4 生成速度 60–85%</a>
+            <span class="ai-item-summary">DeepSeek 发布 DSpark 投机解码框架并开源检查点与训练代码。该框架不是新模型，而是在 DeepSeek-V4 权重上附加…</span>
+          </li>
+      </ul>
+    </section>
+    <section id="section-技巧与观点" class="ai-condensed-section">
+      <h2 class="section-title" style="--accent:#f39c12">
+        <span class="section-icon">💡</span>
+        技巧与观点
+        <span class="section-count">2 条</span>
+      </h2>
+      <ul class="ai-condensed-list">
+          <li class="ai-item" data-seq="9">
+            <span class="ai-item-num">#9</span>
+            <span class="ai-item-source" style="--chip-color:#f39c12">Hacker News 热门</span>
+            <a class="ai-item-title" href="https://grack.com/blog/2026/06/25/dissecting-a-failed-nation-state-attack" target="_blank" rel="noopener noreferrer">一次失败的（民族国家？）攻击的剖析</a>
+            <span class="ai-item-summary">作者收到伪装成新加坡VC Lua Ventures的虚假面试邮件，要求完成一个TypeScript仓库的“测试”。作者将仓库交给Cla…</span>
+          </li>
+          <li class="ai-item" data-seq="10">
+            <span class="ai-item-num">#10</span>
+            <span class="ai-item-source" style="--chip-color:#f39c12">Announcements</span>
+            <a class="ai-item-title" href="https://openrouter.ai/blog/insights/the-open-weight-models-that-matter-june-2026" target="_blank" rel="noopener noreferrer">2026年6月值得关注的开放权重模型</a>
+            <span class="ai-item-summary">一批来自中美新玩家的开放权重模型已发布。截至2026年6月，有四个最值得关注的开放权重模型，并给出了各自的最佳…</span>
+          </li>
+      </ul>
+    </section>
+</main>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+  <p>AI资讯 10条 + 电商运营 3模块 | 数据来源：<strong>AI HOT (aihot.virxact.com)</strong> × <strong>京东商家后台</strong> | 生成时间：2026-06-28 北京时间</p>
+</footer>
+
+<script>
+/* ============================================
+   IntersectionObserver: 滚动渐入动画
+   ============================================ */
+(function() {
+  var cards = document.querySelectorAll('.card');
+  if (!('IntersectionObserver' in window)) {
+    cards.forEach(function(c) { c.classList.add('visible'); });
+    return;
+  }
+
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+
+  cards.forEach(function(card, i) {
+    card.style.transitionDelay = (i % 6) * 0.05 + 's';
+    observer.observe(card);
+  });
+})();
+
+/* ============================================
+   Nav 高亮当前板块 (IntersectionObserver)
+   ============================================ */
+(function() {
+  var navChips = document.querySelectorAll('.nav-chip');
+  var sections = document.querySelectorAll('.report-section');
+  if (!sections.length) return;
+
+  var currentActive = null;
+
+  var sectionObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var id = entry.target.getAttribute('id');
+        navChips.forEach(function(chip) {
+          var href = chip.getAttribute('href');
+          if (href === '#' + id) {
+            chip.classList.add('active');
+            currentActive = chip;
+          } else {
+            chip.classList.remove('active');
+          }
+        });
+      }
+    });
+  }, { threshold: 0.3, rootMargin: '-80px 0px -50% 0px' });
+
+  sections.forEach(function(s) { sectionObserver.observe(s); });
+})();
+</script>
+</body>
+</html>

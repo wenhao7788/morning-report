@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI×电商晨报 | 2026-06-24</title>
+<style>
+/* ==========================================
+   CSS Variables & Reset
+   ========================================== */
+:root {
+  --primary: #FF6B35;
+  --primary-dark: #D9381E;
+  --accent: #FF8C42;
+  --bg: #f8f8f9;
+  --card-bg: #ffffff;
+  --text: #1a1a2e;
+  --text-secondary: #666680;
+  --text-muted: #9090a0;
+  --border: #e8e8ec;
+  --hero-gradient: linear-gradient(135deg, #FF5E2C 0%, #E8351E 40%, #C81A12 100%);
+  --card-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  --card-shadow-hover: 0 6px 24px rgba(0,0,0,0.10);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --max-width: 1280px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ==========================================
+   Hero Section
+   ========================================== */
+.hero {
+  background: var(--hero-gradient);
+  color: #fff;
+  padding: 48px 24px 56px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -30%;
+  right: -10%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: -20%;
+  left: -5%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.hero-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-date {
+  font-size: 0.875rem;
+  opacity: 0.85;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+.hero-title {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.hero-subtitle {
+  font-size: 1.125rem;
+  opacity: 0.9;
+  margin-bottom: 24px;
+}
+
+.hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.hero-stat-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(8px);
+  border-radius: 24px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.hero-stat-chip em {
+  font-style: normal;
+  font-size: 0.75rem;
+  opacity: 0.75;
+  margin-left: 2px;
+}
+
+.hero-update {
+  margin-top: 20px;
+  font-size: 0.8125rem;
+  opacity: 0.7;
+}
+
+/* ==========================================
+   Sticky Nav
+   ========================================== */
+.nav-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+}
+
+.nav-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 12px 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.nav-inner::-webkit-scrollbar { display: none; }
+
+.nav-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--text-secondary);
+  background: #f0f0f3;
+  border: 1.5px solid transparent;
+  transition: all 0.2s;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.nav-chip:hover,
+.nav-chip.active {
+  color: #fff;
+  background: var(--nav-color, var(--primary));
+  border-color: var(--nav-color, var(--primary));
+}
+
+.nav-chip em {
+  font-style: normal;
+  font-size: 0.7rem;
+  opacity: 0.7;
+}
+
+/* ============================================
+   Main Content
+   ============================================ */
+.main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 36px 24px 60px;
+}
+
+/* ============================================
+   Section
+   ============================================ */
+.report-section {
+  margin-bottom: 48px;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 3px solid var(--accent, #e0e0e0);
+  color: var(--text);
+}
+
+.section-icon {
+  font-size: 1.5rem;
+}
+
+.section-count {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-left: auto;
+  background: #f0f0f3;
+  padding: 3px 10px;
+  border-radius: 12px;
+}
+
+/* ============================================
+   Card Grid
+   ============================================ */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 16px;
+}
+
+@media (max-width: 768px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================
+   AI Card
+   ============================================ */
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--border);
+  transition: transform 0.25s, box-shadow 0.25s;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.card.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--card-shadow-hover);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.card-num {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--primary);
+  background: rgba(255,107,53,0.08);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.chip {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--chip-color, #888) 10%, #fff);
+  color: var(--chip-color, #888);
+  border: 1px solid color-mix(in srgb, var(--chip-color, #888) 30%, transparent);
+}
+
+.card-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--text);
+  margin-bottom: 8px;
+  flex: 1;
+}
+
+.card-summary {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+.card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: auto;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.2s, gap 0.2s;
+  align-self: flex-start;
+}
+
+.card-link:hover {
+  color: var(--primary-dark);
+  gap: 8px;
+}
+
+/* ============================================
+   E-commerce Card (different style)
+   ============================================ */
+.ecom-card {
+  border-left: 4px solid var(--badge-color, #e67e22);
+}
+
+.card-module-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--badge-color, #e67e22) 12%, #fff);
+  color: var(--badge-color, #e67e22);
+}
+
+.card-report {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.report-row {
+  margin-bottom: 4px;
+}
+
+.report-row strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.report-source {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.ecom-grid {
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+}
+
+/* ============================================
+   AI Condensed List (精简版)
+   ============================================ */
+.ai-condensed-section {
+  margin-bottom: 36px;
+}
+
+.ai-condensed-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ai-item {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  transition: background 0.15s;
+}
+
+.ai-item:hover {
+  background: #f4f4f6;
+}
+
+.ai-item-num {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--primary);
+  background: rgba(255,107,53,0.08);
+  padding: 1px 6px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.ai-item-source {
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--chip-color, #888) 8%, #fff);
+  color: var(--chip-color, #888);
+  border: 1px solid color-mix(in srgb, var(--chip-color, #888) 20%, transparent);
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.ai-item-title {
+  font-weight: 600;
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.ai-item-title:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+.ai-item-summary {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  width: 100%;
+  margin-left: 0;
+}
+
+@media (min-width: 640px) {
+  .ai-item-summary {
+    width: auto;
+    margin-left: 0;
+    flex: 1;
+    min-width: 200px;
+  }
+}
+
+/* ============================================
+   Divider
+   ============================================ */
+.section-divider {
+  text-align: center;
+  margin: 40px 0 28px;
+  position: relative;
+}
+
+.section-divider::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border), transparent);
+}
+
+.section-divider span {
+  position: relative;
+  display: inline-block;
+  padding: 6px 24px;
+  background: var(--bg);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+}
+
+/* ============================================
+   Footer
+   ============================================ */
+.footer {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 24px 24px 40px;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+}
+
+.footer strong {
+  color: var(--text-secondary);
+}
+</style>
+</head>
+<body>
+
+<!-- ===== Hero ===== -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-date">2026年6月24日 周三</div>
+    <h1 class="hero-title">AI × 电商晨报</h1>
+    <p class="hero-subtitle">每日电商运营速递 + AI 资讯速览</p>
+    <div class="hero-stats">
+      <span class="hero-stat-chip">📈 电商运营 <em>(3模块)</em></span>
+      <span class="hero-stat-chip">🤖 模型发布/更新 <em>(7条)</em></span>
+      <span class="hero-stat-chip">📦 产品发布/更新 <em>(6条)</em></span>
+      <span class="hero-stat-chip">🌐 行业动态 <em>(5条)</em></span>
+      <span class="hero-stat-chip">📄 论文研究 <em>(3条)</em></span>
+      <span class="hero-stat-chip">💡 技巧与观点 <em>(5条)</em></span>
+    </div>
+    <div class="hero-update">🕐 54 分钟前 更新 · 电商速递 3模块 · AI资讯 26条</div>
+  </div>
+</header>
+
+<!-- ===== Nav ===== -->
+<nav class="nav-wrap" id="mainNav">
+  <div class="nav-inner">
+            <a href="#section-ecom" class="nav-chip" style="--nav-color:#e67e22">
+          <span>📈</span> 电商运营 <em>3</em>
+        </a>
+        <a href="#section-模型发布-更新" class="nav-chip" style="--nav-color:#e74c3c">
+          <span>🤖</span> 模型发布/更新 <em>7</em>
+        </a>
+        <a href="#section-产品发布-更新" class="nav-chip" style="--nav-color:#3498db">
+          <span>📦</span> 产品发布/更新 <em>6</em>
+        </a>
+        <a href="#section-行业动态" class="nav-chip" style="--nav-color:#2ecc71">
+          <span>🌐</span> 行业动态 <em>5</em>
+        </a>
+        <a href="#section-论文研究" class="nav-chip" style="--nav-color:#9b59b6">
+          <span>📄</span> 论文研究 <em>3</em>
+        </a>
+        <a href="#section-技巧与观点" class="nav-chip" style="--nav-color:#f39c12">
+          <span>💡</span> 技巧与观点 <em>5</em>
+        </a>
+  </div>
+</nav>
+
+<!-- ===== Main Content ===== -->
+<main class="main">
+    <section id="section-ecom" class="report-section">
+      <h2 class="section-title" style="--accent:#e67e22">
+        <span class="section-icon">📈</span>
+        电商运营速递
+        <span class="section-count">3 模块</span>
+      </h2>
+      <div class="card-grid ecom-grid">
+    <article class="card ecom-card">
+      <div class="card-header">
+        <span class="card-module-badge" style="--badge-color:#e74c3c">M1 后台调整</span>
+      </div>
+      <h3 class="card-title">本期无新增后台变更</h3>
+      <div class="card-report">
+        <div class="report-row"><strong>备注：</strong>距618高潮期收尾还有1天，关注6/18返场期排期和国补冲刺</div>
+        <span class="report-source">来源：京东商家中心</span>
+      </div>
+    </article>
+    <article class="card ecom-card">
+      <div class="card-header">
+        <span class="card-module-badge" style="--badge-color:#3498db">M2 主图拆解</span>
+      </div>
+      <h3 class="card-title">京东京造 U1 全光谱智能护眼吸顶灯</h3>
+      <div class="card-report">
+        <div class="report-row"><strong>构图逻辑：</strong>左文右图Z型布局：左上品牌+卖点标签 → 中部悬浮产品图 → 右下场景实景</div><div class="report-row"><strong>视觉层级：</strong>1) 产品本体(40%)→ 2) 卖点标签组(Ra≥95/RG0/米家联动)→ 3) 场景氛围图</div><div class="report-row"><strong>色彩搭配：</strong>主色纯白 + 暖灰场景 + 青蓝点缀(米家生态色)。白色产品用暖灰背景避免死白</div><div class="report-row"><strong>文案排布：</strong>标题36px+副标题24px，间距1.5倍行高形成呼吸感。标签组紧凑传递信息量</div><div class="report-row"><strong>可借鉴：</strong>Z型构图/双图策略(悬浮+实景)/参数可视化(图标+色块代替纯文字)</div><div class="report-row"><strong>灯具应用：</strong>吸顶灯用'白底图+底部氛围条'上下分层；台灯用场景虚化沉浸式；风扇灯加风感可视化</div>
+        <span class="report-source">来源：京东商品页</span>
+      </div>
+    </article>
+    <article class="card ecom-card">
+      <div class="card-header">
+        <span class="card-module-badge" style="--badge-color:#9b59b6">M3 卖点文案</span>
+      </div>
+      <h3 class="card-title">欧普吸顶灯系列 — 参数→消费者语言</h3>
+      <div class="card-report">
+        <div class="report-row"><strong>原文：</strong>全光谱LED芯片，Ra≥95高显色，RG0豁免级蓝光，无可视频闪</div><div class="report-row"><strong>Ra≥95→翻译：</strong>颜色更真实，宝宝的绘本和你的红唇不会色差</div><div class="report-row"><strong>RG0→翻译：</strong>对眼睛无害级，孩子可以放心在灯下读绘本到睡着</div><div class="report-row"><strong>结构拆解：</strong>痛点引入→参数佐证→场景化→情绪升华的四段式结构</div><div class="report-row"><strong>关键词：</strong>位置词(全光谱/护眼吸顶灯)→场景词(儿童房/卧室)→转化词(618到手价)</div><div class="report-row"><strong>借鉴应用：</strong>复用句式："大部分灯只负责亮，{产品名}让眼睛舒服"。坚守"参数→感受"公式</div>
+        <span class="report-source">来源：京东欧普官方旗舰店详情页</span>
+      </div>
+    </article>
+      </div>
+    </section>
+
+  <div class="section-divider"><span>▼ AI 资讯速览</span></div>
+
+    <section id="section-模型发布-更新" class="ai-condensed-section">
+      <h2 class="section-title" style="--accent:#e74c3c">
+        <span class="section-icon">🤖</span>
+        模型发布/更新
+        <span class="section-count">7 条</span>
+      </h2>
+      <ul class="ai-condensed-list">
+          <li class="ai-item" data-seq="1">
+            <span class="ai-item-num">#1</span>
+            <span class="ai-item-source" style="--chip-color:#e74c3c">Sky Computing Lab</span>
+            <a class="ai-item-title" href="https://x.com/haoailab/status/2069493820732170695" target="_blank" rel="noopener noreferrer">FastWan-QAD：单卡5090上1.8秒生成5秒视频</a>
+            <span class="ai-item-summary">Sky Computing Lab 发布 FastWan-QAD 视频生成模型系列，基于 FastVideo 的量化感知蒸馏（QAD）方案训练。在单张 NVI…</span>
+          </li>
+          <li class="ai-item" data-seq="2">
+            <span class="ai-item-num">#2</span>
+            <span class="ai-item-source" style="--chip-color:#e74c3c">京东JoyAI</span>
+            <a class="ai-item-title" href="https://mp.weixin.qq.com/s/IY6XGp4k6VgD9ZPH6YprCA" target="_blank" rel="noopener noreferrer">京东全栈开源JoyAI-VL-Interaction，从“一问一答”走向“边看边说”</a>
+            <span class="ai-item-summary">京东近日开源全球首个全栈交互模型JoyAI-VL-Interaction，获vLLM-Omni原生支持。该模型能持续观察视频流、主动判…</span>
+          </li>
+          <li class="ai-item" data-seq="3">
+            <span class="ai-item-num">#3</span>
+            <span class="ai-item-source" style="--chip-color:#e74c3c">IT之家</span>
+            <a class="ai-item-title" href="https://www.ithome.com/0/967/636.htm" target="_blank" rel="noopener noreferrer">网易有道发布 Confucius4-TTS：14 语种跨语种无口音语音克隆开源模型</a>
+            <span class="ai-item-summary">网易有道推出“子曰 4.0”TTS 引擎 Confucius4-TTS，声称是业内首个支持 14 种语言跨语种无口音、且无需参考文本即可…</span>
+          </li>
+          <li class="ai-item" data-seq="4">
+            <span class="ai-item-num">#4</span>
+            <span class="ai-item-source" style="--chip-color:#e74c3c">Krea AI</span>
+            <a class="ai-item-title" href="https://x.com/krea_ai/status/2069473417804591191" target="_blank" rel="noopener noreferrer">Krea 2 技术报告正式发布</a>
+            <span class="ai-item-summary">我们的技术报告已发布。 深入解析创建 Krea 2 所用的数据、架构及训练技巧。 https://www.krea.ai/blog/krea-2-techni…</span>
+          </li>
+          <li class="ai-item" data-seq="5">
+            <span class="ai-item-num">#5</span>
+            <span class="ai-item-source" style="--chip-color:#e74c3c">火山引擎</span>
+            <a class="ai-item-title" href="https://mp.weixin.qq.com/s/iL0uyUjOMUEfudeuDP6wQQ" target="_blank" rel="noopener noreferrer">豆包音频生成模型1.0发布，重新定义AI音频创作</a>
+            <span class="ai-item-summary">火山引擎正式发布豆包音频生成模型1.0（Doubao-Seed-Audio 1.0），支持文本与音频参考生成，端到端输出目标音频。单条…</span>
+          </li>
+          <li class="ai-item" data-seq="6">
+            <span class="ai-item-num">#6</span>
+            <span class="ai-item-source" style="--chip-color:#e74c3c">News</span>
+            <a class="ai-item-title" href="https://mistral.ai/news/ocr-4" target="_blank" rel="noopener noreferrer">Mistral OCR 4</a>
+            <span class="ai-item-summary">Mistral AI 发布 OCR 4，新增边界框、块分类（标题、表格、方程式、签名等）及逐页逐词置信度分数。支持 170 种语言、10 个语…</span>
+          </li>
+          <li class="ai-item" data-seq="7">
+            <span class="ai-item-num">#7</span>
+            <span class="ai-item-source" style="--chip-color:#e74c3c">Research Feed</span>
+            <a class="ai-item-title" href="https://seed.bytedance.com/zh/blog/seed2-1-%E6%AD%A3%E5%BC%8F%E5%8F%91%E5%B8%83-%E6%B7%B1%E5%85%A5-ai-%E7%94%9F%E4%BA%A7%E5%8A%9B" target="_blank" rel="noopener noreferrer">Seed2.1 正式发布，深入 AI 生产力</a>
+            <span class="ai-item-summary">字节Seed发布Seed2.1系列，面向真实生产力场景的智能体，强化通用Agent能力、代码工程交付与多模态理解。Seed2.1 Pr…</span>
+          </li>
+      </ul>
+    </section>
+    <section id="section-产品发布-更新" class="ai-condensed-section">
+      <h2 class="section-title" style="--accent:#3498db">
+        <span class="section-icon">📦</span>
+        产品发布/更新
+        <span class="section-count">6 条</span>
+      </h2>
+      <ul class="ai-condensed-list">
+          <li class="ai-item" data-seq="8">
+            <span class="ai-item-num">#8</span>
+            <span class="ai-item-source" style="--chip-color:#3498db">Blog</span>
+            <a class="ai-item-title" href="https://huggingface.co/blog/ibm-research/cuga-apps" target="_blank" rel="noopener noreferrer">IBM 开源 CUGA：轻量级智能体框架，提供二十余个单文件示例应用</a>
+            <span class="ai-item-summary">IBM 开源了 CUGA（Configurable Generalist Agent），一个处理规划、执行循环、工具调用和状态管理的轻量级智能体框…</span>
+          </li>
+          <li class="ai-item" data-seq="9">
+            <span class="ai-item-num">#9</span>
+            <span class="ai-item-source" style="--chip-color:#3498db">Runway</span>
+            <a class="ai-item-title" href="https://x.com/runwayml/status/2069535148450705517" target="_blank" rel="noopener noreferrer">Runway推出Seedance 4K等三款新模型</a>
+            <span class="ai-item-summary">Seedance 4K。Seedance Mini。Kling 3.0 Turbo。现已推出。 全球最佳模型，汇聚一处。 使用优惠码 30RUNWAY，前三个月可享…</span>
+          </li>
+          <li class="ai-item" data-seq="10">
+            <span class="ai-item-num">#10</span>
+            <span class="ai-item-source" style="--chip-color:#3498db">Hacker News 热门</span>
+            <a class="ai-item-title" href="https://github.com/baidu/Unlimited-OCR" target="_blank" rel="noopener noreferrer">无限制OCR：单次长时域解析</a>
+            <span class="ai-item-summary">Unlimited OCR 是一个托管在 GitHub 的项目，实现单次长时域解析（One-Shot Long-Horizon Parsing），旨在一次性处…</span>
+          </li>
+          <li class="ai-item" data-seq="11">
+            <span class="ai-item-num">#11</span>
+            <span class="ai-item-source" style="--chip-color:#3498db">千问APP</span>
+            <a class="ai-item-title" href="https://mp.weixin.qq.com/s/oGHVP4MgGS1rbmT8s8St8Q" target="_blank" rel="noopener noreferrer">国内首个高考志愿AI测评出炉，千问多项表现超过资深咨询师</a>
+            <span class="ai-item-summary">友松实验室发布国内首个高考志愿AI能力测评报告，测试千问高考志愿填报Agent四大模块。与53位平均从业4.6年的人…</span>
+          </li>
+          <li class="ai-item" data-seq="12">
+            <span class="ai-item-num">#12</span>
+            <span class="ai-item-source" style="--chip-color:#3498db">Newsroom</span>
+            <a class="ai-item-title" href="https://www.anthropic.com/news/introducing-claude-tag" target="_blank" rel="noopener noreferrer">Anthropic 推出 Claude Tag：在 Slack 中通过 @Claude 协作</a>
+            <span class="ai-item-summary">Anthropic 推出 Claude Tag，一种在 Slack 频道中通过 @Claude 委托任务的新协作方式。Claude 可记住频道上下文，…</span>
+          </li>
+          <li class="ai-item" data-seq="13">
+            <span class="ai-item-num">#13</span>
+            <span class="ai-item-source" style="--chip-color:#3498db">GitHub Releases</span>
+            <a class="ai-item-title" href="https://github.com/anthropics/claude-code/releases/tag/v2.1.187" target="_blank" rel="noopener noreferrer">Claude Code v2.1.187 发布</a>
+            <span class="ai-item-summary">Claude Code v2.1.187 新增 `sandbox.credentials` 设置，可阻止沙箱化命令读取凭证和秘密环境变量；模型选择器及相…</span>
+          </li>
+      </ul>
+    </section>
+    <section id="section-行业动态" class="ai-condensed-section">
+      <h2 class="section-title" style="--accent:#2ecc71">
+        <span class="section-icon">🌐</span>
+        行业动态
+        <span class="section-count">5 条</span>
+      </h2>
+      <ul class="ai-condensed-list">
+          <li class="ai-item" data-seq="14">
+            <span class="ai-item-num">#14</span>
+            <span class="ai-item-source" style="--chip-color:#2ecc71">AI</span>
+            <a class="ai-item-title" href="https://arstechnica.com/ai/2026/06/oracles-21000-layoffs-help-drive-its-debt-fueled-ai-investments" target="_blank" rel="noopener noreferrer">Oracle因AI应用裁员21000人，债务驱动云基础设施投资</a>
+            <span class="ai-item-summary">Oracle在截至5月31日的财年裁员21000人，员工总数降至141,000人，降幅12.9%。公司称AI技术的采用导致劳动力缩减，同时重…</span>
+          </li>
+          <li class="ai-item" data-seq="15">
+            <span class="ai-item-num">#15</span>
+            <span class="ai-item-source" style="--chip-color:#2ecc71">Artificial Intelligence </span>
+            <a class="ai-item-title" href="https://www.artificialintelligence-news.com/news/five-eyes-warning-ai-cyber-threats" target="_blank" rel="noopener noreferrer">五眼联盟警告：AI网络威胁数月内将影响普通用户</a>
+            <span class="ai-item-summary">2026年6月22日，五眼联盟（美、英、加、澳、新）网络安全部门联合警告，即将到来的AI模型（如OpenAI的GPT-5.5-Cyber、Anthropi…</span>
+          </li>
+          <li class="ai-item" data-seq="16">
+            <span class="ai-item-num">#16</span>
+            <span class="ai-item-source" style="--chip-color:#2ecc71">GitHub Blog</span>
+            <a class="ai-item-title" href="https://github.blog/news-insights/policy-news-and-insights/github-joins-coalition-advocating-for-fixes-to-california-ai-transparency-act-to-protect-open-source" target="_blank" rel="noopener noreferrer">GitHub联合开源联盟呼吁修改加州AI透明度法案以保护开源</a>
+            <span class="ai-item-summary">GitHub 联合 Black Forest Labs、Hugging Face 与 Mozilla Corporation 组成开源联盟，呼吁对加州 AI 透明度法案（S…</span>
+          </li>
+          <li class="ai-item" data-seq="17">
+            <span class="ai-item-num">#17</span>
+            <span class="ai-item-source" style="--chip-color:#2ecc71">官网动态</span>
+            <a class="ai-item-title" href="https://openai.com/index/helping-build-shared-standards-for-advanced-ai" target="_blank" rel="noopener noreferrer">OpenAI 助力 Appia Foundation 推动先进 AI 共享标准建设</a>
+            <span class="ai-item-summary">OpenAI 通过 Appia Foundation 支持制定先进 AI 的共享标准，涵盖评估框架、安全实践与全球合作。</span>
+          </li>
+          <li class="ai-item" data-seq="18">
+            <span class="ai-item-num">#18</span>
+            <span class="ai-item-source" style="--chip-color:#2ecc71">官网动态</span>
+            <a class="ai-item-title" href="https://openai.com/index/omio" target="_blank" rel="noopener noreferrer">Omio 如何构建对话式旅行的未来</a>
+            <span class="ai-item-summary">Omio 利用 OpenAI 技术打造对话式旅行体验，加速产品开发进程，并推动自身向 AI 原生公司转型。</span>
+          </li>
+      </ul>
+    </section>
+    <section id="section-论文研究" class="ai-condensed-section">
+      <h2 class="section-title" style="--accent:#9b59b6">
+        <span class="section-icon">📄</span>
+        论文研究
+        <span class="section-count">3 条</span>
+      </h2>
+      <ul class="ai-condensed-list">
+          <li class="ai-item" data-seq="19">
+            <span class="ai-item-num">#19</span>
+            <span class="ai-item-source" style="--chip-color:#9b59b6">Hacker News 热门</span>
+            <a class="ai-item-title" href="https://hai.stanford.edu/news/ai-hiring-tools-can-yield-racial-bias-and-systemic-rejection" target="_blank" rel="noopener noreferrer">AI招聘工具存在种族偏见和系统性排斥；黑人占比26%，亚裔占比15%</a>
+            <span class="ai-item-summary">一项覆盖340万人、400万份申请、150家雇主和1700个职位的大规模实地研究发现，AI招聘筛选工具存在显著的种族歧视：26%…</span>
+          </li>
+          <li class="ai-item" data-seq="20">
+            <span class="ai-item-num">#20</span>
+            <span class="ai-item-source" style="--chip-color:#9b59b6">Apple Machine Learning R</span>
+            <a class="ai-item-title" href="https://machinelearning.apple.com/research/correlated-llm-evaluation-panels" target="_blank" rel="noopener noreferrer">九位评委，两个有效投票：相关错误削弱LLM评审面板</a>
+            <span class="ai-item-summary">苹果机器学习研究团队发现，LLM-as-a-judge面板因模型间高度相关而严重受限。对7个模型家族的9个前沿大语言模型…</span>
+          </li>
+          <li class="ai-item" data-seq="21">
+            <span class="ai-item-num">#21</span>
+            <span class="ai-item-source" style="--chip-color:#9b59b6">Apple Machine Learning R</span>
+            <a class="ai-item-title" href="https://machinelearning.apple.com/research/metric-dependent-annotation-saturation" target="_blank" rel="noopener noreferrer">基于指标依赖的标注饱和：从标签分布中学习</a>
+            <span class="ai-item-summary">在ChaosNLI数据集（每项100个标注）上微调NLI模型，发现所需标注人数因评估指标而异：熵相关（识别分歧项）需约20-50个…</span>
+          </li>
+      </ul>
+    </section>
+    <section id="section-技巧与观点" class="ai-condensed-section">
+      <h2 class="section-title" style="--accent:#f39c12">
+        <span class="section-icon">💡</span>
+        技巧与观点
+        <span class="section-count">5 条</span>
+      </h2>
+      <ul class="ai-condensed-list">
+          <li class="ai-item" data-seq="22">
+            <span class="ai-item-num">#22</span>
+            <span class="ai-item-source" style="--chip-color:#f39c12">Blog</span>
+            <a class="ai-item-title" href="https://huggingface.co/blog/huggingface-hub-release-ci" target="_blank" rel="noopener noreferrer">huggingface_hub 实现每周发布：AI、开源工具、人工审核闭环</a>
+            <span class="ai-item-summary">Hugging Face 将 huggingface_hub 的发布周期从每 4‑6 周缩短至每周，全部由单个 GitHub Actions 工作流自动完成。…</span>
+          </li>
+          <li class="ai-item" data-seq="23">
+            <span class="ai-item-num">#23</span>
+            <span class="ai-item-source" style="--chip-color:#f39c12">Blog</span>
+            <a class="ai-item-title" href="https://huggingface.co/blog/cross-origin-storage" target="_blank" rel="noopener noreferrer">在 Transformers.js 中实验提议的跨源存储 API</a>
+            <span class="ai-item-summary">Transformers.js 在浏览器中运行 AI 模型时，不同来源的 Web 应用会重复下载并缓存相同的模型资源（如 Xenova/whi…</span>
+          </li>
+          <li class="ai-item" data-seq="24">
+            <span class="ai-item-num">#24</span>
+            <span class="ai-item-source" style="--chip-color:#f39c12">Meta Engineering Blog</span>
+            <a class="ai-item-title" href="https://engineering.fb.com/2026/06/23/production-engineering/how-meta-built-ultra-narrow-batteries-for-ai-glasses-meta-tech-podcast" target="_blank" rel="noopener noreferrer">Meta 如何为 AI 眼镜设计超窄钢壳电池</a>
+            <span class="ai-item-summary">Meta 工程团队为 Ray-Ban Meta 等智能眼镜开发了宽度仅 7mm 的钢壳电池。传统软包电池难以塑形且空间利用率低，M…</span>
+          </li>
+          <li class="ai-item" data-seq="25">
+            <span class="ai-item-num">#25</span>
+            <span class="ai-item-source" style="--chip-color:#f39c12">Blog</span>
+            <a class="ai-item-title" href="https://claude.com/blog/agent-identity-access-model" target="_blank" rel="noopener noreferrer">Claude Tag 的 Agent Identity 访问模型</a>
+            <span class="ai-item-summary">Claude Tag 推出 agent identity（智能体身份）访问模型，让 Claude 在共享频道中以独立身份工作，而非模拟某个用…</span>
+          </li>
+          <li class="ai-item" data-seq="26">
+            <span class="ai-item-num">#26</span>
+            <span class="ai-item-source" style="--chip-color:#f39c12">官网动态</span>
+            <a class="ai-item-title" href="https://openai.com/index/gpt-5-immunology-mystery" target="_blank" rel="noopener noreferrer">GPT-5 帮助免疫学家 Derya Unutmaz 解开三年未解之谜</a>
+            <span class="ai-item-summary">GPT-5 Pro 帮助免疫学家 Derya Unutmaz 解决了一个长达三年的免疫学谜团，揭示了 T 细胞行为的新见解。这一突破可…</span>
+          </li>
+      </ul>
+    </section>
+</main>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+  <p>AI资讯 26条 + 电商运营 3模块 | 数据来源：<strong>AI HOT (aihot.virxact.com)</strong> × <strong>京东商家后台</strong> | 生成时间：2026-06-24 北京时间</p>
+</footer>
+
+<script>
+/* ============================================
+   IntersectionObserver: 滚动渐入动画
+   ============================================ */
+(function() {
+  var cards = document.querySelectorAll('.card');
+  if (!('IntersectionObserver' in window)) {
+    cards.forEach(function(c) { c.classList.add('visible'); });
+    return;
+  }
+
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+
+  cards.forEach(function(card, i) {
+    card.style.transitionDelay = (i % 6) * 0.05 + 's';
+    observer.observe(card);
+  });
+})();
+
+/* ============================================
+   Nav 高亮当前板块 (IntersectionObserver)
+   ============================================ */
+(function() {
+  var navChips = document.querySelectorAll('.nav-chip');
+  var sections = document.querySelectorAll('.report-section');
+  if (!sections.length) return;
+
+  var currentActive = null;
+
+  var sectionObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var id = entry.target.getAttribute('id');
+        navChips.forEach(function(chip) {
+          var href = chip.getAttribute('href');
+          if (href === '#' + id) {
+            chip.classList.add('active');
+            currentActive = chip;
+          } else {
+            chip.classList.remove('active');
+          }
+        });
+      }
+    });
+  }, { threshold: 0.3, rootMargin: '-80px 0px -50% 0px' });
+
+  sections.forEach(function(s) { sectionObserver.observe(s); });
+})();
+</script>
+</body>
+</html>

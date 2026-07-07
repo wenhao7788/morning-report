@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI×电商晨报 | 2026-06-29</title>
+<style>
+/* ==========================================
+   CSS Variables & Reset
+   ========================================== */
+:root {
+  --primary: #FF6B35;
+  --primary-dark: #D9381E;
+  --accent: #FF8C42;
+  --bg: #f8f8f9;
+  --card-bg: #ffffff;
+  --text: #1a1a2e;
+  --text-secondary: #666680;
+  --text-muted: #9090a0;
+  --border: #e8e8ec;
+  --hero-gradient: linear-gradient(135deg, #FF5E2C 0%, #E8351E 40%, #C81A12 100%);
+  --card-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  --card-shadow-hover: 0 6px 24px rgba(0,0,0,0.10);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --max-width: 1280px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ==========================================
+   Hero Section
+   ========================================== */
+.hero {
+  background: var(--hero-gradient);
+  color: #fff;
+  padding: 48px 24px 56px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -30%;
+  right: -10%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: -20%;
+  left: -5%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.hero-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-date {
+  font-size: 0.875rem;
+  opacity: 0.85;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+.hero-title {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.hero-subtitle {
+  font-size: 1.125rem;
+  opacity: 0.9;
+  margin-bottom: 24px;
+}
+
+.hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.hero-stat-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(8px);
+  border-radius: 24px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.hero-stat-chip em {
+  font-style: normal;
+  font-size: 0.75rem;
+  opacity: 0.75;
+  margin-left: 2px;
+}
+
+.hero-update {
+  margin-top: 20px;
+  font-size: 0.8125rem;
+  opacity: 0.7;
+}
+
+/* ==========================================
+   Sticky Nav
+   ========================================== */
+.nav-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+}
+
+.nav-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 12px 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.nav-inner::-webkit-scrollbar { display: none; }
+
+.nav-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--text-secondary);
+  background: #f0f0f3;
+  border: 1.5px solid transparent;
+  transition: all 0.2s;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.nav-chip:hover,
+.nav-chip.active {
+  color: #fff;
+  background: var(--nav-color, var(--primary));
+  border-color: var(--nav-color, var(--primary));
+}
+
+.nav-chip em {
+  font-style: normal;
+  font-size: 0.7rem;
+  opacity: 0.7;
+}
+
+/* ============================================
+   Main Content
+   ============================================ */
+.main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 36px 24px 60px;
+}
+
+/* ============================================
+   Section
+   ============================================ */
+.report-section {
+  margin-bottom: 48px;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 3px solid var(--accent, #e0e0e0);
+  color: var(--text);
+}
+
+.section-icon {
+  font-size: 1.5rem;
+}
+
+.section-count {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-left: auto;
+  background: #f0f0f3;
+  padding: 3px 10px;
+  border-radius: 12px;
+}
+
+/* ============================================
+   Card Grid
+   ============================================ */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 16px;
+}
+
+@media (max-width: 768px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================
+   AI Card
+   ============================================ */
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--border);
+  transition: transform 0.25s, box-shadow 0.25s;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.card.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--card-shadow-hover);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.card-num {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--primary);
+  background: rgba(255,107,53,0.08);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.chip {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--chip-color, #888) 10%, #fff);
+  color: var(--chip-color, #888);
+  border: 1px solid color-mix(in srgb, var(--chip-color, #888) 30%, transparent);
+}
+
+.card-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--text);
+  margin-bottom: 8px;
+  flex: 1;
+}
+
+.card-summary {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+.card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: auto;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.2s, gap 0.2s;
+  align-self: flex-start;
+}
+
+.card-link:hover {
+  color: var(--primary-dark);
+  gap: 8px;
+}
+
+/* ============================================
+   E-commerce Card (different style)
+   ============================================ */
+.ecom-card {
+  border-left: 4px solid var(--badge-color, #e67e22);
+}
+
+.card-module-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--badge-color, #e67e22) 12%, #fff);
+  color: var(--badge-color, #e67e22);
+}
+
+.card-report {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.report-row {
+  margin-bottom: 4px;
+}
+
+.report-row strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.report-source {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.ecom-grid {
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+}
+
+/* ============================================
+   AI Condensed List (精简版)
+   ============================================ */
+.ai-condensed-section {
+  margin-bottom: 36px;
+}
+
+.ai-condensed-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ai-item {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  transition: background 0.15s;
+}
+
+.ai-item:hover {
+  background: #f4f4f6;
+}
+
+.ai-item-num {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--primary);
+  background: rgba(255,107,53,0.08);
+  padding: 1px 6px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.ai-item-source {
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--chip-color, #888) 8%, #fff);
+  color: var(--chip-color, #888);
+  border: 1px solid color-mix(in srgb, var(--chip-color, #888) 20%, transparent);
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.ai-item-title {
+  font-weight: 600;
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.ai-item-title:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+.ai-item-summary {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  width: 100%;
+  margin-left: 0;
+}
+
+@media (min-width: 640px) {
+  .ai-item-summary {
+    width: auto;
+    margin-left: 0;
+    flex: 1;
+    min-width: 200px;
+  }
+}
+
+/* ============================================
+   Divider
+   ============================================ */
+.section-divider {
+  text-align: center;
+  margin: 40px 0 28px;
+  position: relative;
+}
+
+.section-divider::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border), transparent);
+}
+
+.section-divider span {
+  position: relative;
+  display: inline-block;
+  padding: 6px 24px;
+  background: var(--bg);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+}
+
+/* ============================================
+   Footer
+   ============================================ */
+.footer {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 24px 24px 40px;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+}
+
+.footer strong {
+  color: var(--text-secondary);
+}
+</style>
+</head>
+<body>
+
+<!-- ===== Hero ===== -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-date">2026年6月29日 周一</div>
+    <h1 class="hero-title">AI × 电商晨报</h1>
+    <p class="hero-subtitle">每日电商运营速递 + AI 资讯速览</p>
+    <div class="hero-stats">
+      <span class="hero-stat-chip">📈 电商运营 <em>(3模块)</em></span>
+      <span class="hero-stat-chip">🤖 模型发布/更新 <em>(2条)</em></span>
+      <span class="hero-stat-chip">📦 产品发布/更新 <em>(3条)</em></span>
+      <span class="hero-stat-chip">🌐 行业动态 <em>(4条)</em></span>
+      <span class="hero-stat-chip">📄 论文研究 <em>(2条)</em></span>
+      <span class="hero-stat-chip">💡 技巧与观点 <em>(4条)</em></span>
+    </div>
+    <div class="hero-update">🕐  更新 · 电商速递 3模块 · AI资讯 15条</div>
+  </div>
+</header>
+
+<!-- ===== Nav ===== -->
+<nav class="nav-wrap" id="mainNav">
+  <div class="nav-inner">
+            <a href="#section-ecom" class="nav-chip" style="--nav-color:#e67e22">
+          <span>📈</span> 电商运营 <em>3</em>
+        </a>
+        <a href="#section-模型发布-更新" class="nav-chip" style="--nav-color:#e74c3c">
+          <span>🤖</span> 模型发布/更新 <em>2</em>
+        </a>
+        <a href="#section-产品发布-更新" class="nav-chip" style="--nav-color:#3498db">
+          <span>📦</span> 产品发布/更新 <em>3</em>
+        </a>
+        <a href="#section-行业动态" class="nav-chip" style="--nav-color:#2ecc71">
+          <span>🌐</span> 行业动态 <em>4</em>
+        </a>
+        <a href="#section-论文研究" class="nav-chip" style="--nav-color:#9b59b6">
+          <span>📄</span> 论文研究 <em>2</em>
+        </a>
+        <a href="#section-技巧与观点" class="nav-chip" style="--nav-color:#f39c12">
+          <span>💡</span> 技巧与观点 <em>4</em>
+        </a>
+  </div>
+</nav>
+
+<!-- ===== Main Content ===== -->
+<main class="main">
+    <section id="section-ecom" class="report-section">
+      <h2 class="section-title" style="--accent:#e67e22">
+        <span class="section-icon">📈</span>
+        电商运营速递
+        <span class="section-count">3 模块</span>
+      </h2>
+      <div class="card-grid ecom-grid">
+    <article class="card ecom-card">
+      <div class="card-header">
+        <span class="card-module-badge" style="--badge-color:#e74c3c">M1 京东后台调整</span>
+      </div>
+      <h3 class="card-title">📈 M1 京东后台调整</h3>
+      <div class="card-report">
+        <div class="report-row"><strong>摘要：</strong>本期无新增重大变更。rule.jd.com本周无灯具类目专项新规。最近一次关联调整为6/25生效的《店铺命名及信息规范》（常规类目规则，非灯具专项）。京麦工作台暂无新版本升级公告。</div>
+        <span class="report-source">来源：灯具运营每日资讯</span>
+      </div>
+    </article>
+    <article class="card ecom-card">
+      <div class="card-header">
+        <span class="card-module-badge" style="--badge-color:#f39c12">M4 跨品类偷师</span>
+      </div>
+      <h3 class="card-title">小家电（戴森HS09"参数→场景"翻译术）</h3>
+      <div class="card-report">
+        <div class="report-row"><strong>案例：</strong>戴森(DYSON) Supersonic Co-anda 2x™ 多功能造型吹风机 HS09（小家电个护）</div><div class="report-row"><strong>它做对了什么：</strong>**把一个吹风机讲成"一机顶三机"的生活方式产品，而非"风速×温度×配件数"的参数堆砌**。HS09官方页面把"150,000转/分钟 + 2倍气压"这种冷参数放在副位，主图/标题/详情页首屏全是"吹干·拉直·卷发三合一"——消费者一看就懂自己少买两台机器（吹风机+直板夹+卷发棒）、少操一份心。**核心翻译术是"用消费者省/赚/懒的场景，替代工程师参数表"**。</div><div class="report-row"><strong>怎么迁移到灯具：</strong>- **吸顶灯**：把"显色指数Ra≥95 / RG0豁免级 / 36W大功率"这些参数从首屏挪走，**首屏只说"一盏顶全屋：客厅+餐厅+主卧统一光感，装修少操心、护眼全家受益"**。参数藏在第二屏技术参数表里给"懂的人"看。</div><div class="report-row"><strong>台灯：</strong>台灯最容易踩"参数表开屏"——照度AA级/AAA级/国标/Ra/R9/色温/无频闪全堆首页。**学HS09换成"一张书桌一支灯：孩子写作业到晚上10点眼睛不酸"这种场景话术**，参数下沉到详情页中后段。</div><div class="report-row"><strong>风扇灯：</strong>戴森HS09文案的关键是"三合一替代三台机器"，风扇灯其实有同样的故事（一个灯位同时解决"照明+凉风+装饰"三大需求，省掉风扇+吊灯+装饰画）。**首屏直接说"一盏=灯+风扇+客厅颜值担当，省事省空间"**，具体风力/功率/光通量放第三屏之后。</div><div class="report-row"><strong>来源：</strong>戴森官方页 `dyson.cn/dyson-598772-01-hs09.html` + 京东戴森HS09榜单（5000+评价，TOP1稳居）</div><div class="report-row"><strong>吸顶灯：</strong>把"显色指数Ra≥95 / RG0豁免级 / 36W大功率"这些参数从首屏挪走，**首屏只说"一盏顶全屋：客厅+餐厅+主卧统一光感，装修少操心、护眼全家受益"**。参数藏在第二屏技术参数表里给"懂的人"看。</div><div class="report-row"><strong>台灯：</strong>台灯最容易踩"参数表开屏"——照度AA级/AAA级/国标/Ra/R9/色温/无频闪全堆首页。**学HS09换成"一张书桌一支灯：孩子写作业到晚上10点眼睛不酸"这种场景话术**，参数下沉到详情页中后段。</div><div class="report-row"><strong>风扇灯：</strong>戴森HS09文案的关键是"三合一替代三台机器"，风扇灯其实有同样的故事（一个灯位同时解决"照明+凉风+装饰"三大需求，省掉风扇+吊灯+装饰画）。**首屏直接说"一盏=灯+风扇+客厅颜值担当，省事省空间"**，具体风力/功率/光通量放第三屏之后。</div>
+        <span class="report-source">来源：灯具运营每日资讯</span>
+      </div>
+    </article>
+    <article class="card ecom-card">
+      <div class="card-header">
+        <span class="card-module-badge" style="--badge-color:#e67e22">C-1 行业简讯</span>
+      </div>
+      <h3 class="card-title">🔄 辅助简讯</h3>
+      <div class="card-report">
+        <div class="report-row"><strong>第三批国补625亿元6/30前拨付到29省，灯具暂未进统一名录但周边品类已扩围** — 国家发改委6/27宣布第三批625亿元超长期特别国债资金将于6/30前拨付全国29省，2026全年总预算2500亿元分四批等额。截至6/20全国以旧换新已惠及1.36亿人次、带动销售额超1万亿元，资金撬动比从2025年的1:7.8提升至1:10.3。**灯具暂未进入统一国补名录**，但京东清凉家电节（6/23-7/15）将风扇灯列入主推池，叠加"日销期直降20% + 清凉节立省30% + 焕新补贴15%"三重补贴。**操作建议：</strong>风扇灯/大路灯详情页加"以旧换新入口"提示，主图右上角保留"旧灯换新立减15%"角标，蹭周边品类流量。— 来源：百度百家号/经济日报/红宏安 6/27</div><div class="report-row"><strong>清凉家电节倒计时16天，风扇灯TOP榜前十固化为618打法** — 京东家电清凉节6/23-7/15进行中，主推风扇灯/落地扇/循环扇/空调。**风扇灯618后的格局已基本固化：</strong>米家（隐形扇叶/智能联动）、梵季（无叶冷暖一体新物种）、公牛（无叶形态）、雷士（白雪+清荷系列）四强争霸。**操作建议**：我司雷士主图策略可借鉴戴森HS09的"场景一句话"打法——把"42寸/变频/护眼"参数挪到第二屏，首屏放"夏夜客厅一盏搞定：凉风+柔光+颜值"场景图，配合清凉节"30%补贴"角标抢6/30-7/15窗口流量。— 来源：什么值得买/京东榜单 6/28</div><div class="report-row"><strong>戴森HS09京东单品稳居TOP1（5000+评价），验证"三合一+省事"卖点对中高客单用户最有效** — HS09官方零售价¥3,999，618后价保不跌价，京东TOP1稳居5周。**消费者评价高频关键词：</strong>「吹干/拉直/卷发三合一」「一机替代三台」「磁吸风嘴切换超方便」「手残党也能做造型」「梳妆台瞬间清爽」——**关键词是"清爽/方便/省事/不操心"，而非"风速/温度/配件"**。**对灯具的迁移启示**：我司台灯/大路灯/风扇灯详情页"用户评价"展示位应主动收录「宝妈/学生/租房党」的真实使用语录，替代"亮度高/色温好/功率大"的参数党自嗨。— 来源：京东戴森HS09榜单页</div>
+        <span class="report-source">来源：京东戴森HS09榜单页</span>
+      </div>
+    </article>
+      </div>
+    </section>
+
+  <div class="section-divider"><span>▼ AI 资讯速览</span></div>
+
+    <section id="section-模型发布-更新" class="ai-condensed-section">
+      <h2 class="section-title" style="--accent:#e74c3c">
+        <span class="section-icon">🤖</span>
+        模型发布/更新
+        <span class="section-count">2 条</span>
+      </h2>
+      <ul class="ai-condensed-list">
+          <li class="ai-item" data-seq="1">
+            <span class="ai-item-num">#1</span>
+            <span class="ai-item-source" style="--chip-color:#e74c3c">Elon Musk</span>
+            <a class="ai-item-title" href="https://x.com/elonmusk/status/2071184354756477041" target="_blank" rel="noopener noreferrer">Grok 4.5 私测于 SpaceX 和 Tesla，性能接近 Opus</a>
+            <span class="ai-item-summary">Grok 4.5，基于我们的1.5T V9基础模型，并在补充训练中加入Cursor数据，现已在SpaceX和Tesla进入私测。初步评估显示…</span>
+          </li>
+          <li class="ai-item" data-seq="2">
+            <span class="ai-item-num">#2</span>
+            <span class="ai-item-source" style="--chip-color:#e74c3c">AI News</span>
+            <a class="ai-item-title" href="https://the-decoder.com/sinas-open-model-vibethinker-3b-aims-to-show-reasoning-compresses-well-but-factual-knowledge-doesnt" target="_blank" rel="noopener noreferrer">新浪开源VibeThinker-3B：推理可压缩，事实知识不能</a>
+            <span class="ai-item-summary">新浪发布仅3B参数的VibeThinker-3B，在AIME26等数学编程基准上持平DeepSeek V3.2等大200-333倍的模型，LiveCodeBench…</span>
+          </li>
+      </ul>
+    </section>
+    <section id="section-产品发布-更新" class="ai-condensed-section">
+      <h2 class="section-title" style="--accent:#3498db">
+        <span class="section-icon">📦</span>
+        产品发布/更新
+        <span class="section-count">3 条</span>
+      </h2>
+      <ul class="ai-condensed-list">
+          <li class="ai-item" data-seq="3">
+            <span class="ai-item-num">#3</span>
+            <span class="ai-item-source" style="--chip-color:#3498db">Hacker News 热门</span>
+            <a class="ai-item-title" href="https://github.com/itsthelore/wayfinder-router" target="_blank" rel="noopener noreferrer">Wayfinder Router：在本地和托管的大语言模型之间进行确定性查询路由</a>
+            <span class="ai-item-summary">Wayfinder Router 通过分析提示词的结构（长度、标题、列表、代码）和措辞（证明、数学、硬约束），在微秒级完成路由决策，…</span>
+          </li>
+          <li class="ai-item" data-seq="4">
+            <span class="ai-item-num">#4</span>
+            <span class="ai-item-source" style="--chip-color:#3498db">Hacker News 热门</span>
+            <a class="ai-item-title" href="https://github.com/kageroumado/adrafinil" target="_blank" rel="noopener noreferrer">阿德拉菲尼尔：仅在AI agent工作时阻止Mac睡眠的菜单栏工具</a>
+            <span class="ai-item-summary">Adrafinil 是一款 macOS 菜单栏应用，仅在 Claude Code、Codex、Cursor、Gemini CLI、Aider、Hermes、OpenCode、Cline、Pi …</span>
+          </li>
+          <li class="ai-item" data-seq="5">
+            <span class="ai-item-num">#5</span>
+            <span class="ai-item-source" style="--chip-color:#3498db">Runway</span>
+            <a class="ai-item-title" href="https://x.com/runwayml/status/2070855164584726791" target="_blank" rel="noopener noreferrer">Runway API 推出广告本地化 Recipe</a>
+            <span class="ai-item-summary">广告本地化现在可通过 Runway API 以 Recipe 形式使用。
+
+现在您可以通过单次 API 调用翻译静态广告和图形资产。</span>
+          </li>
+      </ul>
+    </section>
+    <section id="section-行业动态" class="ai-condensed-section">
+      <h2 class="section-title" style="--accent:#2ecc71">
+        <span class="section-icon">🌐</span>
+        行业动态
+        <span class="section-count">4 条</span>
+      </h2>
+      <ul class="ai-condensed-list">
+          <li class="ai-item" data-seq="6">
+            <span class="ai-item-num">#6</span>
+            <span class="ai-item-source" style="--chip-color:#2ecc71">cb_doge</span>
+            <a class="ai-item-title" href="https://x.com/cb_doge/status/2070973276562530507" target="_blank" rel="noopener noreferrer">SpaceX 注册 SpaceXAI 商标，将合并 xAI</a>
+            <span class="ai-item-summary">消息：SpaceX 刚刚注册了&quot;SpaceXAI&quot;商标。
+
+埃隆·马斯克表示 xAI 将解散，不再作为独立公司，因此它将只是 SpaceXAI，…</span>
+          </li>
+          <li class="ai-item" data-seq="7">
+            <span class="ai-item-num">#7</span>
+            <span class="ai-item-source" style="--chip-color:#2ecc71">Berry Xia</span>
+            <a class="ai-item-title" href="https://x.com/berryxia/status/2070916520822321292" target="_blank" rel="noopener noreferrer">苹果Vision负责人跳槽OpenAI，触控OLED MacBook用M5芯片</a>
+            <span class="ai-item-summary">2026年6月26日，Mark Gurman称苹果Vision产品组副总裁Paul Meade下周离职加入OpenAI硬件部门。他负责Vision Pro、无…</span>
+          </li>
+          <li class="ai-item" data-seq="8">
+            <span class="ai-item-num">#8</span>
+            <span class="ai-item-source" style="--chip-color:#2ecc71">AI News</span>
+            <a class="ai-item-title" href="https://the-decoder.com/the-companies-most-likely-to-automate-your-job-are-now-funding-a-1-billion-program-to-retrain-you" target="_blank" rel="noopener noreferrer">&quot;Raise Us&quot;启动：前美商务部长与四州合作筹集10亿美元应对AI就业冲击</a>
+            <span class="ai-item-summary">前美国商务部长Raimondo与前印第安纳州长Holcomb共同发起非营利&quot;Raise Us&quot;，目标为AI经济下工人再培训筹集10亿…</span>
+          </li>
+          <li class="ai-item" data-seq="9">
+            <span class="ai-item-num">#9</span>
+            <span class="ai-item-source" style="--chip-color:#2ecc71">IT之家</span>
+            <a class="ai-item-title" href="https://www.ithome.com/0/969/400.htm" target="_blank" rel="noopener noreferrer">AI 账单失控后 DeepSeek 成&quot;香饽饽&quot;，部分美国企业已 100% 切换</a>
+            <span class="ai-item-summary">美国企业面临 AI 账单失控，开始转向 Token 最小化策略。旧金山公司 Lindy 此前主要调用 Anthropic 的 Claude 模…</span>
+          </li>
+      </ul>
+    </section>
+    <section id="section-论文研究" class="ai-condensed-section">
+      <h2 class="section-title" style="--accent:#9b59b6">
+        <span class="section-icon">📄</span>
+        论文研究
+        <span class="section-count">2 条</span>
+      </h2>
+      <ul class="ai-condensed-list">
+          <li class="ai-item" data-seq="10">
+            <span class="ai-item-num">#10</span>
+            <span class="ai-item-source" style="--chip-color:#9b59b6">AI News</span>
+            <a class="ai-item-title" href="https://the-decoder.com/only-three-ai-models-finished-above-starting-capital-in-a-500-day-startup-survival-test" target="_blank" rel="noopener noreferrer">仅有三个AI模型在500天创业测试中盈利超过起始资本</a>
+            <span class="ai-item-summary">普林斯顿大学推出CEO-Bench基准测试，让AI智能体在模拟环境中运营订阅软件公司NovaMind 500天，起始资金100万美元…</span>
+          </li>
+          <li class="ai-item" data-seq="11">
+            <span class="ai-item-num">#11</span>
+            <span class="ai-item-source" style="--chip-color:#9b59b6">MarkTechPost</span>
+            <a class="ai-item-title" href="https://www.marktechpost.com/2026/06/27/deepseek-releases-dspark-a-speculative-decoding-framework-that-accelerates-deepseek-v4-per-user-generation-60-85-over-mtp-1" target="_blank" rel="noopener noreferrer">DeepSeek 开源 DSpark 投机解码框架，加速 DeepSeek-V4 生成速度 60-85%</a>
+            <span class="ai-item-summary">DeepSeek 发布 DSpark 投机解码框架并开源检查点与训练代码。该框架不是新模型，而是在 DeepSeek-V4 权重上附加…</span>
+          </li>
+      </ul>
+    </section>
+    <section id="section-技巧与观点" class="ai-condensed-section">
+      <h2 class="section-title" style="--accent:#f39c12">
+        <span class="section-icon">💡</span>
+        技巧与观点
+        <span class="section-count">4 条</span>
+      </h2>
+      <ul class="ai-condensed-list">
+          <li class="ai-item" data-seq="12">
+            <span class="ai-item-num">#12</span>
+            <span class="ai-item-source" style="--chip-color:#f39c12">数字生命卡兹克</span>
+            <a class="ai-item-title" href="https://mp.weixin.qq.com/s/umPqTD_-IubbhXIgiS47eQ" target="_blank" rel="noopener noreferrer">分享两个Vibe Coding必备的实用Prompt：第一性原理与对抗式审查</a>
+            <span class="ai-item-summary">作者分享Vibe Coding中两个关键Prompt：一是&quot;从第一性原理出发&quot;，强制AI跳出类比推理，从基本事实重新推导本质，…</span>
+          </li>
+          <li class="ai-item" data-seq="13">
+            <span class="ai-item-num">#13</span>
+            <span class="ai-item-source" style="--chip-color:#f39c12">Interconnects</span>
+            <a class="ai-item-title" href="https://www.interconnects.ai/p/artifacts-22-zyphra-cohere-and-poolside" target="_blank" rel="noopener noreferrer">Artifacts 22：Zyphra、Cohere 和 Poolside 正在扩展生态系统广度</a>
+            <span class="ai-item-summary">开源模型生态正变得更多元，参与者从少数中国公司扩展到全球各类组织。纯模型制造商包括 DeepSeek、智谱、MiniMax…</span>
+          </li>
+          <li class="ai-item" data-seq="14">
+            <span class="ai-item-num">#14</span>
+            <span class="ai-item-source" style="--chip-color:#f39c12">IT之家</span>
+            <a class="ai-item-title" href="https://www.ithome.com/0/969/570.htm" target="_blank" rel="noopener noreferrer">四大顶级AI对决《文明VI》：Claude核平法国仍输，暴露感知与执行短板</a>
+            <span class="ai-item-summary">英国前首相府数据科学家Liam Wilkinson搭建76个MCP工具，将Claude Opus 4.6、GPT-5.4、Gemini 3.1 Pro等四个模型放入《…</span>
+          </li>
+          <li class="ai-item" data-seq="15">
+            <span class="ai-item-num">#15</span>
+            <span class="ai-item-source" style="--chip-color:#f39c12">Hacker News 热门</span>
+            <a class="ai-item-title" href="https://grack.com/blog/2026/06/25/dissecting-a-failed-nation-state-attack" target="_blank" rel="noopener noreferrer">一次失败的（民族国家？）攻击的剖析</a>
+            <span class="ai-item-summary">作者收到伪装成新加坡VC Lua Ventures的虚假面试邮件，要求完成一个TypeScript仓库的&quot;测试&quot;。作者将仓库交给Cla…</span>
+          </li>
+      </ul>
+    </section>
+</main>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+  <p>AI资讯 15条 + 电商运营 3模块 | 数据来源：<strong>AI HOT (aihot.virxact.com)</strong> × <strong>京东商家后台</strong> | 生成时间：2026-06-29 北京时间</p>
+</footer>
+
+<script>
+/* ============================================
+   IntersectionObserver: 滚动渐入动画
+   ============================================ */
+(function() {
+  var cards = document.querySelectorAll('.card');
+  if (!('IntersectionObserver' in window)) {
+    cards.forEach(function(c) { c.classList.add('visible'); });
+    return;
+  }
+
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+
+  cards.forEach(function(card, i) {
+    card.style.transitionDelay = (i % 6) * 0.05 + 's';
+    observer.observe(card);
+  });
+})();
+
+/* ============================================
+   Nav 高亮当前板块 (IntersectionObserver)
+   ============================================ */
+(function() {
+  var navChips = document.querySelectorAll('.nav-chip');
+  var sections = document.querySelectorAll('.report-section');
+  if (!sections.length) return;
+
+  var currentActive = null;
+
+  var sectionObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var id = entry.target.getAttribute('id');
+        navChips.forEach(function(chip) {
+          var href = chip.getAttribute('href');
+          if (href === '#' + id) {
+            chip.classList.add('active');
+            currentActive = chip;
+          } else {
+            chip.classList.remove('active');
+          }
+        });
+      }
+    });
+  }, { threshold: 0.3, rootMargin: '-80px 0px -50% 0px' });
+
+  sections.forEach(function(s) { sectionObserver.observe(s); });
+})();
+</script>
+</body>
+</html>

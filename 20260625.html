@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI×电商晨报 | 2026-06-25</title>
+<style>
+/* ==========================================
+   CSS Variables & Reset
+   ========================================== */
+:root {
+  --primary: #FF6B35;
+  --primary-dark: #D9381E;
+  --accent: #FF8C42;
+  --bg: #f8f8f9;
+  --card-bg: #ffffff;
+  --text: #1a1a2e;
+  --text-secondary: #666680;
+  --text-muted: #9090a0;
+  --border: #e8e8ec;
+  --hero-gradient: linear-gradient(135deg, #FF5E2C 0%, #E8351E 40%, #C81A12 100%);
+  --card-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  --card-shadow-hover: 0 6px 24px rgba(0,0,0,0.10);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --max-width: 1280px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ==========================================
+   Hero Section
+   ========================================== */
+.hero {
+  background: var(--hero-gradient);
+  color: #fff;
+  padding: 48px 24px 56px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -30%;
+  right: -10%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: -20%;
+  left: -5%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.hero-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-date {
+  font-size: 0.875rem;
+  opacity: 0.85;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+.hero-title {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.hero-subtitle {
+  font-size: 1.125rem;
+  opacity: 0.9;
+  margin-bottom: 24px;
+}
+
+.hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.hero-stat-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(8px);
+  border-radius: 24px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.hero-stat-chip em {
+  font-style: normal;
+  font-size: 0.75rem;
+  opacity: 0.75;
+  margin-left: 2px;
+}
+
+.hero-update {
+  margin-top: 20px;
+  font-size: 0.8125rem;
+  opacity: 0.7;
+}
+
+/* ==========================================
+   Sticky Nav
+   ========================================== */
+.nav-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+}
+
+.nav-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 12px 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.nav-inner::-webkit-scrollbar { display: none; }
+
+.nav-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--text-secondary);
+  background: #f0f0f3;
+  border: 1.5px solid transparent;
+  transition: all 0.2s;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.nav-chip:hover,
+.nav-chip.active {
+  color: #fff;
+  background: var(--nav-color, var(--primary));
+  border-color: var(--nav-color, var(--primary));
+}
+
+.nav-chip em {
+  font-style: normal;
+  font-size: 0.7rem;
+  opacity: 0.7;
+}
+
+/* ============================================
+   Main Content
+   ============================================ */
+.main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 36px 24px 60px;
+}
+
+/* ============================================
+   Section
+   ============================================ */
+.report-section {
+  margin-bottom: 48px;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 3px solid var(--accent, #e0e0e0);
+  color: var(--text);
+}
+
+.section-icon {
+  font-size: 1.5rem;
+}
+
+.section-count {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-left: auto;
+  background: #f0f0f3;
+  padding: 3px 10px;
+  border-radius: 12px;
+}
+
+/* ============================================
+   Card Grid
+   ============================================ */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 16px;
+}
+
+@media (max-width: 768px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================
+   AI Card
+   ============================================ */
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--border);
+  transition: transform 0.25s, box-shadow 0.25s;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.card.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--card-shadow-hover);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.card-num {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--primary);
+  background: rgba(255,107,53,0.08);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.chip {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--chip-color, #888) 10%, #fff);
+  color: var(--chip-color, #888);
+  border: 1px solid color-mix(in srgb, var(--chip-color, #888) 30%, transparent);
+}
+
+.card-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--text);
+  margin-bottom: 8px;
+  flex: 1;
+}
+
+.card-summary {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+.card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: auto;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.2s, gap 0.2s;
+  align-self: flex-start;
+}
+
+.card-link:hover {
+  color: var(--primary-dark);
+  gap: 8px;
+}
+
+/* ============================================
+   E-commerce Card (different style)
+   ============================================ */
+.ecom-card {
+  border-left: 4px solid var(--badge-color, #e67e22);
+}
+
+.card-module-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--badge-color, #e67e22) 12%, #fff);
+  color: var(--badge-color, #e67e22);
+}
+
+.card-report {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.report-row {
+  margin-bottom: 4px;
+}
+
+.report-row strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.report-source {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.ecom-grid {
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+}
+
+/* ============================================
+   AI Condensed List (精简版)
+   ============================================ */
+.ai-condensed-section {
+  margin-bottom: 36px;
+}
+
+.ai-condensed-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ai-item {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  transition: background 0.15s;
+}
+
+.ai-item:hover {
+  background: #f4f4f6;
+}
+
+.ai-item-num {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--primary);
+  background: rgba(255,107,53,0.08);
+  padding: 1px 6px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.ai-item-source {
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--chip-color, #888) 8%, #fff);
+  color: var(--chip-color, #888);
+  border: 1px solid color-mix(in srgb, var(--chip-color, #888) 20%, transparent);
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.ai-item-title {
+  font-weight: 600;
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.ai-item-title:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+.ai-item-summary {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  width: 100%;
+  margin-left: 0;
+}
+
+@media (min-width: 640px) {
+  .ai-item-summary {
+    width: auto;
+    margin-left: 0;
+    flex: 1;
+    min-width: 200px;
+  }
+}
+
+/* ============================================
+   Divider
+   ============================================ */
+.section-divider {
+  text-align: center;
+  margin: 40px 0 28px;
+  position: relative;
+}
+
+.section-divider::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border), transparent);
+}
+
+.section-divider span {
+  position: relative;
+  display: inline-block;
+  padding: 6px 24px;
+  background: var(--bg);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+}
+
+/* ============================================
+   Footer
+   ============================================ */
+.footer {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 24px 24px 40px;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+}
+
+.footer strong {
+  color: var(--text-secondary);
+}
+</style>
+</head>
+<body>
+
+<!-- ===== Hero ===== -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-date">2026年6月25日 周四</div>
+    <h1 class="hero-title">AI × 电商晨报</h1>
+    <p class="hero-subtitle">每日电商运营速递 + AI 资讯速览</p>
+    <div class="hero-stats">
+      <span class="hero-stat-chip">📈 电商运营 <em>(3模块)</em></span>
+      <span class="hero-stat-chip">🤖 模型发布/更新 <em>(4条)</em></span>
+      <span class="hero-stat-chip">📦 产品发布/更新 <em>(8条)</em></span>
+      <span class="hero-stat-chip">🌐 行业动态 <em>(1条)</em></span>
+      <span class="hero-stat-chip">📄 论文研究 <em>(2条)</em></span>
+      <span class="hero-stat-chip">💡 技巧与观点 <em>(6条)</em></span>
+    </div>
+    <div class="hero-update">🕐 2 小时前 更新 · 电商速递 3模块 · AI资讯 21条</div>
+  </div>
+</header>
+
+<!-- ===== Nav ===== -->
+<nav class="nav-wrap" id="mainNav">
+  <div class="nav-inner">
+            <a href="#section-ecom" class="nav-chip" style="--nav-color:#e67e22">
+          <span>📈</span> 电商运营 <em>3</em>
+        </a>
+        <a href="#section-模型发布-更新" class="nav-chip" style="--nav-color:#e74c3c">
+          <span>🤖</span> 模型发布/更新 <em>4</em>
+        </a>
+        <a href="#section-产品发布-更新" class="nav-chip" style="--nav-color:#3498db">
+          <span>📦</span> 产品发布/更新 <em>8</em>
+        </a>
+        <a href="#section-行业动态" class="nav-chip" style="--nav-color:#2ecc71">
+          <span>🌐</span> 行业动态 <em>1</em>
+        </a>
+        <a href="#section-论文研究" class="nav-chip" style="--nav-color:#9b59b6">
+          <span>📄</span> 论文研究 <em>2</em>
+        </a>
+        <a href="#section-技巧与观点" class="nav-chip" style="--nav-color:#f39c12">
+          <span>💡</span> 技巧与观点 <em>6</em>
+        </a>
+  </div>
+</nav>
+
+<!-- ===== Main Content ===== -->
+<main class="main">
+    <section id="section-ecom" class="report-section">
+      <h2 class="section-title" style="--accent:#e67e22">
+        <span class="section-icon">📈</span>
+        电商运营速递
+        <span class="section-count">3 模块</span>
+      </h2>
+      <div class="card-grid ecom-grid">
+    <article class="card ecom-card">
+      <div class="card-header">
+        <span class="card-module-badge" style="--badge-color:#e74c3c">M1 后台调整</span>
+      </div>
+      <h3 class="card-title">本期无新增后台变更</h3>
+      <div class="card-report">
+        <div class="report-row"><strong>备注：</strong>距618高潮期收尾还有1天，关注6/18返场期排期和国补冲刺</div>
+        <span class="report-source">来源：京东商家中心</span>
+      </div>
+    </article>
+    <article class="card ecom-card">
+      <div class="card-header">
+        <span class="card-module-badge" style="--badge-color:#3498db">M2 主图拆解</span>
+      </div>
+      <h3 class="card-title">京东京造 U1 全光谱智能护眼吸顶灯</h3>
+      <div class="card-report">
+        <div class="report-row"><strong>构图逻辑：</strong>左文右图Z型布局：左上品牌+卖点标签 → 中部悬浮产品图 → 右下场景实景</div><div class="report-row"><strong>视觉层级：</strong>1) 产品本体(40%)→ 2) 卖点标签组(Ra≥95/RG0/米家联动)→ 3) 场景氛围图</div><div class="report-row"><strong>色彩搭配：</strong>主色纯白 + 暖灰场景 + 青蓝点缀(米家生态色)。白色产品用暖灰背景避免死白</div><div class="report-row"><strong>文案排布：</strong>标题36px+副标题24px，间距1.5倍行高形成呼吸感。标签组紧凑传递信息量</div><div class="report-row"><strong>可借鉴：</strong>Z型构图/双图策略(悬浮+实景)/参数可视化(图标+色块代替纯文字)</div><div class="report-row"><strong>灯具应用：</strong>吸顶灯用'白底图+底部氛围条'上下分层；台灯用场景虚化沉浸式；风扇灯加风感可视化</div>
+        <span class="report-source">来源：京东商品页</span>
+      </div>
+    </article>
+    <article class="card ecom-card">
+      <div class="card-header">
+        <span class="card-module-badge" style="--badge-color:#9b59b6">M3 卖点文案</span>
+      </div>
+      <h3 class="card-title">欧普吸顶灯系列 — 参数→消费者语言</h3>
+      <div class="card-report">
+        <div class="report-row"><strong>原文：</strong>全光谱LED芯片，Ra≥95高显色，RG0豁免级蓝光，无可视频闪</div><div class="report-row"><strong>Ra≥95→翻译：</strong>颜色更真实，宝宝的绘本和你的红唇不会色差</div><div class="report-row"><strong>RG0→翻译：</strong>对眼睛无害级，孩子可以放心在灯下读绘本到睡着</div><div class="report-row"><strong>结构拆解：</strong>痛点引入→参数佐证→场景化→情绪升华的四段式结构</div><div class="report-row"><strong>关键词：</strong>位置词(全光谱/护眼吸顶灯)→场景词(儿童房/卧室)→转化词(618到手价)</div><div class="report-row"><strong>借鉴应用：</strong>复用句式："大部分灯只负责亮，{产品名}让眼睛舒服"。坚守"参数→感受"公式</div>
+        <span class="report-source">来源：京东欧普官方旗舰店详情页</span>
+      </div>
+    </article>
+      </div>
+    </section>
+
+  <div class="section-divider"><span>▼ AI 资讯速览</span></div>
+
+    <section id="section-模型发布-更新" class="ai-condensed-section">
+      <h2 class="section-title" style="--accent:#e74c3c">
+        <span class="section-icon">🤖</span>
+        模型发布/更新
+        <span class="section-count">4 条</span>
+      </h2>
+      <ul class="ai-condensed-list">
+          <li class="ai-item" data-seq="1">
+            <span class="ai-item-num">#1</span>
+            <span class="ai-item-source" style="--chip-color:#e74c3c">IT之家</span>
+            <a class="ai-item-title" href="https://www.ithome.com/0/967/852.htm" target="_blank" rel="noopener noreferrer">OpenAI ChatGPT 语音最大规模升级：双向AI语音模型 Bidi 1 已上线测试</a>
+            <span class="ai-item-summary">6月23日，部分用户反馈 ChatGPT 网页版和 App 版上线了双向 AI 语音模型 Bidi 1，位于设置模型选择器中，与标准语音…</span>
+          </li>
+          <li class="ai-item" data-seq="2">
+            <span class="ai-item-num">#2</span>
+            <span class="ai-item-source" style="--chip-color:#e74c3c">通义实验室</span>
+            <a class="ai-item-title" href="https://mp.weixin.qq.com/s/NV9WGpGsfFz35jww5agM9g" target="_blank" rel="noopener noreferrer">Qwen-AgentWorld 开源：让 Agent 学会“先预测，再行动”</a>
+            <span class="ai-item-summary">通义千问推出首个原生语言世界模型 Qwen-AgentWorld，覆盖 MCP、Search、Terminal、SWE、Web、OS、Android 七大领域。模…</span>
+          </li>
+          <li class="ai-item" data-seq="3">
+            <span class="ai-item-num">#3</span>
+            <span class="ai-item-source" style="--chip-color:#e74c3c">Hacker News 热门</span>
+            <a class="ai-item-title" href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-computer-use-gemini-3-5-flash" target="_blank" rel="noopener noreferrer">Gemini 3.5 Flash 中的计算机使用</a>
+            <span class="ai-item-summary">Google 将计算机使用（Computer use）作为内置工具集成至 Gemini 3.5 Flash，使开发者能构建跨浏览器、移动端和桌面…</span>
+          </li>
+          <li class="ai-item" data-seq="4">
+            <span class="ai-item-num">#4</span>
+            <span class="ai-item-source" style="--chip-color:#e74c3c">OpenAI</span>
+            <a class="ai-item-title" href="https://x.com/OpenAI/status/2069843083701915755" target="_blank" rel="noopener noreferrer">GPT-5.5 Instant 新版本，对话更有趣</a>
+            <span class="ai-item-summary">我们为你带来了新版 GPT-5.5 Instant，它现在聊起天来有趣多了。 我们最常用的模型现在能更好地理解问题背后的意…</span>
+          </li>
+      </ul>
+    </section>
+    <section id="section-产品发布-更新" class="ai-condensed-section">
+      <h2 class="section-title" style="--accent:#3498db">
+        <span class="section-icon">📦</span>
+        产品发布/更新
+        <span class="section-count">8 条</span>
+      </h2>
+      <ul class="ai-condensed-list">
+          <li class="ai-item" data-seq="5">
+            <span class="ai-item-num">#5</span>
+            <span class="ai-item-source" style="--chip-color:#3498db">豆包</span>
+            <a class="ai-item-title" href="https://mp.weixin.qq.com/s/Sb-NMXTrWFQES1EDO_Gr2g" target="_blank" rel="noopener noreferrer">今天，豆包正式推出专业版</a>
+            <span class="ai-item-summary">豆包专业版基于豆包2.1系列大模型上线，面向复杂办公与生产力场景。办公任务模式接入可执行Agent任务的豆包2.1模…</span>
+          </li>
+          <li class="ai-item" data-seq="6">
+            <span class="ai-item-num">#6</span>
+            <span class="ai-item-source" style="--chip-color:#3498db">AI News</span>
+            <a class="ai-item-title" href="https://the-decoder.com/figma-bets-on-human-judgment-at-config-2026-while-the-ai-powering-its-canvas-belongs-to-someone-else" target="_blank" rel="noopener noreferrer">Figma在Config 2026押注人类判断，画布AI能力却来自第三方</a>
+            <span class="ai-item-summary">Figma在Config 2026将设计画布扩展至代码、动画、3D深度和着色器效果，并集成去年收购的Weave工作流系统。新功能包…</span>
+          </li>
+          <li class="ai-item" data-seq="7">
+            <span class="ai-item-num">#7</span>
+            <span class="ai-item-source" style="--chip-color:#3498db">火山引擎</span>
+            <a class="ai-item-title" href="https://mp.weixin.qq.com/s/83mrPAPgQRKhxLkoSvRgBQ" target="_blank" rel="noopener noreferrer">火山引擎推出Agent Ready基础设施，AgentKit与ArkClaw企业版升级</a>
+            <span class="ai-item-summary">火山引擎在FORCE大会推出面向企业智能应用的Agent Ready基础设施，构建AI云与Agent三层架构。AgentKit升级提供…</span>
+          </li>
+          <li class="ai-item" data-seq="8">
+            <span class="ai-item-num">#8</span>
+            <span class="ai-item-source" style="--chip-color:#3498db">Cursor Blog</span>
+            <a class="ai-item-title" href="https://cursor.com/blog/notion" target="_blank" rel="noopener noreferrer">Notion 使用 Cursor SDK 嵌入编码智能体</a>
+            <span class="ai-item-summary">Notion 通过 Cursor SDK 在数周内将编码智能体嵌入产品。用户可在文档中@Cursor、在讨论串中提及或向数据库指派…</span>
+          </li>
+          <li class="ai-item" data-seq="9">
+            <span class="ai-item-num">#9</span>
+            <span class="ai-item-source" style="--chip-color:#3498db">Perplexity</span>
+            <a class="ai-item-title" href="https://x.com/perplexity_ai/status/2069866668671766804" target="_blank" rel="noopener noreferrer">Perplexity推出Computer for Counsel</a>
+            <span class="ai-item-summary">推出 Computer for Counsel。 Computer 现在连接了律师日常使用的研究数据库、文档工具和案件管理系统。可从中提…</span>
+          </li>
+          <li class="ai-item" data-seq="10">
+            <span class="ai-item-num">#10</span>
+            <span class="ai-item-source" style="--chip-color:#3498db">News</span>
+            <a class="ai-item-title" href="https://mistral.ai/news/more-control-over-connectors" target="_blank" rel="noopener noreferrer">Mistral AI 为 Connectors 推出多项安全与可控新能力</a>
+            <span class="ai-item-summary">2026年6月24日，Mistral AI 发布 Connectors 多项新能力：Enriched admin controls（GA）支持按工作空间设置连接器访…</span>
+          </li>
+          <li class="ai-item" data-seq="11">
+            <span class="ai-item-num">#11</span>
+            <span class="ai-item-source" style="--chip-color:#3498db">Blog</span>
+            <a class="ai-item-title" href="https://huggingface.co/blog/ffasr-leaderboard" target="_blank" rel="noopener noreferrer">FFASR 排行榜发布：真实远场条件下 ASR 评测</a>
+            <span class="ai-item-summary">Treble Technologies 与 Hugging Face 联合推出 FFASR（Far-Field ASR）排行榜，这是首个开源社区驱动的真实远场声…</span>
+          </li>
+          <li class="ai-item" data-seq="12">
+            <span class="ai-item-num">#12</span>
+            <span class="ai-item-source" style="--chip-color:#3498db">官网动态</span>
+            <a class="ai-item-title" href="https://openai.com/index/openai-broadcom-jalapeno-inference-chip" target="_blank" rel="noopener noreferrer">OpenAI 与 Broadcom 发布面向 LLM 推理的定制芯片 Jalapeño</a>
+            <span class="ai-item-summary">OpenAI 与 Broadcom 联合推出 Jalapeño，一款专为大语言模型（LLM）推理优化的定制 AI 芯片，旨在提升 AI 系统的性能…</span>
+          </li>
+      </ul>
+    </section>
+    <section id="section-行业动态" class="ai-condensed-section">
+      <h2 class="section-title" style="--accent:#2ecc71">
+        <span class="section-icon">🌐</span>
+        行业动态
+        <span class="section-count">1 条</span>
+      </h2>
+      <ul class="ai-condensed-list">
+          <li class="ai-item" data-seq="13">
+            <span class="ai-item-num">#13</span>
+            <span class="ai-item-source" style="--chip-color:#2ecc71">Hacker News 热门</span>
+            <a class="ai-item-title" href="https://www.nytimes.com/2026/06/23/us/politics/nsa-lost-access-anthropic-tool.html" target="_blank" rel="noopener noreferrer">在与Anthropic的纠纷中，NSA失去了对Mythos的访问权限</a>
+            <span class="ai-item-summary">美国国家安全局（NSA）因与人工智能公司Anthropic的纠纷，失去了对Mythos系统的访问权限。</span>
+          </li>
+      </ul>
+    </section>
+    <section id="section-论文研究" class="ai-condensed-section">
+      <h2 class="section-title" style="--accent:#9b59b6">
+        <span class="section-icon">📄</span>
+        论文研究
+        <span class="section-count">2 条</span>
+      </h2>
+      <ul class="ai-condensed-list">
+          <li class="ai-item" data-seq="14">
+            <span class="ai-item-num">#14</span>
+            <span class="ai-item-source" style="--chip-color:#9b59b6">MarkTechPost</span>
+            <a class="ai-item-title" href="https://www.marktechpost.com/2026/06/24/dflash-speculative-decoding-drafts-whole-token-blocks-in-parallel-for-up-to-15x-higher-throughput-on-nvidia-blackwell" target="_blank" rel="noopener noreferrer">DFlash：块扩散草稿模型实现最高15倍吞吐量提升</a>
+            <span class="ai-item-summary">DFlash 由 UC San Diego 团队提出，是一种用于投机解码的轻量块扩散草稿模型。它一次前向推理生成整块 token，再…</span>
+          </li>
+          <li class="ai-item" data-seq="15">
+            <span class="ai-item-num">#15</span>
+            <span class="ai-item-source" style="--chip-color:#9b59b6">Blog</span>
+            <a class="ai-item-title" href="https://research.google/blog/thinking-to-recall-how-reasoning-unlocks-parametric-knowledge-in-llms" target="_blank" rel="noopener noreferrer">思考即回忆：推理如何解锁LLM中的参数化知识</a>
+            <span class="ai-item-summary">Google Research研究发现，推理（chain-of-thought）能帮助大语言模型（LLM）回忆简单事实，即使这些事实无需复杂推…</span>
+          </li>
+      </ul>
+    </section>
+    <section id="section-技巧与观点" class="ai-condensed-section">
+      <h2 class="section-title" style="--accent:#f39c12">
+        <span class="section-icon">💡</span>
+        技巧与观点
+        <span class="section-count">6 条</span>
+      </h2>
+      <ul class="ai-condensed-list">
+          <li class="ai-item" data-seq="16">
+            <span class="ai-item-num">#16</span>
+            <span class="ai-item-source" style="--chip-color:#f39c12">Hacker News 热门</span>
+            <a class="ai-item-title" href="https://fortune.com/2026/06/24/reid-hoffman-spacex-musk-openai-anthropic-gen-z-mistake" target="_blank" rel="noopener noreferrer">里德·霍夫曼称SpaceX“不是一家人工智能公司”，xAI则是“彻底的灾难”</a>
+            <span class="ai-item-summary">LinkedIn联合创始人、Anthropic和OpenAI投资者Reid Hoffman在播客中公开批评SpaceX和xAI。他指出SpaceX“不是一…</span>
+          </li>
+          <li class="ai-item" data-seq="17">
+            <span class="ai-item-num">#17</span>
+            <span class="ai-item-source" style="--chip-color:#f39c12">火山引擎</span>
+            <a class="ai-item-title" href="https://mp.weixin.qq.com/s/mdmaAyUIvxE8WT_GEbF2wQ" target="_blank" rel="noopener noreferrer">字节跳动技术副总裁洪定坤：AI Coding 的实践与探索</a>
+            <span class="ai-item-summary">在火山引擎Force大会，字节跳动技术副总裁洪定坤分享AI Coding实践。过去一年，字节AI代码贡献率增长6倍，tokens…</span>
+          </li>
+          <li class="ai-item" data-seq="18">
+            <span class="ai-item-num">#18</span>
+            <span class="ai-item-source" style="--chip-color:#f39c12">AI</span>
+            <a class="ai-item-title" href="https://techcrunch.com/2026/06/24/ai-was-supposed-to-kill-engineering-jobs-but-new-data-suggests-theyre-the-most-resilient" target="_blank" rel="noopener noreferrer">AI被认为会取代工程岗位，但新数据显示工程是2025年最具韧性的岗位</a>
+            <span class="ai-item-summary">风投机构SignalFire追踪8000万家公司数百万员工数据发现，工程是2025年最具韧性的岗位。大型科技公司总招聘较2019…</span>
+          </li>
+          <li class="ai-item" data-seq="19">
+            <span class="ai-item-num">#19</span>
+            <span class="ai-item-source" style="--chip-color:#f39c12">Announcements</span>
+            <a class="ai-item-title" href="https://openrouter.ai/blog/insights/when-zero-means-zero" target="_blank" rel="noopener noreferrer">OpenRouter 零数据留存（ZDR）实践：97 款新模型，流量占比近半</a>
+            <span class="ai-item-summary">OpenRouter 的零数据留存（ZDR）保证用户提示词和模型响应不被存储，元数据一般安全。自 1 月以来新增 97 款支持 ZDR…</span>
+          </li>
+          <li class="ai-item" data-seq="20">
+            <span class="ai-item-num">#20</span>
+            <span class="ai-item-source" style="--chip-color:#f39c12">Blog</span>
+            <a class="ai-item-title" href="https://huggingface.co/blog/nvidia/accelerating-fine-tuning-nvidia-nemo-automodel" target="_blank" rel="noopener noreferrer">NVIDIA NeMo AutoModel：一行代码加速Transformer MoE模型微调</a>
+            <span class="ai-item-summary">NVIDIA NeMo AutoModel 是基于 Transformers v5 的开源库，添加 Expert Parallelism、DeepEP 融合 all-to-all 调度…</span>
+          </li>
+          <li class="ai-item" data-seq="21">
+            <span class="ai-item-num">#21</span>
+            <span class="ai-item-source" style="--chip-color:#f39c12">面壁智能 OpenBMB</span>
+            <a class="ai-item-title" href="https://x.com/OpenBMB/status/2069676334381728106" target="_blank" rel="noopener noreferrer">MiniCPM-V 4.6 在 Apple Core AI 上高速运行</a>
+            <span class="ai-item-summary">🥳感谢分享，@MLBoy_DaisukeMajima 🚀 MiniCPM-V 4.6 在设备上以这样的速度运行，实在令人印象深刻——尤其是在 Apple Co…</span>
+          </li>
+      </ul>
+    </section>
+</main>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+  <p>AI资讯 21条 + 电商运营 3模块 | 数据来源：<strong>AI HOT (aihot.virxact.com)</strong> × <strong>京东商家后台</strong> | 生成时间：2026-06-25 北京时间</p>
+</footer>
+
+<script>
+/* ============================================
+   IntersectionObserver: 滚动渐入动画
+   ============================================ */
+(function() {
+  var cards = document.querySelectorAll('.card');
+  if (!('IntersectionObserver' in window)) {
+    cards.forEach(function(c) { c.classList.add('visible'); });
+    return;
+  }
+
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+
+  cards.forEach(function(card, i) {
+    card.style.transitionDelay = (i % 6) * 0.05 + 's';
+    observer.observe(card);
+  });
+})();
+
+/* ============================================
+   Nav 高亮当前板块 (IntersectionObserver)
+   ============================================ */
+(function() {
+  var navChips = document.querySelectorAll('.nav-chip');
+  var sections = document.querySelectorAll('.report-section');
+  if (!sections.length) return;
+
+  var currentActive = null;
+
+  var sectionObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var id = entry.target.getAttribute('id');
+        navChips.forEach(function(chip) {
+          var href = chip.getAttribute('href');
+          if (href === '#' + id) {
+            chip.classList.add('active');
+            currentActive = chip;
+          } else {
+            chip.classList.remove('active');
+          }
+        });
+      }
+    });
+  }, { threshold: 0.3, rootMargin: '-80px 0px -50% 0px' });
+
+  sections.forEach(function(s) { sectionObserver.observe(s); });
+})();
+</script>
+</body>
+</html>

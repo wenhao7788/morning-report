@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI×电商晨报 | 2026-07-03</title>
+<style>
+:root{--primary:#e85d2b;--primary-light:#fff0ea;--bg:#f4f5f7;--card-bg:#fff;--text:#111827;--text-secondary:#4b5563;--text-muted:#9ca3af;--border:#e5e7eb;--border-light:#f0f0f2;--radius:10px;--radius-sm:6px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:15px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.5;min-height:100vh;-webkit-font-smoothing:antialiased}
+
+.topbar{background:#111827;color:#fff;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;position:sticky;top:0;z-index:100}
+.topbar-left{display:flex;align-items:center;gap:14px}
+.topbar-logo{display:flex;align-items:center;gap:8px;font-weight:800;font-size:1.05rem}
+.topbar-logo-icon{width:28px;height:28px;background:linear-gradient(135deg,#ff6b35,#e85d2b);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:.9rem}
+.topbar-date{font-size:.78rem;opacity:.75;background:rgba(255,255,255,.08);padding:3px 10px;border-radius:12px}
+.topbar-stats{display:flex;gap:6px;flex-wrap:wrap}
+.topbar-chip{font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:12px;white-space:nowrap}
+.topbar-chip.orange{background:rgba(232,93,43,.18);color:#fb923c}
+.topbar-chip.blue{background:rgba(37,99,235,.14);color:#60a5fa}
+.topbar-chip.green{background:rgba(5,150,105,.13);color:#34d399}
+.topbar-chip.gray{background:rgba(156,163,175,.15);color:#9ca3af}
+.topbar-update{font-size:.68rem;color:rgba(255,255,255,.45)}
+
+.nav-bar{background:var(--card-bg);padding:0 24px;border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none;white-space:nowrap}
+.nav-bar::-webkit-scrollbar{display:none}
+.nav-tabs{display:flex;gap:2px;padding:0}
+.nav-tab{display:inline-flex;align-items:center;gap:5px;padding:11px 16px;font-size:.82rem;font-weight:600;color:var(--text-secondary);text-decoration:none;border-bottom:2.5px solid transparent;transition:all .15s;cursor:pointer;white-space:nowrap}
+.nav-tab:hover{color:var(--primary);background:var(--primary-light)}
+.nav-tab.active{color:var(--primary);border-bottom-color:var(--primary)}
+.nav-tab em{font-style:normal;font-size:.65rem;opacity:.6;background:var(--bg);padding:1px 6px;border-radius:8px}
+
+.main{padding:24px 24px 40px;max-width:100%}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-title{font-size:1rem;font-weight:700;color:var(--text)}
+.section-badge{margin-left:auto;font-size:.72rem;font-weight:600;color:var(--text-muted);background:var(--bg);padding:3px 10px;border-radius:10px}
+
+/* 电商运营两栏布局 */
+.ecom-layout{display:grid;grid-template-columns:1fr 1.6fr;gap:16px;margin-bottom:36px;align-items:start}
+.ecom-left{display:flex;flex-direction:column;gap:12px}
+.ecom-left .ecom-card{flex:1}
+.ecom-right{display:flex}
+.ecom-right .ecom-card-m4{flex:1;height:100%}
+
+.ecom-card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:box-shadow .2s;display:flex;flex-direction:column}
+.ecom-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.07)}
+.ecom-card-head{display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid var(--border-light);background:linear-gradient(to right,var(--badge-color-bg,#fef3e2),transparent)}
+.ecom-card-badge{font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:8px;background:color-mix(in srgb,var(--badge-color,#e67e22)12%,#fff);color:var(--badge-color,#e67e22);white-space:nowrap}
+.ecom-card-label{font-size:.84rem;font-weight:700;color:var(--text)}
+.ecom-card-body{padding:12px 16px;flex:1}
+.ecom-card-body .report-row{font-size:.8rem;line-height:1.65;color:var(--text-secondary);margin-bottom:2px}
+.ecom-card-body .report-row strong{color:var(--text);font-weight:650}
+.ecom-card-body .report-source{display:block;margin-top:8px;font-size:.69rem;color:var(--text-muted)}
+
+/* AI资讯通用卡片网格 — 密集排列 */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:16px;transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.card::before{content:"";position:absolute;top:0;left:0;width:3px;height:100%;background:var(--chip-color,#ccc);opacity:.6;border-radius:3px 0 0 3px}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.06)}
+
+.card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;gap:8px}
+.card-num{font-size:.68rem;font-weight:700;color:var(--primary);background:var(--primary-light);padding:2px 7px;border-radius:5px;flex-shrink:0}
+.chip{font-size:.66rem;font-weight:600;padding:2px 8px;border-radius:8px;background:color-mix(in srgb,var(--chip-color,#888)10%,#fff);color:var(--chip-color,#888);border:1px solid color-mix(in srgb,var(--chip-color,#888)22%,transparent);white-space:nowrap}
+.card-title{font-size:.88rem;font-weight:700;line-height:1.45;color:var(--text);margin-bottom:6px}
+.card-summary{font-size:.77rem;color:var(--text-secondary);line-height:1.55;flex-grow:1}
+.card-link{display:inline-flex;align-items:center;gap:3px;margin-top:10px;font-size:.74rem;font-weight:600;color:var(--primary);text-decoration:none;transition:gap .15s;align-self:flex-start}
+.card-link:hover{gap:6px;text-decoration:underline}
+
+/* AI精简列表 — 全宽紧凑行 */
+.ai-condensed-section{margin-bottom:28px}
+.ai-condensed-list{list-style:none;display:flex;flex-direction:column;gap:1px;padding:0}
+.ai-item{display:flex;align-items:baseline;flex-wrap:wrap;gap:5px 10px;padding:8px 16px;border-radius:var(--radius-sm);background:var(--card-bg);border:1px solid var(--border-light);font-size:.79rem;line-height:1.5;transition:background .12s}
+.ai-item:hover{background:#fafafa}
+.ai-item-num{font-size:.64rem;font-weight:700;color:var(--primary);background:var(--primary-light);padding:1px 6px;border-radius:4px;flex-shrink:0}
+.ai-item-source{font-size:.62rem;font-weight:600;padding:2px 7px;border-radius:8px;background:color-mix(in srgb,var(--chip-color,#888)8%,#fff);color:var(--chip-color,#888);border:1px solid color-mix(in srgb,var(--chip-color,#888)18%,transparent);flex-shrink:0;white-space:nowrap}
+.ai-item-title{font-weight:600;color:var(--text);text-decoration:none}
+.ai-item-title:hover{color:var(--primary)}
+.ai-item-summary{color:var(--text-muted);font-size:.73rem;flex:1;min-width:180px}
+
+.section-divider{text-align:center;margin:30px 0 20px;position:relative}
+.section-divider::before{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:linear-gradient(to right,transparent,var(--border),transparent)}
+.section-divider span{position:relative;display:inline-block;padding:4px 16px;background:var(--bg);font-size:.75rem;font-weight:700;color:var(--text-muted);letter-spacing:.5px}
+
+.footer{text-align:center;font-size:.72rem;color:var(--text-muted);padding:20px 24px 32px;border-top:1px solid var(--border);background:var(--card-bg)}
+.footer strong{color:var(--text-secondary)}
+
+@media(max-width:1200px){.ecom-grid{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}.card-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}}
+@media(max-width:768px){.topbar{padding:10px 16px}.main{padding:16px 16px 28px}.nav-bar{padding:0 16px}.card-grid{grid-template-columns:1fr}.ecom-grid{grid-template-columns:1fr}.ai-item-summary{width:100%;min-width:0}}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-left">
+    <div class="topbar-logo"><span class="topbar-logo-icon">📰</span><span>AI × 电商晨报</span></div>
+    <span class="topbar-date">2026年7月3日 周五</span>
+  </div>
+  <div class="topbar-stats"><span class="topbar-chip orange">📈 电商运营 3模块</span>
+      <span class="topbar-chip gray">📦 产品发布/更新 2</span>
+      <span class="topbar-chip gray">🌐 行业动态 6</span>
+      <span class="topbar-chip gray">📄 论文研究 2</span>
+      <span class="topbar-chip gray">💡 技巧与观点 5</span></div>
+  <span class="topbar-update">🕐  更新</span>
+</header>
+
+<nav class="nav-bar" id="mainNav"><div class="nav-tabs">        <a href="#section-ecom" class="nav-tab">
+          <span>📈</span> 电商运营 <em>3</em>
+        </a>
+        <a href="#section-产品发布-更新" class="nav-tab">
+          <span>📦</span> 产品发布/更新 <em>2</em>
+        </a>
+        <a href="#section-行业动态" class="nav-tab">
+          <span>🌐</span> 行业动态 <em>6</em>
+        </a>
+        <a href="#section-论文研究" class="nav-tab">
+          <span>📄</span> 论文研究 <em>2</em>
+        </a>
+        <a href="#section-技巧与观点" class="nav-tab">
+          <span>💡</span> 技巧与观点 <em>5</em>
+        </a></div></nav>
+
+<main class="main">
+
+    <section id="section-ecom" class="report-section">
+      <h2 class="section-title" style="--accent:#e67e22">
+        <span class="section-icon">📈</span>
+        电商运营速递
+        <span class="section-count">3 模块</span>
+      </h2>
+      <div class="ecom-layout">
+        <div class="ecom-left">
+    <article class="card ecom-card ">
+      <div class="ecom-card-head">
+        <span class="ecom-card-badge" style="--badge-color:#e74c3c">M1 京东后台调整</span>
+        <span class="ecom-card-label">📈 M1 京东后台调整</span>
+      </div>
+      <div class="ecom-card-body">
+        <div class="report-row"><strong>摘要：</strong>本期无新增灯具类目后台重大变更。rule.jd.com本周无专项新规；京麦V10.5.2智能客服灰度属通用升级，不影响灯具运营。7月平台静默修复期持续，预计下一次规则变动在8月清凉节冲刺期前后。</div>
+        <span class="report-source">来源：灯具运营每日资讯</span>
+      </div>
+    </article>
+    <article class="card ecom-card ">
+      <div class="ecom-card-head">
+        <span class="ecom-card-badge" style="--badge-color:#e67e22">C-1 行业简讯</span>
+        <span class="ecom-card-label">🔄 辅助简讯</span>
+      </div>
+      <div class="ecom-card-body">
+        <div class="report-row"><strong>详情：</strong>清凉家电节倒计时12天（7/15高潮期），风扇灯持续入主推池 — 京东"夏日清凉主推池"含风扇灯，包安装+30天价保+整机2年电机5年质保仍是核心卖点。建议检查我司风扇灯SKU是否已报名会场，主图叠加"清凉节立省+旧灯换新"双角标，每日一张高温预警海报抢占节点。 — 来源：京东家电官方号6/29
+
+照明行业监管趋严 — 北京/山东市监局近期抽查多批次灯具不合格，防触电保护、骚扰电压、谐波电流为高频问题。建议自检详情页认证素材与质检报告是否完整，避免合规风险。 — 来源：什么值得买6/28
+
+照明出海正当时 — 2026上半年LED照明市场由衰转稳，TikTok/Instagram网红营销把灯具从工具卖成生活美学。我司如有跨境业务可关注智能灯具+场景化内容的出海组合。 — 来源：TrendForce/知乎</div>
+        <span class="report-source">来源：TrendForce/知乎</span>
+      </div>
+    </article>
+        </div>
+        <div class="ecom-right">
+    <article class="card ecom-card ecom-card-m4">
+      <div class="ecom-card-head">
+        <span class="ecom-card-badge" style="--badge-color:#f39c12">M4 跨品类偷师</span>
+        <span class="ecom-card-label">户外运动（骆驼：IP化命名+情感色彩+功能堆叠）</span>
+      </div>
+      <div class="ecom-card-body">
+        <div class="report-row"><strong>案例：</strong>骆驼（CAMEL）户外京东自营旗舰店</div><div class="report-row"><strong>它做对了什么：</strong>骆驼用三条线把户外从"专业装备"变成"生活方式消费品"。① **系列化命名矩阵**：山脉IP（昆仑山/泰岳）背书专业户外，意境IP（云逸/碳越/青岩/星云）吸引年轻用户；② **情感化色彩命名**：用"远山蓝/冰川灰/橡木灰/幻影黑"替代传统色号，把颜色本身变成社交分享标签；③ **标题功能词密集堆叠**：单品标题嵌入4-7个关键词（防泼水+防滑+耐磨+透气+凉感+防晒），兼顾搜索命中与信息密度；④ **明星同款占位**：迪丽热巴/王俊凯同款直接写进标题首屏，降低新客决策成本。整体策略是"专业参数×情绪表达×季节新鲜度"同步打穿。</div><div class="report-row"><strong>怎么迁移到灯具：</strong>- **吸顶灯**：建立系列IP命名（如"光韵·晨曦/银河/极光"），标题从"雷士LED吸顶灯"升级为"雷士全光谱护眼吸顶灯 智能调光 客厅卧室全屋套餐 包安装"；色彩名用"月光白/暖雾灰/星云金"替代"纯白/正白/金色"；详情页首屏用"一盏灯照亮18㎡客厅"等可感知数据替代Ra≥95。</div><div class="report-row"><strong>台灯/大路灯：</strong>功能词堆叠"国AA级照度+RG0无蓝光+无频闪+智能感光+定时休息"，绑定"儿童学习/办公护眼"场景；色彩命名"冰川白/青岩灰"；文案把"照度500lux"翻译成"孩子写作业不揉眼"。</div><div class="report-row"><strong>风扇灯：</strong>季节前缀"2026夏季凉感新品"，标题堆叠"静音+大风距+可反转+包安装+整机5年质保"；场景句"卧室开着灯吹着风，宝宝不踢被子，你不用半夜起来关空调"，把参数变成妈妈可感知的话术。</div><div class="report-row"><strong>来源：</strong>https://camelzy.jd.com/</div><div class="report-row"><strong>吸顶灯：</strong>建立系列IP命名（如"光韵·晨曦/银河/极光"），标题从"雷士LED吸顶灯"升级为"雷士全光谱护眼吸顶灯 智能调光 客厅卧室全屋套餐 包安装"；色彩名用"月光白/暖雾灰/星云金"替代"纯白/正白/金色"；详情页首屏用"一盏灯照亮18㎡客厅"等可感知数据替代Ra≥95。</div><div class="report-row"><strong>台灯/大路灯：</strong>功能词堆叠"国AA级照度+RG0无蓝光+无频闪+智能感光+定时休息"，绑定"儿童学习/办公护眼"场景；色彩命名"冰川白/青岩灰"；文案把"照度500lux"翻译成"孩子写作业不揉眼"。</div><div class="report-row"><strong>风扇灯：</strong>季节前缀"2026夏季凉感新品"，标题堆叠"静音+大风距+可反转+包安装+整机5年质保"；场景句"卧室开着灯吹着风，宝宝不踢被子，你不用半夜起来关空调"，把参数变成妈妈可感知的话术。</div>
+        <span class="report-source">来源：灯具运营每日资讯</span>
+      </div>
+    </article>
+        </div>
+      </div>
+    </section>
+
+<div class="section-divider"><span>🤖 AI 资讯速览</span></div>
+
+    <section id="section-产品发布-更新" class="ai-condensed-section">
+      <h2 class="section-title" style="--accent:#3498db">
+        <span class="section-icon">📦</span>
+        产品发布/更新
+        <span class="section-count">2 条</span>
+      </h2>
+      <ul class="ai-condensed-list">
+          <li class="ai-item" data-seq="1">
+            <span class="ai-item-num">#1</span>
+            <span class="ai-item-source" style="--chip-color:#3498db">MarkTechPost</span>
+            <a class="ai-item-title" href="https://www.marktechpost.com/2026/07/02/meet-alibabas-page-agent-a-javascript-in-page-gui-agent-that-controls-web-interfaces-with-natural-language-through-the-dom" target="_blank" rel="noopener noreferrer">阿里巴巴发布 Page Agent：开源 JavaScript 库实现网页 DOM 自然语言操控</a>
+            <span class="ai-item-summary">阿里巴巴发布 Page Agent，一个开源的 JavaScript 客户端库，嵌入网页后可通过自然语言指令直接操作 DOM 元素。与 …</span>
+          </li>
+          <li class="ai-item" data-seq="2">
+            <span class="ai-item-num">#2</span>
+            <span class="ai-item-source" style="--chip-color:#3498db">Blog</span>
+            <a class="ai-item-title" href="https://claude.com/blog/giving-admins-more-visibility-and-control-over-claude-usage-and-spend" target="_blank" rel="noopener noreferrer">Claude Enterprise 新增用量与成本分析及支出管控功能</a>
+            <span class="ai-item-summary">Claude Enterprise 推出更丰富的管理分析工具和成本控制功能。仪表板现可按群组和用户分析用量与成本，支持按 …</span>
+          </li>
+      </ul>
+    </section>
+    <section id="section-行业动态" class="ai-condensed-section">
+      <h2 class="section-title" style="--accent:#2ecc71">
+        <span class="section-icon">🌐</span>
+        行业动态
+        <span class="section-count">6 条</span>
+      </h2>
+      <ul class="ai-condensed-list">
+          <li class="ai-item" data-seq="3">
+            <span class="ai-item-num">#3</span>
+            <span class="ai-item-source" style="--chip-color:#2ecc71">IT之家</span>
+            <a class="ai-item-title" href="https://www.ithome.com/0/971/971.htm" target="_blank" rel="noopener noreferrer">得州特斯拉致命车祸：司机嫌FSD太保守，加速踏板踩死致76岁居民死亡</a>
+            <span class="ai-item-summary">44岁的迈克尔·巴特勒驾驶特斯拉Model 3冲入得州住宅，致76岁玛莎·阿维拉死亡，现被控过失杀人。警方从其手机发现2026…</span>
+          </li>
+          <li class="ai-item" data-seq="4">
+            <span class="ai-item-num">#4</span>
+            <span class="ai-item-source" style="--chip-color:#2ecc71">AI</span>
+            <a class="ai-item-title" href="https://techcrunch.com/2026/07/02/mark-zuckerberg-tells-staff-that-ai-agents-havent-progressed-as-quickly-as-hed-hoped" target="_blank" rel="noopener noreferrer">扎克伯格称AI智能体开发速度未如预期</a>
+            <span class="ai-item-summary">Meta CEO 扎克伯格在本周内部全体会议上表示，AI 智能体的开发速度并未像高管们此前预期的那样加速。今年早些…</span>
+          </li>
+          <li class="ai-item" data-seq="5">
+            <span class="ai-item-num">#5</span>
+            <span class="ai-item-source" style="--chip-color:#2ecc71">AI News</span>
+            <a class="ai-item-title" href="https://the-decoder.com/microsoft-launches-2-5-billion-frontier-company-to-embed-6000-ai-engineers-inside-enterprise-clients" target="_blank" rel="noopener noreferrer">Microsoft 成立&quot;Frontier Company&quot;，斥资 25 亿美元派驻 6000 名 AI 工程师到企业客户现场</a>
+            <span class="ai-item-summary">Microsoft 新设业务部门&quot;Frontier Company&quot;，拨款 25 亿美元，将 6000 名行业与工程专家派驻企业客户现场，&quot;共同设计、…</span>
+          </li>
+          <li class="ai-item" data-seq="6">
+            <span class="ai-item-num">#6</span>
+            <span class="ai-item-source" style="--chip-color:#2ecc71">Kim</span>
+            <a class="ai-item-title" href="https://x.com/kimmonismus/status/2072718147279335507" target="_blank" rel="noopener noreferrer">Anthropic与五角大楼控权之争：Claude军事用途护栏分歧</a>
+            <span class="ai-item-summary">WSJ法庭文件显示，Anthropic CEO Dario Amodei与五角大楼副部长Emil Michael数月邮件往来，核心分歧在于Claude…</span>
+          </li>
+          <li class="ai-item" data-seq="7">
+            <span class="ai-item-num">#7</span>
+            <span class="ai-item-source" style="--chip-color:#2ecc71">IT之家</span>
+            <a class="ai-item-title" href="https://www.ithome.com/0/971/954.htm" target="_blank" rel="noopener noreferrer">快手可灵AI获初始投资者20.28亿美元注资，投后估值180亿美元</a>
+            <span class="ai-item-summary">快手在港交所公告，21名初始投资者同意以138.24亿元人民币（20.28亿美元）现金注资北京可灵，后者将持有可灵AI相关资…</span>
+          </li>
+          <li class="ai-item" data-seq="8">
+            <span class="ai-item-num">#8</span>
+            <span class="ai-item-source" style="--chip-color:#2ecc71">IT之家</span>
+            <a class="ai-item-title" href="https://www.ithome.com/0/971/937.htm" target="_blank" rel="noopener noreferrer">花旗、Adobe等企业限制员工使用AI旗舰模型以控制成本</a>
+            <span class="ai-item-summary">据404 Media获取的内部资料，Atlassian、Adobe、亚马逊等六家企业正限制员工使用AI工具，要求改用能力较低的大模型…</span>
+          </li>
+      </ul>
+    </section>
+    <section id="section-论文研究" class="ai-condensed-section">
+      <h2 class="section-title" style="--accent:#9b59b6">
+        <span class="section-icon">📄</span>
+        论文研究
+        <span class="section-count">2 条</span>
+      </h2>
+      <ul class="ai-condensed-list">
+          <li class="ai-item" data-seq="9">
+            <span class="ai-item-num">#9</span>
+            <span class="ai-item-source" style="--chip-color:#9b59b6">IT之家</span>
+            <a class="ai-item-title" href="https://www.ithome.com/0/972/089.htm" target="_blank" rel="noopener noreferrer">阿里达摩院发布超导材料发现AI智能体Elements Claw</a>
+            <span class="ai-item-summary">7月3日，阿里达摩院联合中国人民大学、中国科学院大学发布首个超导材料发现AI智能体Elements Claw。该智能体采用…</span>
+          </li>
+          <li class="ai-item" data-seq="10">
+            <span class="ai-item-num">#10</span>
+            <span class="ai-item-source" style="--chip-color:#9b59b6">Ethan Mollick</span>
+            <a class="ai-item-title" href="https://x.com/emollick/status/2072778376494895139" target="_blank" rel="noopener noreferrer">关于Mythos和网络安全的讨论并非炒作</a>
+            <span class="ai-item-summary">关于Mythos和网络安全的讨论并非炒作。
+（正如任何使用Fable进行自主工作的人可能已经认识到的那样。）</span>
+          </li>
+      </ul>
+    </section>
+    <section id="section-技巧与观点" class="ai-condensed-section">
+      <h2 class="section-title" style="--accent:#f39c12">
+        <span class="section-icon">💡</span>
+        技巧与观点
+        <span class="section-count">5 条</span>
+      </h2>
+      <ul class="ai-condensed-list">
+          <li class="ai-item" data-seq="11">
+            <span class="ai-item-num">#11</span>
+            <span class="ai-item-source" style="--chip-color:#f39c12">数字生命卡兹克</span>
+            <a class="ai-item-title" href="https://mp.weixin.qq.com/s/L6R_SPWlOBv6dI0wWWHQrg" target="_blank" rel="noopener noreferrer">Claude Fable 5 自主优化 AIHOT 网站 SEO/GEO 全记录</a>
+            <span class="ai-item-summary">作者用 Claude Fable 5 优化 AIHOT 网站的 SEO 与 GEO。模型自主启动 22 个 Agent 调研 40 分钟，发现豆包 App 每天六…</span>
+          </li>
+          <li class="ai-item" data-seq="12">
+            <span class="ai-item-num">#12</span>
+            <span class="ai-item-source" style="--chip-color:#f39c12">Blog</span>
+            <a class="ai-item-title" href="https://www.lmsys.org/blog/2026-07-02-agent-assisted-sglang-development" target="_blank" rel="noopener noreferrer">Agent辅助的SGLang开发：初步探索</a>
+            <span class="ai-item-summary">SGLang团队将LLM服务、分布式运行时、GPU内核、扩散管道等工作流编码为可执行的SKILL.md文件、脚本、基准合约和审…</span>
+          </li>
+          <li class="ai-item" data-seq="13">
+            <span class="ai-item-num">#13</span>
+            <span class="ai-item-source" style="--chip-color:#f39c12">OpenRouter</span>
+            <a class="ai-item-title" href="https://x.com/OpenRouter/status/2072738704922439689" target="_blank" rel="noopener noreferrer">Fable 5 仅 4.44 美元搭建 Rube Goldberg 机器</a>
+            <span class="ai-item-summary">用 Fable 5 构建的鲁布·戈德堡机械，仅需 4.44 美元 👀
+提示词在此：https://www.reddit.com/r/openrouter/comments/1ulk…</span>
+          </li>
+          <li class="ai-item" data-seq="14">
+            <span class="ai-item-num">#14</span>
+            <span class="ai-item-source" style="--chip-color:#f39c12">AI News</span>
+            <a class="ai-item-title" href="https://the-decoder.com/ai-agents-can-now-complete-16-percent-of-freelance-jobs-at-pro-quality-up-from-2-5-percent-eight-months-ago" target="_blank" rel="noopener noreferrer">Fable 5 在 RLI 基准中达成 16.1% 自动化率，较八个月前提升六倍</a>
+            <span class="ai-item-summary">Remote Labor Index（RLI）衡量 AI 智能体完成 240 个付费自由职业项目（总值 14.4 万美元）的专业质量比例。最新结果显…</span>
+          </li>
+          <li class="ai-item" data-seq="15">
+            <span class="ai-item-num">#15</span>
+            <span class="ai-item-source" style="--chip-color:#f39c12">邵猛</span>
+            <a class="ai-item-title" href="https://x.com/shao__meng/status/2072644710523691110" target="_blank" rel="noopener noreferrer">browser-use 发布开源 AI 视频剪辑 Skill「video-use」</a>
+            <span class="ai-item-summary">browser-use 团队推出面向 Codex、Claude Code 等 AI 编码智能体的开源 Skill「video-use」，让 LLM 通过 ElevenLabs …</span>
+          </li>
+      </ul>
+    </section>
+
+</main>
+
+<footer class="footer"><p>AI资讯 15条 + 电商运营 3模块 | 数据来源：<strong>AI HOT (aihot.virxact.com)</strong> × <strong>京东商家后台</strong> | 生成时间：2026-07-03 北京时间</p></footer>
+
+<script>(function(){
+var cards=document.querySelectorAll(".card");
+if("IntersectionObserver"in window){
+var o=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.style.opacity="1";x.target.style.transform="translateY(0)";o.unobserve(x.target)}})},{threshold:.08});
+cards.forEach(function(c,i){c.style.opacity="0";c.style.transform="translateY(16px)";c.style.transition="opacity .4s ease,transform .4s ease";c.style.transitionDelay=(i%8)*.04+"s";o.observe(c)});
+}else cards.forEach(function(c){c.style.opacity="1"});
+var nc=document.querySelectorAll(".nav-tab"),sec=document.querySelectorAll(".report-section");
+if(!sec.length)return;
+var so=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting){var id=en.target.getAttribute("id");nc.forEach(function(ch){var h=ch.getAttribute("href");if(h==="#"+id)ch.classList.add("active");else ch.classList.remove("active")})}})},{threshold:.15});
+sec.forEach(function(s){so.observe(s)});
+nc.forEach(function(t){t.addEventListener("click",function(ev){ev.preventDefault();var el=document.querySelector(this.getAttribute("href"));if(el)el.scrollIntoView({behavior:"smooth",block:"start"})})});
+})();
+</script>
+</body>
+</html>
