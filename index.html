@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI×电商晨报 | 2026-07-09</title>
+<title>AI×电商晨报 | 2026-07-10</title>
 <style>
 :root{--primary:#e85d2b;--primary-light:#fff0ea;--bg:#f4f5f7;--card-bg:#fff;--text:#111827;--text-secondary:#4b5563;--text-muted:#9ca3af;--border:#e5e7eb;--border-light:#f0f0f2;--radius:10px;--radius-sm:6px}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -85,27 +85,27 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
 .footer{text-align:center;font-size:.72rem;color:var(--text-muted);padding:20px 24px 32px;border-top:1px solid var(--border);background:var(--card-bg)}
 .footer strong{color:var(--text-secondary)}
 
-@media(max-width:1200px){.ecom-grid{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}.card-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}}
+/* 历史偷师侧边栏 */
+.history-sidebar{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.sidebar-header{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--border-light);background:linear-gradient(135deg,#fef3e2,#fff)}
+.sidebar-title{font-size:.85rem;font-weight:700;color:var(--text)}
+.sidebar-count{font-size:.7rem;font-weight:600;color:var(--text-muted);background:var(--bg);padding:2px 8px;border-radius:10px}
+.sidebar-list{display:flex;flex-direction:column;max-height:480px;overflow-y:auto;scrollbar-width:thin}
+.sidebar-item{display:flex;align-items:center;gap:10px;padding:10px 16px;text-decoration:none;color:var(--text);border-bottom:1px solid var(--border-light);transition:background .12s}
+.sidebar-item:hover{background:var(--primary-light)}
+.sidebar-item:last-child{border-bottom:none}
+.sidebar-latest{background:#fff9f0;border-left:3px solid var(--primary)}
+.sidebar-date{font-size:.68rem;font-weight:700;color:var(--text-muted);white-space:nowrap;min-width:70px}
+.sidebar-info{display:flex;flex-direction:column;gap:1px;flex:1;min-width:0}
+.sidebar-brand{font-size:.8rem;font-weight:700;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sidebar-cat{font-size:.68rem;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sidebar-badge{font-size:.6rem;font-weight:700;color:#fff;background:var(--primary);padding:1px 6px;border-radius:6px;white-space:nowrap;flex-shrink:0}
+
+/* 主内容区+侧边栏双栏布局（桌面端） */
+.content-with-sidebar{display:grid;grid-template-columns:1fr 240px;gap:20px;align-items:start}
+
+@media(max-width:1200px){.ecom-grid{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}.card-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}.content-with-sidebar{grid-template-columns:1fr}.history-sidebar{margin-top:20px}}
 @media(max-width:768px){.topbar{padding:10px 16px}.main{padding:16px 16px 28px}.nav-bar{padding:0 16px}.card-grid{grid-template-columns:1fr}.ecom-grid{grid-template-columns:1fr}.ai-item-summary{width:100%;min-width:0}}
-
-/* ===== 历史偷师侧边栏 ===== */
-.content-with-sidebar{display:flex;gap:20px;align-items:flex-start}
-.content-main{flex:1;min-width:0}
-.history-sidebar{width:220px;flex-shrink:0;background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:16px;position:sticky;top:72px}
-.sidebar-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-.sidebar-title{font-size:14px;font-weight:700;color:var(--text-primary)}
-.sidebar-count{font-size:11px;color:var(--text-secondary);background:var(--bg);padding:2px 8px;border-radius:10px}
-.sidebar-list{display:flex;flex-direction:column;gap:4px}
-.sidebar-item{display:flex;align-items:center;padding:8px;border-radius:8px;text-decoration:none;color:var(--text-primary);transition:all .15s}
-.sidebar-item:hover{background:var(--hover-bg)}
-.sidebar-latest{background:linear-gradient(135deg,#fef3c7,#fde68a);border:1px solid #f59e0b}
-.sidebar-date{font-size:11px;color:var(--text-secondary);margin-right:8px;white-space:nowrap;font-family:monospace}
-.sidebar-info{display:flex;flex-direction:column;gap:1px;min-width:0}
-.sidebar-brand{font-size:13px;font-weight:600;color:var(--text-primary);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.sidebar-cat{font-size:11px;color:var(--text-secondary);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.sidebar-badge{font-size:9px;background:#f59e0b;color:#713f12;padding:1px 6px;border-radius:6px;margin-left:auto;flex-shrink:0;font-weight:700}
-@media(max-width:1000px){.content-with-sidebar{flex-direction:column}.history-sidebar{width:100%;position:static;order:-1}}
-
 </style>
 </head>
 <body>
@@ -113,14 +113,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
 <header class="topbar">
   <div class="topbar-left">
     <div class="topbar-logo"><span class="topbar-logo-icon">📰</span><span>AI × 电商晨报</span></div>
-    <span class="topbar-date">2026年7月9日 周四</span>
+    <span class="topbar-date">2026年7月10日 周五</span>
   </div>
   <div class="topbar-stats"><span class="topbar-chip orange">📈 电商运营 3模块</span>
-      <span class="topbar-chip gray">🤖 模型发布/更新 1</span>
-      <span class="topbar-chip gray">📦 产品发布/更新 4</span>
-      <span class="topbar-chip gray">🌐 行业动态 3</span>
-      <span class="topbar-chip gray">📄 论文研究 1</span>
-      <span class="topbar-chip gray">💡 技巧与观点 6</span></div>
+      <span class="topbar-chip gray">🤖 模型发布/更新 3</span>
+      <span class="topbar-chip gray">📦 产品发布/更新 5</span>
+      <span class="topbar-chip gray">🌐 行业动态 4</span>
+      <span class="topbar-chip gray">💡 技巧与观点 3</span></div>
   <span class="topbar-update">🕐  更新</span>
 </header>
 
@@ -128,31 +127,23 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
           <span>📈</span> 电商运营 <em>3</em>
         </a>
         <a href="#section-模型发布-更新" class="nav-tab">
-          <span>🤖</span> 模型发布/更新 <em>1</em>
+          <span>🤖</span> 模型发布/更新 <em>3</em>
         </a>
         <a href="#section-产品发布-更新" class="nav-tab">
-          <span>📦</span> 产品发布/更新 <em>4</em>
+          <span>📦</span> 产品发布/更新 <em>5</em>
         </a>
         <a href="#section-行业动态" class="nav-tab">
-          <span>🌐</span> 行业动态 <em>3</em>
-        </a>
-        <a href="#section-论文研究" class="nav-tab">
-          <span>📄</span> 论文研究 <em>1</em>
+          <span>🌐</span> 行业动态 <em>4</em>
         </a>
         <a href="#section-技巧与观点" class="nav-tab">
-          <span>💡</span> 技巧与观点 <em>6</em>
+          <span>💡</span> 技巧与观点 <em>3</em>
         </a></div></nav>
 
 <main class="main">
-<div class="ai-fallback-warning" style="background:linear-gradient(135deg,#fef3c7 0%,#fde68a 100%);border-left:4px solid #f59e0b;padding:14px 20px;margin:16px 24px;border-radius:8px;color:#92400e;font-size:14px;line-height:1.6">
-  <strong>⚠️ 数据提示</strong>：今日 AI HOT (aihot.virxact.com) DNS 不可达，<strong>AI 资讯区使用 7/4 最近一期数据作为回退</strong>。
-  <strong>电商运营速递（M1/M2/M3/M4）已基于今日（2026-07-09）最新数据实时渲染</strong>。
-  重点新增：M4 跨品类偷师：美的美享家"主动智能"+"三个一"战略。
-</div><div class="content-with-sidebar">
+
+<div class="content-with-sidebar">
   <div class="content-main">
-
-
-        <section id="section-ecom" class="report-section">
+    <section id="section-ecom" class="report-section">
       <h2 class="section-title" style="--accent:#e67e22">
         <span class="section-icon">📈</span>
         电商运营速递
@@ -166,7 +157,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
         <span class="ecom-card-label">📈 M1 京东后台调整</span>
       </div>
       <div class="ecom-card-body">
-        <div class="report-row"><strong>摘要：</strong>本期无新增灯具类目后台重大变更。rule.jd.com 7/8新增"短标题前置锁死强心智品牌"通用规则（7天前发布，8日转发速递），属平台通用治理项非灯具专项。最近一次灯具重大调整仍为6/25《网络销售重点工业产品清单(2026年版)》纳入灯具（12/1实施）。清凉家电节延至7/30，高潮节点7/15。</div>
+        <div class="report-row"><strong>摘要：</strong>本期无新增灯具类目后台重大变更。rule.jd.com 7/2上线的"短标题前置锁死强心智品牌"属平台通用治理项（非灯具专项），7/7起已生效。最近一次灯具重大调整仍为6/25《网络销售重点工业产品清单(2026年版)》纳入灯具（12/1实施）。清凉家电节高潮节点7/15，建议今日完成会场报名与主图角标更新。</div>
         <span class="report-source">来源：灯具运营每日资讯</span>
       </div>
     </article>
@@ -176,8 +167,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
         <span class="ecom-card-label">🔄 辅助简讯</span>
       </div>
       <div class="ecom-card-body">
-        <div class="report-row"><strong>7/15入伏倒计时6天+京东智能风扇成交额同比+100%** — 京东家电最新数据：2026年7月智能风扇成交额同比增长100%（美的单店销量破8万台/小米米家空气循环扇7万台/多款数码风扇单品日销4000+台），中国气象局预计7月将迎来4轮阶段性高温。**联动机会：</strong>风扇灯作为"灯+风扇+智能"三合一品类，享受同一波高温红利。**我司操作**：主图加"入伏倒计时6天"红标+风扇灯加"0元安装+价保30天"双角标；详情页首屏加"高温+台风+梅雨三场景实拍"对比图；客服话术"入伏前后天天用，现在买赶上最热时候"。</div><div class="report-row"><strong>2026京东7月活动节奏：7/14-21 7.18超级惊喜日+7/15家电清凉日+7/15-30数码超级四选** — 7/15家电清凉日有空调冰箱专场，家电家居有50%补贴；7/18超级惊喜日数码补贴可做到60%。**联动机会：</strong>我司智能灯具/风扇灯可挂"清凉日"+"7.18"两个会场入口抢流量。**操作**：本周五(7/11)前完成"清凉日"会场报名+SKU提报+主图加角标。</div>
-        <span class="report-source">来源：京点书院7/2</span>
+        <div class="report-row"><strong>7/15入伏倒计时5天，风扇灯品类持续高增长** — 同7/6-7/9报告，京东智能风扇成交额同比+100%，广东/福建/河南需求突出。风扇灯作为"灯+风扇+智能"三合一品类享受同一波高温红利。**我司操作：</strong>主图加"入伏倒计时5天"红标+"0元安装+价保30天"双角标；详情页首屏做"高温/梅雨/台风三场景实拍"对比；客服话术"现在买，入伏前装好"。</div><div class="report-row"><strong>京东清凉家电节7/15高潮节点，建议今日完成报名** — 同前期报告，清凉家电节高潮期为7/15，会场报名窗口预计今日（7/10）截止。**操作：</strong>检查风扇灯/智能吸顶灯SKU是否已报名"清凉家电节"会场，主图加"清凉节"角标，详情页首屏突出"高温补贴/焕新补贴"信息。</div>
+        <span class="report-source">来源：灯具运营每日资讯</span>
       </div>
     </article>
         </div>
@@ -185,10 +176,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
     <article class="card ecom-card ecom-card-m4">
       <div class="ecom-card-head">
         <span class="ecom-card-badge" style="--badge-color:#f39c12">M4 跨品类偷师</span>
-        <span class="ecom-card-label">大家电（美的美享家"主动智能"+三个一战略：1张网+1个大脑+1个开放平台）</span>
+        <span class="ecom-card-label">宠物用品（网易严选十周年：宠物品牌从"喂饱"升级到"科学守护+情感陪伴"）</span>
       </div>
       <div class="ecom-card-body">
-        <div class="report-row"><strong>案例：</strong>美的美享家全屋智能套系（大家电·美的集团2026全屋智能战略落地载体，3/10上海"智美万象"发布会首发，"主动智能"为核心理念）</div><div class="report-row"><strong>怎么迁移到灯具：</strong>- **吸顶灯（套系化+主动智能）**：学美的"一张网+一个大脑"——我司雷士推出"**雷士智家光**"套系：客厅/卧室/走廊/厨房/卫生间5款吸顶灯+智能网关+APP打包卖。**学美的"主动智能"vs"被动开关"**：旧式卖点"手机APP控制"已经过时了，新卖点应该是**"你回家时灯已经在等你了"**——红外+光感+定位联动，开门瞬间客厅灯自动渐亮暖光（不再是冷启动白光），深夜起床自动切5%夜灯。**主图设计**（学美的"用得越久越懂你"话术）：主图首屏打"**雷士智家光·懂你的光**"+配图"智能感应动态场景"（5张分镜显示早/中/晚/夜/起夜五种自动灯光），详情页首屏做"3步搭建：买套灯→装网关→APP绑定"极简上手流程。</div><div class="report-row"><strong>台灯/大路灯（学伴精灵+主动服务）：</strong>学美的**"小美管全家"**心智词——台灯推出"**小雷学伴**"AI智能体（APP/语音双入口），孩子说"我要写作业了"→台灯自动亮起+精灵语音"今天也要加油哦"+30分钟定时提醒休息+环境光变暗自动补亮。**学美的"自进化"**：台灯记录孩子每日学习时长+最佳色温+护眼模式偏好，**"用得越久越懂孩子"**。**主图设计**（学美的MevoX话术）：主图打"**AI学伴·不用你说**"+配图"孩子写作业的实拍场景+APP界面截图（显示精灵问候+自动调光曲线）"。这是对"国AA+RG0"参数叙事的人本升级。</div><div class="report-row"><strong>风扇灯（场景化守护+主动响应）：</strong>学美的**"断网也能完整运行"**卖点——风扇灯核心痛点是"半夜热醒找不到遥控器"，新卖点是"**雷士风冷光·会看天气**"：温湿度传感器感知室温>26℃自动启动微风（无需唤醒），同时APP/语音主动推送"今晚闷热已为您开启清凉模式"；室温<24℃关风扇留暖光。**学美的"开放平台"**：风扇灯支持米家/小度/HomeKit三平台接入，**"你家已有的智能音箱都能控制"**——把"孤岛"变"生态"。**详情页主图**（学美的"小美管全家"）：首屏打"**风随温变·光随心动**"+配图"夏夜宝宝安睡画面（风扇微转+柔光暖光）"+对比表"旧式风扇灯vs雷士智家光（手动vs自动/单设备vs全屋联动/孤立vs开放）"。</div><div class="report-row"><strong>来源：</strong>雷科技 3/10 美的2026全屋智能战略发布会《美的发布全屋智能新战略：三个一战略+MevoX自进化智能体》+ 百度百科"美享家"+新浪财经 7/2 海尔/美的/格力对比（《2026最新数据+场景化选购指南》）</div><div class="report-row"><strong>吸顶灯（套系化+主动智能）：</strong>学美的"一张网+一个大脑"——我司雷士推出"**雷士智家光**"套系：客厅/卧室/走廊/厨房/卫生间5款吸顶灯+智能网关+APP打包卖。**学美的"主动智能"vs"被动开关"**：旧式卖点"手机APP控制"已经过时了，新卖点应该是**"你回家时灯已经在等你了"**——红外+光感+定位联动，开门瞬间客厅灯自动渐亮暖光（不再是冷启动白光），深夜起床自动切5%夜灯。**主图设计**（学美的"用得越久越懂你"话术）：主图首屏打"**雷士智家光·懂你的光**"+配图"智能感应动态场景"（5张分镜显示早/中/晚/夜/起夜五种自动灯光），详情页首屏做"3步搭建：买套灯→装网关→APP绑定"极简上手流程。</div><div class="report-row"><strong>台灯/大路灯（学伴精灵+主动服务）：</strong>学美的**"小美管全家"**心智词——台灯推出"**小雷学伴**"AI智能体（APP/语音双入口），孩子说"我要写作业了"→台灯自动亮起+精灵语音"今天也要加油哦"+30分钟定时提醒休息+环境光变暗自动补亮。**学美的"自进化"**：台灯记录孩子每日学习时长+最佳色温+护眼模式偏好，**"用得越久越懂孩子"**。**主图设计**（学美的MevoX话术）：主图打"**AI学伴·不用你说**"+配图"孩子写作业的实拍场景+APP界面截图（显示精灵问候+自动调光曲线）"。这是对"国AA+RG0"参数叙事的人本升级。</div><div class="report-row"><strong>风扇灯（场景化守护+主动响应）：</strong>学美的**"断网也能完整运行"**卖点——风扇灯核心痛点是"半夜热醒找不到遥控器"，新卖点是"**雷士风冷光·会看天气**"：温湿度传感器感知室温>26℃自动启动微风（无需唤醒），同时APP/语音主动推送"今晚闷热已为您开启清凉模式"；室温<24℃关风扇留暖光。**学美的"开放平台"**：风扇灯支持米家/小度/HomeKit三平台接入，**"你家已有的智能音箱都能控制"**——把"孤岛"变"生态"。**详情页主图**（学美的"小美管全家"）：首屏打"**风随温变·光随心动**"+配图"夏夜宝宝安睡画面（风扇微转+柔光暖光）"+对比表"旧式风扇灯vs雷士智家光（手动vs自动/单设备vs全屋联动/孤立vs开放）"。</div>
+        <div class="report-row"><strong>案例：</strong>网易严选宠物业务（宠物用品）</div><div class="report-row"><strong>它做对了什么：</strong>十周年升级给出**"情感价值+科学信任"双锚定**。品牌主张从功能卖点升级为**"愿生命治愈生命"**，标语**"科学守护，更懂彼此"**；研发端与中国农业大学、南京农业大学产学研合作，累计发表SCI/核心论文7篇；供应链端建立严于国标的**4S品控标准+20道正逆向管控**，新品必送SGS/ITS检测，连续8年获BRCGS AA级认证；2026年将启动**独立爆品专线**。公益端推出"蒲公英计划"，累计为38万只流浪动物提供口粮。核心是**把宠物食品从"喂饱"升级为"科学守护+情感陪伴"**，用"懂"字建立长期信任。</div><div class="report-row"><strong>怎么迁移到灯具：</strong>- **吸顶灯（从照明工具→家的光影守护者）**：学网易"愿生命治愈生命"情感锚。主图首屏打**"雷士智家光·更懂你的家"**，配图"早归/晚归/起夜/聚餐"四幕家庭场景；详情页讲**"10年相伴，更懂彼此"**——不只是参数，而是"孩子写作业时客厅灯自动柔化/老人起夜时走廊灯自动亮起"的场景承诺。把"全光谱/RG0"参数翻译成"**每一盏灯都在守护家人的眼睛**"。</div><div class="report-row"><strong>台灯/大路灯（从护眼参数→成长陪伴）：</strong>学网易"科学守护"心智。推出"**小雷学伴**"陪伴概念，APP生成每周用眼报告+坐姿提醒，主图打"**不只是台灯，是孩子的用眼管家**"；详情页用"愿光守护每一次专注"情感话术，把国AA/RG0/UGR<19参数包装成"科学护眼三件套"。</div><div class="report-row"><strong>风扇灯（从降温设备→夏日清凉守护者）：</strong>学网易"蒲公英公益"叙事。主图打"**雷士风冷光·守护全家清凉**"，详情页加入"每售出1台风扇灯，为环卫工人捐赠1瓶清凉水"公益角标（或等价公益联动），把"温感自动启停"翻译成"**你还没喊热，它已经懂了**"的主动服务承诺。</div><div class="report-row"><strong>来源：</strong>DoNews《网易严选十周年升级宠物品牌，推科学营养体系与蒲公英公益计划》（2026-04-10）+ 百度百家号《网易严选携手绿城共启"宠物友好社区"战略计划》（2026-02-06）</div><div class="report-row"><strong>吸顶灯（从照明工具→家的光影守护者）：</strong>学网易"愿生命治愈生命"情感锚。主图首屏打**"雷士智家光·更懂你的家"**，配图"早归/晚归/起夜/聚餐"四幕家庭场景；详情页讲**"10年相伴，更懂彼此"**——不只是参数，而是"孩子写作业时客厅灯自动柔化/老人起夜时走廊灯自动亮起"的场景承诺。把"全光谱/RG0"参数翻译成"**每一盏灯都在守护家人的眼睛**"。</div><div class="report-row"><strong>台灯/大路灯（从护眼参数→成长陪伴）：</strong>学网易"科学守护"心智。推出"**小雷学伴**"陪伴概念，APP生成每周用眼报告+坐姿提醒，主图打"**不只是台灯，是孩子的用眼管家**"；详情页用"愿光守护每一次专注"情感话术，把国AA/RG0/UGR<19参数包装成"科学护眼三件套"。</div><div class="report-row"><strong>风扇灯（从降温设备→夏日清凉守护者）：</strong>学网易"蒲公英公益"叙事。主图打"**雷士风冷光·守护全家清凉**"，详情页加入"每售出1台风扇灯，为环卫工人捐赠1瓶清凉水"公益角标（或等价公益联动），把"温感自动启停"翻译成"**你还没喊热，它已经懂了**"的主动服务承诺。</div>
         <span class="report-source">来源：灯具运营每日资讯</span>
       </div>
     </article>
@@ -202,14 +193,28 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
       <h2 class="section-title" style="--accent:#e74c3c">
         <span class="section-icon">🤖</span>
         模型发布/更新
-        <span class="section-count">1 条</span>
+        <span class="section-count">3 条</span>
       </h2>
       <ul class="ai-condensed-list">
           <li class="ai-item" data-seq="1">
             <span class="ai-item-num">#1</span>
-            <span class="ai-item-source" style="--chip-color:#e74c3c">生数科技</span>
-            <a class="ai-item-title" href="https://mp.weixin.qq.com/s/RuukpnoOA2tI0ERCNrLgtQ" target="_blank" rel="noopener noreferrer">生数科技发布 Vidu S1，推动视频生成迈向&quot;实时交互&quot;新时代</a>
-            <span class="ai-item-summary">7月3日，生数科技在2026全球数字经济大会上发布Vidu S1实时交互模型，支持实时视频通话和语音控制视频走向，实现无…</span>
+            <span class="ai-item-source" style="--chip-color:#e74c3c">Blog</span>
+            <a class="ai-item-title" href="https://research.google/blog/sensorfm-towards-a-general-intelligence-and-interface-for-wearable-health-data" target="_blank" rel="noopener noreferrer">Google Research 推出 SensorFM：面向可穿戴健康数据的通用基础模型</a>
+            <span class="ai-item-summary">Google Research 发布 SensorFM，一个在超过 100 万亿分钟多模态传感器数据上预训练的大规模基础模型，数据来自 50…</span>
+          </li>
+          <li class="ai-item" data-seq="2">
+            <span class="ai-item-num">#2</span>
+            <span class="ai-item-source" style="--chip-color:#e74c3c">Hacker News 热门</span>
+            <a class="ai-item-title" href="https://cognition.com/blog/swe-1-7" target="_blank" rel="noopener noreferrer">SWE-1.7 的覆盖范围接近 GPT 5.5 和 Opus Intelligence</a>
+            <span class="ai-item-summary"></span>
+          </li>
+          <li class="ai-item" data-seq="3">
+            <span class="ai-item-num">#3</span>
+            <span class="ai-item-source" style="--chip-color:#e74c3c">Sam Altman</span>
+            <a class="ai-item-title" href="https://x.com/sama/status/2075266471316615436" target="_blank" rel="noopener noreferrer">OpenAI 发布最强模型与最佳博文</a>
+            <span class="ai-item-summary">显然是我们有史以来最好的模型，也是我们写得最好的博文之一：
+
+https://openai.com/index/gpt-5-6/</span>
           </li>
       </ul>
     </section>
@@ -217,35 +222,42 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
       <h2 class="section-title" style="--accent:#3498db">
         <span class="section-icon">📦</span>
         产品发布/更新
-        <span class="section-count">4 条</span>
+        <span class="section-count">5 条</span>
       </h2>
       <ul class="ai-condensed-list">
-          <li class="ai-item" data-seq="2">
-            <span class="ai-item-num">#2</span>
-            <span class="ai-item-source" style="--chip-color:#3498db">京东JoyAI</span>
-            <a class="ai-item-title" href="https://mp.weixin.qq.com/s/XfpxdblzNWa5HxahRoT9pg" target="_blank" rel="noopener noreferrer">JoyAI App 上线 UGC 数字人功能，用户可&quot;捏&quot;出专属虚拟玩伴</a>
-            <span class="ai-item-summary">JoyAI App 近日上线 UGC 数字人功能，用户只需上传一张照片即可生成专属虚拟数字分身，支持一键复刻写实形象或…</span>
-          </li>
-          <li class="ai-item" data-seq="3">
-            <span class="ai-item-num">#3</span>
-            <span class="ai-item-source" style="--chip-color:#3498db">Hacker News 热门</span>
-            <a class="ai-item-title" href="https://webkit.org/blog/18136/introducing-the-safari-mcp-server-for-web-developers" target="_blank" rel="noopener noreferrer">面向 Web 开发者的 Safari MCP 服务器</a>
-            <span class="ai-item-summary">Safari Technology Preview 247 推出 Safari MCP 服务器，基于 Model Context Protocol，允许任何 MCP 兼容客户端连…</span>
-          </li>
           <li class="ai-item" data-seq="4">
             <span class="ai-item-num">#4</span>
-            <span class="ai-item-source" style="--chip-color:#3498db">面壁智能</span>
-            <a class="ai-item-title" href="https://mp.weixin.qq.com/s/JVBbqU1O967ktzfEPuDERQ" target="_blank" rel="noopener noreferrer">面壁智能发布AI全自动预训练框架ForgeTrain，8小时追平Megatron-LM</a>
-            <span class="ai-item-summary">面壁智能发布全球首个完全由AI编写、无人类干预的生产级大模型预训练框架ForgeTrain。该框架针对特定模型和硬…</span>
+            <span class="ai-item-source" style="--chip-color:#3498db">Hacker News 热门</span>
+            <a class="ai-item-title" href="https://github.com/JustVugg/colibri" target="_blank" rel="noopener noreferrer">Show HN： 如何在我的低配置电脑上运行 GLM-5.2</a>
+            <span class="ai-item-summary">colibrì v1.0 引擎以纯 C 实现、零运行时依赖，可在约 25 GB RAM 的消费级电脑上运行 744B 参数的 GLM-5.2 MoE 模型。模型…</span>
           </li>
           <li class="ai-item" data-seq="5">
             <span class="ai-item-num">#5</span>
-            <span class="ai-item-source" style="--chip-color:#3498db">阿里云 / Alibaba Cloud</span>
-            <a class="ai-item-title" href="https://x.com/alibaba_cloud/status/2072967570441834771" target="_blank" rel="noopener noreferrer">Wan Video 推出&quot;音乐伴舞&quot;新功能</a>
-            <span class="ai-item-summary">Wan Video 新功能：**音乐伴舞** 💃
-上传一个角色，添加一首歌曲，让 Wan Video 生成与节奏同步的舞蹈视频。
-可用舞种：
-•…</span>
+            <span class="ai-item-source" style="--chip-color:#3498db">Hacker News 热门</span>
+            <a class="ai-item-title" href="https://microsoft.github.io/flint-chart" target="_blank" rel="noopener noreferrer">微软发布Flint：面向AI智能体的可视化语言</a>
+            <span class="ai-item-summary">微软研究院推出Flint，一种可视化中间语言，让AI智能体通过简洁的人类可编辑spec自动生成美观图表。用户只需提…</span>
+          </li>
+          <li class="ai-item" data-seq="6">
+            <span class="ai-item-num">#6</span>
+            <span class="ai-item-source" style="--chip-color:#3498db">OpenAI Developers</span>
+            <a class="ai-item-title" href="https://x.com/OpenAIDevs/status/2075331020090687666" target="_blank" rel="noopener noreferrer">ChatGPT Sites将创意变可发布网站</a>
+            <span class="ai-item-summary">将一个想法变成可发布和分享的实时网站
+
+以下是OpenAI团队的一些成员用Sites构建的示例👇
+
+@prd_008 用Sites将一…</span>
+          </li>
+          <li class="ai-item" data-seq="7">
+            <span class="ai-item-num">#7</span>
+            <span class="ai-item-source" style="--chip-color:#3498db">Google Developers Blog</span>
+            <a class="ai-item-title" href="https://developers.googleblog.com/litertjs-googles-high-performance-web-ai-inference" target="_blank" rel="noopener noreferrer">Google 推出 LiteRT.js：高性能 Web AI 推理运行时</a>
+            <span class="ai-item-summary">Google 发布 LiteRT.js，这是 LiteRT 跨平台边缘 AI 运行时的最新成员，专为 JavaScript 开发者设计，可直接在浏览…</span>
+          </li>
+          <li class="ai-item" data-seq="8">
+            <span class="ai-item-num">#8</span>
+            <span class="ai-item-source" style="--chip-color:#3498db">News</span>
+            <a class="ai-item-title" href="https://mistral.ai/news/manage-prompts-and-skills-in-studio" target="_blank" rel="noopener noreferrer">Mistral 推出 Studio，为 AI 提示词和技能提供系统记录</a>
+            <span class="ai-item-summary">Mistral 今日推出 Studio，为 AI 提示词和技能提供集中式系统记录。平台将 prompts 和 skills 视为生产资产，支持…</span>
           </li>
       </ul>
     </section>
@@ -253,41 +265,32 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
       <h2 class="section-title" style="--accent:#2ecc71">
         <span class="section-icon">🌐</span>
         行业动态
-        <span class="section-count">3 条</span>
-      </h2>
-      <ul class="ai-condensed-list">
-          <li class="ai-item" data-seq="6">
-            <span class="ai-item-num">#6</span>
-            <span class="ai-item-source" style="--chip-color:#2ecc71">IT之家</span>
-            <a class="ai-item-title" href="https://www.ithome.com/0/972/424.htm" target="_blank" rel="noopener noreferrer">全球首例 AI Agent 勒索攻击曝光，从漏洞利用到数据库加密全程自主完成</a>
-            <span class="ai-item-summary">安全厂商 Sysdig 首次记录到 AI Agent&quot;JADEPUFFER&quot;自动完成的勒索攻击。攻击利用暴露的 Langflow 服务漏洞 CVE-20…</span>
-          </li>
-          <li class="ai-item" data-seq="7">
-            <span class="ai-item-num">#7</span>
-            <span class="ai-item-source" style="--chip-color:#2ecc71">IT之家</span>
-            <a class="ai-item-title" href="https://www.ithome.com/0/972/341.htm" target="_blank" rel="noopener noreferrer">国家网信办就《互联网信息服务管理办法》再次征求意见，首设&quot;智能信息服务&quot;专章规范AI服务</a>
-            <span class="ai-item-summary">7月3日，国家互联网信息办公室就《互联网信息服务管理办法（修订草案征求意见稿）》再次公开征求意见。草案新增&quot;智能…</span>
-          </li>
-          <li class="ai-item" data-seq="8">
-            <span class="ai-item-num">#8</span>
-            <span class="ai-item-source" style="--chip-color:#2ecc71">IT之家</span>
-            <a class="ai-item-title" href="https://www.ithome.com/0/971/971.htm" target="_blank" rel="noopener noreferrer">得州特斯拉致命车祸：司机嫌FSD太保守，加速踏板踩死致76岁居民死亡</a>
-            <span class="ai-item-summary">44岁的迈克尔·巴特勒驾驶特斯拉Model 3冲入得州住宅，致76岁玛莎·阿维拉死亡，现被控过失杀人。警方从其手机发现2026…</span>
-          </li>
-      </ul>
-    </section>
-    <section id="section-论文研究" class="ai-condensed-section">
-      <h2 class="section-title" style="--accent:#9b59b6">
-        <span class="section-icon">📄</span>
-        论文研究
-        <span class="section-count">1 条</span>
+        <span class="section-count">4 条</span>
       </h2>
       <ul class="ai-condensed-list">
           <li class="ai-item" data-seq="9">
             <span class="ai-item-num">#9</span>
-            <span class="ai-item-source" style="--chip-color:#9b59b6">IT之家</span>
-            <a class="ai-item-title" href="https://www.ithome.com/0/972/089.htm" target="_blank" rel="noopener noreferrer">阿里达摩院发布超导材料发现AI智能体Elements Claw</a>
-            <span class="ai-item-summary">7月3日，阿里达摩院联合中国人民大学、中国科学院大学发布首个超导材料发现AI智能体Elements Claw。该智能体采用…</span>
+            <span class="ai-item-source" style="--chip-color:#2ecc71">AI</span>
+            <a class="ai-item-title" href="https://techcrunch.com/2026/07/09/elon-musk-praises-mythos-fable-promises-not-to-cut-off-anthropic" target="_blank" rel="noopener noreferrer">Elon Musk称赞Anthropic并承诺不切断其算力</a>
+            <span class="ai-item-summary">Elon Musk近日在X上承认此前对Anthropic的判断有误，称其&quot;显然是当前AI领域的领导者&quot;，盛赞Mythos/Fable模型&quot;目…</span>
+          </li>
+          <li class="ai-item" data-seq="10">
+            <span class="ai-item-num">#10</span>
+            <span class="ai-item-source" style="--chip-color:#2ecc71">Newsroom</span>
+            <a class="ai-item-title" href="https://www.anthropic.com/news/hard-questions" target="_blank" rel="noopener noreferrer">Anthropic发起&quot;硬问题&quot;倡议，邀请公众提出AI相关尖锐问题</a>
+            <span class="ai-item-summary">Anthropic作为公益公司，发起&quot;硬问题&quot;倡议，邀请公众就AI对就业、社会、家庭、科学医学等领域的影响提出最尖锐的问…</span>
+          </li>
+          <li class="ai-item" data-seq="11">
+            <span class="ai-item-num">#11</span>
+            <span class="ai-item-source" style="--chip-color:#2ecc71">Newsroom</span>
+            <a class="ai-item-title" href="https://www.anthropic.com/news/ben-bernanke" target="_blank" rel="noopener noreferrer">Anthropic长期利益信托任命本·伯南克为受托人</a>
+            <span class="ai-item-summary">Anthropic的长期利益信托（LTBT）任命前美联储主席、2022年诺贝尔经济学奖得主本·伯南克为最新受托人。他将与另外…</span>
+          </li>
+          <li class="ai-item" data-seq="12">
+            <span class="ai-item-num">#12</span>
+            <span class="ai-item-source" style="--chip-color:#2ecc71">IT之家</span>
+            <a class="ai-item-title" href="https://www.ithome.com/0/974/782.htm" target="_blank" rel="noopener noreferrer">消息称特斯拉三代擎天柱人形机器人初步定型，马斯克放话达不成产能目标就开掉整个采购团队</a>
+            <span class="ai-item-summary">据晚点LatePost报道，特斯拉Optimus Gen 3经马斯克评审通过，即将量产。供应链要求供应商9月产能达1000台/周，年底升…</span>
           </li>
       </ul>
     </section>
@@ -295,63 +298,68 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
       <h2 class="section-title" style="--accent:#f39c12">
         <span class="section-icon">💡</span>
         技巧与观点
-        <span class="section-count">6 条</span>
+        <span class="section-count">3 条</span>
       </h2>
       <ul class="ai-condensed-list">
-          <li class="ai-item" data-seq="10">
-            <span class="ai-item-num">#10</span>
-            <span class="ai-item-source" style="--chip-color:#f39c12">Hacker News 热门</span>
-            <a class="ai-item-title" href="https://github.com/teamchong/pxpipe" target="_blank" rel="noopener noreferrer">pxpipe：通过图像化压缩输入token降低Claude Code成本</a>
-            <span class="ai-item-summary">pxpipe是一个本地代理，将系统提示、工具文档和历史记录等密集文本渲染为PNG图像，利用图像token成本取决于像素…</span>
-          </li>
-          <li class="ai-item" data-seq="11">
-            <span class="ai-item-num">#11</span>
-            <span class="ai-item-source" style="--chip-color:#f39c12">Simon Willison 博客</span>
-            <a class="ai-item-title" href="https://simonwillison.net/2026/Jul/3/judgement" target="_blank" rel="noopener noreferrer">Fable 的判断力：Simon Willison 从 Claude Code 团队获得的效率技巧</a>
-            <span class="ai-item-summary">Simon Willison 在 AIE 上与 Claude Code 团队交流后建议，让 Fable（以及 Opus）用自己的判断力工作，而非硬性规定…</span>
-          </li>
-          <li class="ai-item" data-seq="12">
-            <span class="ai-item-num">#12</span>
-            <span class="ai-item-source" style="--chip-color:#f39c12">歸藏</span>
-            <a class="ai-item-title" href="https://x.com/op7418/status/2073020264083050811" target="_blank" rel="noopener noreferrer">藏师傅PPT与Pencil结合使用技巧</a>
-            <span class="ai-item-summary">用户将藏师傅的AI生成PPT导入Pencil设计软件，可在Pencil中一次性浏览所有页面并手动调整AI常见的排版问题，…</span>
-          </li>
           <li class="ai-item" data-seq="13">
             <span class="ai-item-num">#13</span>
-            <span class="ai-item-source" style="--chip-color:#f39c12">Hacker News 热门</span>
-            <a class="ai-item-title" href="https://blog.okturtles.org/2026/07/short-leash-ai-method" target="_blank" rel="noopener noreferrer">《Fable》通关指南：短绳AI编程法</a>
-            <span class="ai-item-summary">专业开发者经过一年多研究，总结出使用AI编码代理的&quot;短绳方法&quot;。该方法要求开发者全程参与：先规划并分解任务，从…</span>
+            <span class="ai-item-source" style="--chip-color:#f39c12">AI</span>
+            <a class="ai-item-title" href="https://techcrunch.com/2026/07/09/can-ai-answer-the-3-trillion-question" target="_blank" rel="noopener noreferrer">AI 能否回答 3 万亿美元的问题？</a>
+            <span class="ai-item-summary">Sequoia 合伙人 David Cahn 更新 AI 基础设施支出估算：2026 年全球投入达 1.5 万亿美元，行业需产生 3 万亿美元收入…</span>
           </li>
           <li class="ai-item" data-seq="14">
             <span class="ai-item-num">#14</span>
             <span class="ai-item-source" style="--chip-color:#f39c12">Hacker News 热门</span>
-            <a class="ai-item-title" href="https://github.com/HUANGCHIHHUNGLeo/claude-real-video" target="_blank" rel="noopener noreferrer">claude-real-video ─ 让任何大语言模型（LLM）都能观看视频</a>
-            <span class="ai-item-summary">claude-real-video 是一个开源工具，让大语言模型基于视频画面而非字幕进行理解。它通过场景变化检测提取关键…</span>
+            <a class="ai-item-title" href="https://www.pangram.com/blog/ai-in-your-feed" target="_blank" rel="noopener noreferrer">社交媒体AI生成内容泛滥：LinkedIn超过40%长文为AI写作</a>
+            <span class="ai-item-summary">安全公司Pangram通过Chrome扩展收集超100万条帖子，分析发现社交媒体AI生成内容泛滥。整体AI检测率13.8%，长文（超250…</span>
           </li>
           <li class="ai-item" data-seq="15">
             <span class="ai-item-num">#15</span>
-            <span class="ai-item-source" style="--chip-color:#f39c12">数字生命卡兹克</span>
-            <a class="ai-item-title" href="https://mp.weixin.qq.com/s/L6R_SPWlOBv6dI0wWWHQrg" target="_blank" rel="noopener noreferrer">Claude Fable 5 自主优化 AIHOT 网站 SEO/GEO 全记录</a>
-            <span class="ai-item-summary">作者用 Claude Fable 5 优化 AIHOT 网站的 SEO 与 GEO。模型自主启动 22 个 Agent 调研 40 分钟，发现豆包 App 每天六…</span>
+            <span class="ai-item-source" style="--chip-color:#f39c12">Hacker News 热门</span>
+            <a class="ai-item-title" href="https://bun.com/blog/bun-in-rust" target="_blank" rel="noopener noreferrer">Bun 被 Anthropic 收购后用 Rust 重写，月下载超 2200 万</a>
+            <span class="ai-item-summary">Bun 于 2025 年 12 月被 Anthropic 收购，作者使用预发布版 Claude Fable 5 进行了大量 Rust 重写。Bun 最初用 Zig 在一…</span>
           </li>
       </ul>
     </section>
-
   </div>
 
 <aside class="history-sidebar" id="historySidebar">
   <div class="sidebar-header">
     <span class="sidebar-title">📚 历史偷师</span>
-    <span class="sidebar-count">13 期</span>
+    <span class="sidebar-count">15 期</span>
   </div>
   <div class="sidebar-list">
-        <a class="sidebar-item sidebar-latest" href="https://wenhao7788.github.io/morning-report/20260707.html" target="_blank">
+        <a class="sidebar-item sidebar-latest" href="https://wenhao7788.github.io/morning-report/20260710.html" target="_blank">
+          <span class="sidebar-date">2026-07-10</span>
+          <div class="sidebar-info">
+            <span class="sidebar-brand">网易严选十周年</span>
+            <span class="sidebar-cat">宠物用品 · 喂饱</span>
+          </div>
+          <span class="sidebar-badge">今日</span>
+        </a>
+        <a class="sidebar-item" href="https://wenhao7788.github.io/morning-report/20260709.html" target="_blank">
+          <span class="sidebar-date">2026-07-09</span>
+          <div class="sidebar-info">
+            <span class="sidebar-brand">美的美享家"主动智能"+三个一战略</span>
+            <span class="sidebar-cat">大家电 · 主动智能</span>
+          </div>
+          
+        </a>
+        <a class="sidebar-item" href="https://wenhao7788.github.io/morning-report/20260708.html" target="_blank">
+          <span class="sidebar-date">2026-07-08</span>
+          <div class="sidebar-info">
+            <span class="sidebar-brand">萤石Y31</span>
+            <span class="sidebar-cat">智能家居 · 开门工具→AI管家</span>
+          </div>
+          
+        </a>
+        <a class="sidebar-item" href="https://wenhao7788.github.io/morning-report/20260707.html" target="_blank">
           <span class="sidebar-date">2026-07-07</span>
           <div class="sidebar-info">
             <span class="sidebar-brand">Babycare</span>
             <span class="sidebar-cat">母婴 · 从卖货到陪娃</span>
           </div>
-          <span class="sidebar-badge">今日</span>
+          
         </a>
         <a class="sidebar-item" href="https://wenhao7788.github.io/morning-report/20260706.html" target="_blank">
           <span class="sidebar-date">2026-07-06</span>
@@ -369,14 +377,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
           </div>
           
         </a>
-        <a class="sidebar-item sidebar-latest" href="https://wenhao7788.github.io/morning-report/20260704.html" target="_blank">
+        <a class="sidebar-item" href="https://wenhao7788.github.io/morning-report/20260704.html" target="_blank">
           <span class="sidebar-date">2026-07-04</span>
           <div class="sidebar-info">
             <span class="sidebar-brand">林氏家居</span>
             <span class="sidebar-cat">家具 · 看得见的品质</span>
           </div>
           
-        <span class="sidebar-badge">当日</span></a>
+        </a>
         <a class="sidebar-item" href="https://wenhao7788.github.io/morning-report/20260703.html" target="_blank">
           <span class="sidebar-date">2026-07-03</span>
           <div class="sidebar-info">
@@ -441,20 +449,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
           </div>
           
         </a>
-        <a class="sidebar-item" href="https://wenhao7788.github.io/morning-report/20260625.html" target="_blank">
-          <span class="sidebar-date">2026-06-25</span>
-          <div class="sidebar-info">
-            <span class="sidebar-brand">格力空调</span>
-            <span class="sidebar-cat">大家电 · 大家电</span>
-          </div>
-          
-        </a>
   </div>
 </aside>
 </div>
+
 </main>
 
-<footer class="footer"><p>AI资讯 15条 + 电商运营 3模块 | 数据来源：<strong>AI HOT (aihot.virxact.com)</strong> × <strong>京东商家后台</strong> | 生成时间：2026-07-09 北京时间</p></footer>
+<footer class="footer"><p>AI资讯 15条 + 电商运营 3模块 | 数据来源：<strong>AI HOT (aihot.virxact.com)</strong> × <strong>京东商家后台</strong> | 生成时间：2026-07-10 北京时间</p></footer>
 
 <script>(function(){
 var cards=document.querySelectorAll(".card");
