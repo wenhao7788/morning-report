@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI×电商晨报 | 2026-07-10</title>
+<style>
+:root{--primary:#e85d2b;--primary-light:#fff0ea;--bg:#f4f5f7;--card-bg:#fff;--text:#111827;--text-secondary:#4b5563;--text-muted:#9ca3af;--border:#e5e7eb;--border-light:#f0f0f2;--radius:10px;--radius-sm:6px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:15px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.5;min-height:100vh;-webkit-font-smoothing:antialiased}
+
+.topbar{background:#111827;color:#fff;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;position:sticky;top:0;z-index:100}
+.topbar-left{display:flex;align-items:center;gap:14px}
+.topbar-logo{display:flex;align-items:center;gap:8px;font-weight:800;font-size:1.05rem}
+.topbar-logo-icon{width:28px;height:28px;background:linear-gradient(135deg,#ff6b35,#e85d2b);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:.9rem}
+.topbar-date{font-size:.78rem;opacity:.75;background:rgba(255,255,255,.08);padding:3px 10px;border-radius:12px}
+.topbar-stats{display:flex;gap:6px;flex-wrap:wrap}
+.topbar-chip{font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:12px;white-space:nowrap}
+.topbar-chip.orange{background:rgba(232,93,43,.18);color:#fb923c}
+.topbar-chip.blue{background:rgba(37,99,235,.14);color:#60a5fa}
+.topbar-chip.green{background:rgba(5,150,105,.13);color:#34d399}
+.topbar-chip.gray{background:rgba(156,163,175,.15);color:#9ca3af}
+.topbar-update{font-size:.68rem;color:rgba(255,255,255,.45)}
+
+.nav-bar{background:var(--card-bg);padding:0 24px;border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none;white-space:nowrap}
+.nav-bar::-webkit-scrollbar{display:none}
+.nav-tabs{display:flex;gap:2px;padding:0}
+.nav-tab{display:inline-flex;align-items:center;gap:5px;padding:11px 16px;font-size:.82rem;font-weight:600;color:var(--text-secondary);text-decoration:none;border-bottom:2.5px solid transparent;transition:all .15s;cursor:pointer;white-space:nowrap}
+.nav-tab:hover{color:var(--primary);background:var(--primary-light)}
+.nav-tab.active{color:var(--primary);border-bottom-color:var(--primary)}
+.nav-tab em{font-style:normal;font-size:.65rem;opacity:.6;background:var(--bg);padding:1px 6px;border-radius:8px}
+
+.main{padding:24px 24px 40px;max-width:100%}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-title{font-size:1rem;font-weight:700;color:var(--text)}
+.section-badge{margin-left:auto;font-size:.72rem;font-weight:600;color:var(--text-muted);background:var(--bg);padding:3px 10px;border-radius:10px}
+
+/* 电商运营两栏布局 */
+.ecom-layout{display:grid;grid-template-columns:1fr 1.6fr;gap:16px;margin-bottom:36px;align-items:start}
+.ecom-left{display:flex;flex-direction:column;gap:12px}
+.ecom-left .ecom-card{flex:1}
+.ecom-right{display:flex}
+.ecom-right .ecom-card-m4{flex:1;height:100%}
+
+.ecom-card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:box-shadow .2s;display:flex;flex-direction:column}
+.ecom-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.07)}
+.ecom-card-head{display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid var(--border-light);background:linear-gradient(to right,var(--badge-color-bg,#fef3e2),transparent)}
+.ecom-card-badge{font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:8px;background:color-mix(in srgb,var(--badge-color,#e67e22)12%,#fff);color:var(--badge-color,#e67e22);white-space:nowrap}
+.ecom-card-label{font-size:.84rem;font-weight:700;color:var(--text)}
+.ecom-card-body{padding:12px 16px;flex:1}
+.ecom-card-body .report-row{font-size:.8rem;line-height:1.65;color:var(--text-secondary);margin-bottom:2px}
+.ecom-card-body .report-row strong{color:var(--text);font-weight:650}
+.ecom-card-body .report-source{display:block;margin-top:8px;font-size:.69rem;color:var(--text-muted)}
+
+/* AI资讯通用卡片网格 — 密集排列 */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:16px;transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.card::before{content:"";position:absolute;top:0;left:0;width:3px;height:100%;background:var(--chip-color,#ccc);opacity:.6;border-radius:3px 0 0 3px}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.06)}
+
+.card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;gap:8px}
+.card-num{font-size:.68rem;font-weight:700;color:var(--primary);background:var(--primary-light);padding:2px 7px;border-radius:5px;flex-shrink:0}
+.chip{font-size:.66rem;font-weight:600;padding:2px 8px;border-radius:8px;background:color-mix(in srgb,var(--chip-color,#888)10%,#fff);color:var(--chip-color,#888);border:1px solid color-mix(in srgb,var(--chip-color,#888)22%,transparent);white-space:nowrap}
+.card-title{font-size:.88rem;font-weight:700;line-height:1.45;color:var(--text);margin-bottom:6px}
+.card-summary{font-size:.77rem;color:var(--text-secondary);line-height:1.55;flex-grow:1}
+.card-link{display:inline-flex;align-items:center;gap:3px;margin-top:10px;font-size:.74rem;font-weight:600;color:var(--primary);text-decoration:none;transition:gap .15s;align-self:flex-start}
+.card-link:hover{gap:6px;text-decoration:underline}
+
+/* AI精简列表 — 全宽紧凑行 */
+.ai-condensed-section{margin-bottom:28px}
+.ai-condensed-list{list-style:none;display:flex;flex-direction:column;gap:1px;padding:0}
+.ai-item{display:flex;align-items:baseline;flex-wrap:wrap;gap:5px 10px;padding:8px 16px;border-radius:var(--radius-sm);background:var(--card-bg);border:1px solid var(--border-light);font-size:.79rem;line-height:1.5;transition:background .12s}
+.ai-item:hover{background:#fafafa}
+.ai-item-num{font-size:.64rem;font-weight:700;color:var(--primary);background:var(--primary-light);padding:1px 6px;border-radius:4px;flex-shrink:0}
+.ai-item-source{font-size:.62rem;font-weight:600;padding:2px 7px;border-radius:8px;background:color-mix(in srgb,var(--chip-color,#888)8%,#fff);color:var(--chip-color,#888);border:1px solid color-mix(in srgb,var(--chip-color,#888)18%,transparent);flex-shrink:0;white-space:nowrap}
+.ai-item-title{font-weight:600;color:var(--text);text-decoration:none}
+.ai-item-title:hover{color:var(--primary)}
+.ai-item-summary{color:var(--text-muted);font-size:.73rem;flex:1;min-width:180px}
+
+.section-divider{text-align:center;margin:30px 0 20px;position:relative}
+.section-divider::before{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:linear-gradient(to right,transparent,var(--border),transparent)}
+.section-divider span{position:relative;display:inline-block;padding:4px 16px;background:var(--bg);font-size:.75rem;font-weight:700;color:var(--text-muted);letter-spacing:.5px}
+
+.footer{text-align:center;font-size:.72rem;color:var(--text-muted);padding:20px 24px 32px;border-top:1px solid var(--border);background:var(--card-bg)}
+.footer strong{color:var(--text-secondary)}
+
+/* 历史偷师侧边栏 */
+.history-sidebar{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.sidebar-header{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--border-light);background:linear-gradient(135deg,#fef3e2,#fff)}
+.sidebar-title{font-size:.85rem;font-weight:700;color:var(--text)}
+.sidebar-count{font-size:.7rem;font-weight:600;color:var(--text-muted);background:var(--bg);padding:2px 8px;border-radius:10px}
+.sidebar-list{display:flex;flex-direction:column;max-height:480px;overflow-y:auto;scrollbar-width:thin}
+.sidebar-item{display:flex;align-items:center;gap:10px;padding:10px 16px;text-decoration:none;color:var(--text);border-bottom:1px solid var(--border-light);transition:background .12s}
+.sidebar-item:hover{background:var(--primary-light)}
+.sidebar-item:last-child{border-bottom:none}
+.sidebar-latest{background:#fff9f0;border-left:3px solid var(--primary)}
+.sidebar-date{font-size:.68rem;font-weight:700;color:var(--text-muted);white-space:nowrap;min-width:70px}
+.sidebar-info{display:flex;flex-direction:column;gap:1px;flex:1;min-width:0}
+.sidebar-brand{font-size:.8rem;font-weight:700;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sidebar-cat{font-size:.68rem;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sidebar-badge{font-size:.6rem;font-weight:700;color:#fff;background:var(--primary);padding:1px 6px;border-radius:6px;white-space:nowrap;flex-shrink:0}
+
+/* 主内容区+侧边栏双栏布局（桌面端） */
+.content-with-sidebar{display:grid;grid-template-columns:1fr 240px;gap:20px;align-items:start}
+
+@media(max-width:1200px){.ecom-grid{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}.card-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}.content-with-sidebar{grid-template-columns:1fr}.history-sidebar{margin-top:20px}}
+@media(max-width:768px){.topbar{padding:10px 16px}.main{padding:16px 16px 28px}.nav-bar{padding:0 16px}.card-grid{grid-template-columns:1fr}.ecom-grid{grid-template-columns:1fr}.ai-item-summary{width:100%;min-width:0}}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-left">
+    <div class="topbar-logo"><span class="topbar-logo-icon">📰</span><span>AI × 电商晨报</span></div>
+    <span class="topbar-date">2026年7月10日 周五</span>
+  </div>
+  <div class="topbar-stats"><span class="topbar-chip orange">📈 电商运营 3模块</span>
+      <span class="topbar-chip gray">🤖 模型发布/更新 3</span>
+      <span class="topbar-chip gray">📦 产品发布/更新 5</span>
+      <span class="topbar-chip gray">🌐 行业动态 4</span>
+      <span class="topbar-chip gray">💡 技巧与观点 3</span></div>
+  <span class="topbar-update">🕐  更新</span>
+</header>
+
+<nav class="nav-bar" id="mainNav"><div class="nav-tabs">        <a href="#section-ecom" class="nav-tab">
+          <span>📈</span> 电商运营 <em>3</em>
+        </a>
+        <a href="#section-模型发布-更新" class="nav-tab">
+          <span>🤖</span> 模型发布/更新 <em>3</em>
+        </a>
+        <a href="#section-产品发布-更新" class="nav-tab">
+          <span>📦</span> 产品发布/更新 <em>5</em>
+        </a>
+        <a href="#section-行业动态" class="nav-tab">
+          <span>🌐</span> 行业动态 <em>4</em>
+        </a>
+        <a href="#section-技巧与观点" class="nav-tab">
+          <span>💡</span> 技巧与观点 <em>3</em>
+        </a></div></nav>
+
+<main class="main">
+
+<div class="content-with-sidebar">
+  <div class="content-main">
+    <section id="section-ecom" class="report-section">
+      <h2 class="section-title" style="--accent:#e67e22">
+        <span class="section-icon">📈</span>
+        电商运营速递
+        <span class="section-count">3 模块</span>
+      </h2>
+      <div class="ecom-layout">
+        <div class="ecom-left">
+    <article class="card ecom-card ">
+      <div class="ecom-card-head">
+        <span class="ecom-card-badge" style="--badge-color:#e74c3c">M1 京东后台调整</span>
+        <span class="ecom-card-label">📈 M1 京东后台调整</span>
+      </div>
+      <div class="ecom-card-body">
+        <div class="report-row"><strong>摘要：</strong>本期无新增灯具类目后台重大变更。rule.jd.com 7/2上线的"短标题前置锁死强心智品牌"属平台通用治理项（非灯具专项），7/7起已生效。最近一次灯具重大调整仍为6/25《网络销售重点工业产品清单(2026年版)》纳入灯具（12/1实施）。清凉家电节高潮节点7/15，建议今日完成会场报名与主图角标更新。</div>
+        <span class="report-source">来源：灯具运营每日资讯</span>
+      </div>
+    </article>
+    <article class="card ecom-card ">
+      <div class="ecom-card-head">
+        <span class="ecom-card-badge" style="--badge-color:#e67e22">C-1 行业简讯</span>
+        <span class="ecom-card-label">🔄 辅助简讯</span>
+      </div>
+      <div class="ecom-card-body">
+        <div class="report-row"><strong>7/15入伏倒计时5天，风扇灯品类持续高增长** — 同7/6-7/9报告，京东智能风扇成交额同比+100%，广东/福建/河南需求突出。风扇灯作为"灯+风扇+智能"三合一品类享受同一波高温红利。**我司操作：</strong>主图加"入伏倒计时5天"红标+"0元安装+价保30天"双角标；详情页首屏做"高温/梅雨/台风三场景实拍"对比；客服话术"现在买，入伏前装好"。</div><div class="report-row"><strong>京东清凉家电节7/15高潮节点，建议今日完成报名** — 同前期报告，清凉家电节高潮期为7/15，会场报名窗口预计今日（7/10）截止。**操作：</strong>检查风扇灯/智能吸顶灯SKU是否已报名"清凉家电节"会场，主图加"清凉节"角标，详情页首屏突出"高温补贴/焕新补贴"信息。</div>
+        <span class="report-source">来源：灯具运营每日资讯</span>
+      </div>
+    </article>
+        </div>
+        <div class="ecom-right">
+    <article class="card ecom-card ecom-card-m4">
+      <div class="ecom-card-head">
+        <span class="ecom-card-badge" style="--badge-color:#f39c12">M4 跨品类偷师</span>
+        <span class="ecom-card-label">宠物用品（网易严选十周年：宠物品牌从"喂饱"升级到"科学守护+情感陪伴"）</span>
+      </div>
+      <div class="ecom-card-body">
+        <div class="report-row"><strong>案例：</strong>网易严选宠物业务（宠物用品）</div><div class="report-row"><strong>它做对了什么：</strong>十周年升级给出**"情感价值+科学信任"双锚定**。品牌主张从功能卖点升级为**"愿生命治愈生命"**，标语**"科学守护，更懂彼此"**；研发端与中国农业大学、南京农业大学产学研合作，累计发表SCI/核心论文7篇；供应链端建立严于国标的**4S品控标准+20道正逆向管控**，新品必送SGS/ITS检测，连续8年获BRCGS AA级认证；2026年将启动**独立爆品专线**。公益端推出"蒲公英计划"，累计为38万只流浪动物提供口粮。核心是**把宠物食品从"喂饱"升级为"科学守护+情感陪伴"**，用"懂"字建立长期信任。</div><div class="report-row"><strong>怎么迁移到灯具：</strong>- **吸顶灯（从照明工具→家的光影守护者）**：学网易"愿生命治愈生命"情感锚。主图首屏打**"雷士智家光·更懂你的家"**，配图"早归/晚归/起夜/聚餐"四幕家庭场景；详情页讲**"10年相伴，更懂彼此"**——不只是参数，而是"孩子写作业时客厅灯自动柔化/老人起夜时走廊灯自动亮起"的场景承诺。把"全光谱/RG0"参数翻译成"**每一盏灯都在守护家人的眼睛**"。</div><div class="report-row"><strong>台灯/大路灯（从护眼参数→成长陪伴）：</strong>学网易"科学守护"心智。推出"**小雷学伴**"陪伴概念，APP生成每周用眼报告+坐姿提醒，主图打"**不只是台灯，是孩子的用眼管家**"；详情页用"愿光守护每一次专注"情感话术，把国AA/RG0/UGR<19参数包装成"科学护眼三件套"。</div><div class="report-row"><strong>风扇灯（从降温设备→夏日清凉守护者）：</strong>学网易"蒲公英公益"叙事。主图打"**雷士风冷光·守护全家清凉**"，详情页加入"每售出1台风扇灯，为环卫工人捐赠1瓶清凉水"公益角标（或等价公益联动），把"温感自动启停"翻译成"**你还没喊热，它已经懂了**"的主动服务承诺。</div><div class="report-row"><strong>来源：</strong>DoNews《网易严选十周年升级宠物品牌，推科学营养体系与蒲公英公益计划》（2026-04-10）+ 百度百家号《网易严选携手绿城共启"宠物友好社区"战略计划》（2026-02-06）</div><div class="report-row"><strong>吸顶灯（从照明工具→家的光影守护者）：</strong>学网易"愿生命治愈生命"情感锚。主图首屏打**"雷士智家光·更懂你的家"**，配图"早归/晚归/起夜/聚餐"四幕家庭场景；详情页讲**"10年相伴，更懂彼此"**——不只是参数，而是"孩子写作业时客厅灯自动柔化/老人起夜时走廊灯自动亮起"的场景承诺。把"全光谱/RG0"参数翻译成"**每一盏灯都在守护家人的眼睛**"。</div><div class="report-row"><strong>台灯/大路灯（从护眼参数→成长陪伴）：</strong>学网易"科学守护"心智。推出"**小雷学伴**"陪伴概念，APP生成每周用眼报告+坐姿提醒，主图打"**不只是台灯，是孩子的用眼管家**"；详情页用"愿光守护每一次专注"情感话术，把国AA/RG0/UGR<19参数包装成"科学护眼三件套"。</div><div class="report-row"><strong>风扇灯（从降温设备→夏日清凉守护者）：</strong>学网易"蒲公英公益"叙事。主图打"**雷士风冷光·守护全家清凉**"，详情页加入"每售出1台风扇灯，为环卫工人捐赠1瓶清凉水"公益角标（或等价公益联动），把"温感自动启停"翻译成"**你还没喊热，它已经懂了**"的主动服务承诺。</div>
+        <span class="report-source">来源：灯具运营每日资讯</span>
+      </div>
+    </article>
+        </div>
+      </div>
+    </section>
+
+<div class="section-divider"><span>🤖 AI 资讯速览</span></div>
+
+    <section id="section-模型发布-更新" class="ai-condensed-section">
+      <h2 class="section-title" style="--accent:#e74c3c">
+        <span class="section-icon">🤖</span>
+        模型发布/更新
+        <span class="section-count">3 条</span>
+      </h2>
+      <ul class="ai-condensed-list">
+          <li class="ai-item" data-seq="1">
+            <span class="ai-item-num">#1</span>
+            <span class="ai-item-source" style="--chip-color:#e74c3c">Blog</span>
+            <a class="ai-item-title" href="https://research.google/blog/sensorfm-towards-a-general-intelligence-and-interface-for-wearable-health-data" target="_blank" rel="noopener noreferrer">Google Research 推出 SensorFM：面向可穿戴健康数据的通用基础模型</a>
+            <span class="ai-item-summary">Google Research 发布 SensorFM，一个在超过 100 万亿分钟多模态传感器数据上预训练的大规模基础模型，数据来自 50…</span>
+          </li>
+          <li class="ai-item" data-seq="2">
+            <span class="ai-item-num">#2</span>
+            <span class="ai-item-source" style="--chip-color:#e74c3c">Hacker News 热门</span>
+            <a class="ai-item-title" href="https://cognition.com/blog/swe-1-7" target="_blank" rel="noopener noreferrer">SWE-1.7 的覆盖范围接近 GPT 5.5 和 Opus Intelligence</a>
+            <span class="ai-item-summary"></span>
+          </li>
+          <li class="ai-item" data-seq="3">
+            <span class="ai-item-num">#3</span>
+            <span class="ai-item-source" style="--chip-color:#e74c3c">Sam Altman</span>
+            <a class="ai-item-title" href="https://x.com/sama/status/2075266471316615436" target="_blank" rel="noopener noreferrer">OpenAI 发布最强模型与最佳博文</a>
+            <span class="ai-item-summary">显然是我们有史以来最好的模型，也是我们写得最好的博文之一：
+
+https://openai.com/index/gpt-5-6/</span>
+          </li>
+      </ul>
+    </section>
+    <section id="section-产品发布-更新" class="ai-condensed-section">
+      <h2 class="section-title" style="--accent:#3498db">
+        <span class="section-icon">📦</span>
+        产品发布/更新
+        <span class="section-count">5 条</span>
+      </h2>
+      <ul class="ai-condensed-list">
+          <li class="ai-item" data-seq="4">
+            <span class="ai-item-num">#4</span>
+            <span class="ai-item-source" style="--chip-color:#3498db">Hacker News 热门</span>
+            <a class="ai-item-title" href="https://github.com/JustVugg/colibri" target="_blank" rel="noopener noreferrer">Show HN： 如何在我的低配置电脑上运行 GLM-5.2</a>
+            <span class="ai-item-summary">colibrì v1.0 引擎以纯 C 实现、零运行时依赖，可在约 25 GB RAM 的消费级电脑上运行 744B 参数的 GLM-5.2 MoE 模型。模型…</span>
+          </li>
+          <li class="ai-item" data-seq="5">
+            <span class="ai-item-num">#5</span>
+            <span class="ai-item-source" style="--chip-color:#3498db">Hacker News 热门</span>
+            <a class="ai-item-title" href="https://microsoft.github.io/flint-chart" target="_blank" rel="noopener noreferrer">微软发布Flint：面向AI智能体的可视化语言</a>
+            <span class="ai-item-summary">微软研究院推出Flint，一种可视化中间语言，让AI智能体通过简洁的人类可编辑spec自动生成美观图表。用户只需提…</span>
+          </li>
+          <li class="ai-item" data-seq="6">
+            <span class="ai-item-num">#6</span>
+            <span class="ai-item-source" style="--chip-color:#3498db">OpenAI Developers</span>
+            <a class="ai-item-title" href="https://x.com/OpenAIDevs/status/2075331020090687666" target="_blank" rel="noopener noreferrer">ChatGPT Sites将创意变可发布网站</a>
+            <span class="ai-item-summary">将一个想法变成可发布和分享的实时网站
+
+以下是OpenAI团队的一些成员用Sites构建的示例👇
+
+@prd_008 用Sites将一…</span>
+          </li>
+          <li class="ai-item" data-seq="7">
+            <span class="ai-item-num">#7</span>
+            <span class="ai-item-source" style="--chip-color:#3498db">Google Developers Blog</span>
+            <a class="ai-item-title" href="https://developers.googleblog.com/litertjs-googles-high-performance-web-ai-inference" target="_blank" rel="noopener noreferrer">Google 推出 LiteRT.js：高性能 Web AI 推理运行时</a>
+            <span class="ai-item-summary">Google 发布 LiteRT.js，这是 LiteRT 跨平台边缘 AI 运行时的最新成员，专为 JavaScript 开发者设计，可直接在浏览…</span>
+          </li>
+          <li class="ai-item" data-seq="8">
+            <span class="ai-item-num">#8</span>
+            <span class="ai-item-source" style="--chip-color:#3498db">News</span>
+            <a class="ai-item-title" href="https://mistral.ai/news/manage-prompts-and-skills-in-studio" target="_blank" rel="noopener noreferrer">Mistral 推出 Studio，为 AI 提示词和技能提供系统记录</a>
+            <span class="ai-item-summary">Mistral 今日推出 Studio，为 AI 提示词和技能提供集中式系统记录。平台将 prompts 和 skills 视为生产资产，支持…</span>
+          </li>
+      </ul>
+    </section>
+    <section id="section-行业动态" class="ai-condensed-section">
+      <h2 class="section-title" style="--accent:#2ecc71">
+        <span class="section-icon">🌐</span>
+        行业动态
+        <span class="section-count">4 条</span>
+      </h2>
+      <ul class="ai-condensed-list">
+          <li class="ai-item" data-seq="9">
+            <span class="ai-item-num">#9</span>
+            <span class="ai-item-source" style="--chip-color:#2ecc71">AI</span>
+            <a class="ai-item-title" href="https://techcrunch.com/2026/07/09/elon-musk-praises-mythos-fable-promises-not-to-cut-off-anthropic" target="_blank" rel="noopener noreferrer">Elon Musk称赞Anthropic并承诺不切断其算力</a>
+            <span class="ai-item-summary">Elon Musk近日在X上承认此前对Anthropic的判断有误，称其&quot;显然是当前AI领域的领导者&quot;，盛赞Mythos/Fable模型&quot;目…</span>
+          </li>
+          <li class="ai-item" data-seq="10">
+            <span class="ai-item-num">#10</span>
+            <span class="ai-item-source" style="--chip-color:#2ecc71">Newsroom</span>
+            <a class="ai-item-title" href="https://www.anthropic.com/news/hard-questions" target="_blank" rel="noopener noreferrer">Anthropic发起&quot;硬问题&quot;倡议，邀请公众提出AI相关尖锐问题</a>
+            <span class="ai-item-summary">Anthropic作为公益公司，发起&quot;硬问题&quot;倡议，邀请公众就AI对就业、社会、家庭、科学医学等领域的影响提出最尖锐的问…</span>
+          </li>
+          <li class="ai-item" data-seq="11">
+            <span class="ai-item-num">#11</span>
+            <span class="ai-item-source" style="--chip-color:#2ecc71">Newsroom</span>
+            <a class="ai-item-title" href="https://www.anthropic.com/news/ben-bernanke" target="_blank" rel="noopener noreferrer">Anthropic长期利益信托任命本·伯南克为受托人</a>
+            <span class="ai-item-summary">Anthropic的长期利益信托（LTBT）任命前美联储主席、2022年诺贝尔经济学奖得主本·伯南克为最新受托人。他将与另外…</span>
+          </li>
+          <li class="ai-item" data-seq="12">
+            <span class="ai-item-num">#12</span>
+            <span class="ai-item-source" style="--chip-color:#2ecc71">IT之家</span>
+            <a class="ai-item-title" href="https://www.ithome.com/0/974/782.htm" target="_blank" rel="noopener noreferrer">消息称特斯拉三代擎天柱人形机器人初步定型，马斯克放话达不成产能目标就开掉整个采购团队</a>
+            <span class="ai-item-summary">据晚点LatePost报道，特斯拉Optimus Gen 3经马斯克评审通过，即将量产。供应链要求供应商9月产能达1000台/周，年底升…</span>
+          </li>
+      </ul>
+    </section>
+    <section id="section-技巧与观点" class="ai-condensed-section">
+      <h2 class="section-title" style="--accent:#f39c12">
+        <span class="section-icon">💡</span>
+        技巧与观点
+        <span class="section-count">3 条</span>
+      </h2>
+      <ul class="ai-condensed-list">
+          <li class="ai-item" data-seq="13">
+            <span class="ai-item-num">#13</span>
+            <span class="ai-item-source" style="--chip-color:#f39c12">AI</span>
+            <a class="ai-item-title" href="https://techcrunch.com/2026/07/09/can-ai-answer-the-3-trillion-question" target="_blank" rel="noopener noreferrer">AI 能否回答 3 万亿美元的问题？</a>
+            <span class="ai-item-summary">Sequoia 合伙人 David Cahn 更新 AI 基础设施支出估算：2026 年全球投入达 1.5 万亿美元，行业需产生 3 万亿美元收入…</span>
+          </li>
+          <li class="ai-item" data-seq="14">
+            <span class="ai-item-num">#14</span>
+            <span class="ai-item-source" style="--chip-color:#f39c12">Hacker News 热门</span>
+            <a class="ai-item-title" href="https://www.pangram.com/blog/ai-in-your-feed" target="_blank" rel="noopener noreferrer">社交媒体AI生成内容泛滥：LinkedIn超过40%长文为AI写作</a>
+            <span class="ai-item-summary">安全公司Pangram通过Chrome扩展收集超100万条帖子，分析发现社交媒体AI生成内容泛滥。整体AI检测率13.8%，长文（超250…</span>
+          </li>
+          <li class="ai-item" data-seq="15">
+            <span class="ai-item-num">#15</span>
+            <span class="ai-item-source" style="--chip-color:#f39c12">Hacker News 热门</span>
+            <a class="ai-item-title" href="https://bun.com/blog/bun-in-rust" target="_blank" rel="noopener noreferrer">Bun 被 Anthropic 收购后用 Rust 重写，月下载超 2200 万</a>
+            <span class="ai-item-summary">Bun 于 2025 年 12 月被 Anthropic 收购，作者使用预发布版 Claude Fable 5 进行了大量 Rust 重写。Bun 最初用 Zig 在一…</span>
+          </li>
+      </ul>
+    </section>
+  </div>
+
+<aside class="history-sidebar" id="historySidebar">
+  <div class="sidebar-header">
+    <span class="sidebar-title">📚 历史偷师</span>
+    <span class="sidebar-count">15 期</span>
+  </div>
+  <div class="sidebar-list">
+        <a class="sidebar-item sidebar-latest" href="https://wenhao7788.github.io/morning-report/20260710.html" target="_blank">
+          <span class="sidebar-date">2026-07-10</span>
+          <div class="sidebar-info">
+            <span class="sidebar-brand">网易严选十周年</span>
+            <span class="sidebar-cat">宠物用品 · 喂饱</span>
+          </div>
+          <span class="sidebar-badge">今日</span>
+        </a>
+        <a class="sidebar-item" href="https://wenhao7788.github.io/morning-report/20260709.html" target="_blank">
+          <span class="sidebar-date">2026-07-09</span>
+          <div class="sidebar-info">
+            <span class="sidebar-brand">美的美享家"主动智能"+三个一战略</span>
+            <span class="sidebar-cat">大家电 · 主动智能</span>
+          </div>
+          
+        </a>
+        <a class="sidebar-item" href="https://wenhao7788.github.io/morning-report/20260708.html" target="_blank">
+          <span class="sidebar-date">2026-07-08</span>
+          <div class="sidebar-info">
+            <span class="sidebar-brand">萤石Y31</span>
+            <span class="sidebar-cat">智能家居 · 开门工具→AI管家</span>
+          </div>
+          
+        </a>
+        <a class="sidebar-item" href="https://wenhao7788.github.io/morning-report/20260707.html" target="_blank">
+          <span class="sidebar-date">2026-07-07</span>
+          <div class="sidebar-info">
+            <span class="sidebar-brand">Babycare</span>
+            <span class="sidebar-cat">母婴 · 从卖货到陪娃</span>
+          </div>
+          
+        </a>
+        <a class="sidebar-item" href="https://wenhao7788.github.io/morning-report/20260706.html" target="_blank">
+          <span class="sidebar-date">2026-07-06</span>
+          <div class="sidebar-info">
+            <span class="sidebar-brand">追觅洗地机</span>
+            <span class="sidebar-cat">小家电 · 1台顶3台</span>
+          </div>
+          
+        </a>
+        <a class="sidebar-item" href="https://wenhao7788.github.io/morning-report/20260705.html" target="_blank">
+          <span class="sidebar-date">2026-07-05</span>
+          <div class="sidebar-info">
+            <span class="sidebar-brand">AI眼镜</span>
+            <span class="sidebar-cat">3C数码 · 三级分类</span>
+          </div>
+          
+        </a>
+        <a class="sidebar-item" href="https://wenhao7788.github.io/morning-report/20260704.html" target="_blank">
+          <span class="sidebar-date">2026-07-04</span>
+          <div class="sidebar-info">
+            <span class="sidebar-brand">林氏家居</span>
+            <span class="sidebar-cat">家具 · 看得见的品质</span>
+          </div>
+          
+        </a>
+        <a class="sidebar-item" href="https://wenhao7788.github.io/morning-report/20260703.html" target="_blank">
+          <span class="sidebar-date">2026-07-03</span>
+          <div class="sidebar-info">
+            <span class="sidebar-brand">骆驼</span>
+            <span class="sidebar-cat">户外运动 · IP化命名+情感色彩+功能堆叠</span>
+          </div>
+          
+        </a>
+        <a class="sidebar-item" href="https://wenhao7788.github.io/morning-report/20260702.html" target="_blank">
+          <span class="sidebar-date">2026-07-02</span>
+          <div class="sidebar-info">
+            <span class="sidebar-brand">卡萨帝20年长期主义</span>
+            <span class="sidebar-cat">大家电 · 大家电</span>
+          </div>
+          
+        </a>
+        <a class="sidebar-item" href="https://wenhao7788.github.io/morning-report/20260701.html" target="_blank">
+          <span class="sidebar-date">2026-07-01</span>
+          <div class="sidebar-info">
+            <span class="sidebar-brand">石头G30S</span>
+            <span class="sidebar-cat">智能家居 · 参数→死角场景</span>
+          </div>
+          
+        </a>
+        <a class="sidebar-item" href="https://wenhao7788.github.io/morning-report/20260630.html" target="_blank">
+          <span class="sidebar-date">2026-06-30</span>
+          <div class="sidebar-info">
+            <span class="sidebar-brand">babycare</span>
+            <span class="sidebar-cat">母婴 · 安全信任锚+妈妈情绪话术</span>
+          </div>
+          
+        </a>
+        <a class="sidebar-item" href="https://wenhao7788.github.io/morning-report/20260629.html" target="_blank">
+          <span class="sidebar-date">2026-06-29</span>
+          <div class="sidebar-info">
+            <span class="sidebar-brand">戴森HS09</span>
+            <span class="sidebar-cat">小家电 · 参数→场景</span>
+          </div>
+          
+        </a>
+        <a class="sidebar-item" href="https://wenhao7788.github.io/morning-report/20260628.html" target="_blank">
+          <span class="sidebar-date">2026-06-28</span>
+          <div class="sidebar-info">
+            <span class="sidebar-brand">追觅</span>
+            <span class="sidebar-cat">智能清洁 · 回归主业</span>
+          </div>
+          
+        </a>
+        <a class="sidebar-item" href="https://wenhao7788.github.io/morning-report/20260627.html" target="_blank">
+          <span class="sidebar-date">2026-06-27</span>
+          <div class="sidebar-info">
+            <span class="sidebar-brand">徕芬高速吹风机</span>
+            <span class="sidebar-cat">小家电 · 小家电</span>
+          </div>
+          
+        </a>
+        <a class="sidebar-item" href="https://wenhao7788.github.io/morning-report/20260626.html" target="_blank">
+          <span class="sidebar-date">2026-06-26</span>
+          <div class="sidebar-info">
+            <span class="sidebar-brand">网易严选</span>
+            <span class="sidebar-cat">户外/露营 · 户外/露营</span>
+          </div>
+          
+        </a>
+  </div>
+</aside>
+</div>
+
+</main>
+
+<footer class="footer"><p>AI资讯 15条 + 电商运营 3模块 | 数据来源：<strong>AI HOT (aihot.virxact.com)</strong> × <strong>京东商家后台</strong> | 生成时间：2026-07-10 北京时间</p></footer>
+
+<script>(function(){
+var cards=document.querySelectorAll(".card");
+if("IntersectionObserver"in window){
+var o=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.style.opacity="1";x.target.style.transform="translateY(0)";o.unobserve(x.target)}})},{threshold:.08});
+cards.forEach(function(c,i){c.style.opacity="0";c.style.transform="translateY(16px)";c.style.transition="opacity .4s ease,transform .4s ease";c.style.transitionDelay=(i%8)*.04+"s";o.observe(c)});
+}else cards.forEach(function(c){c.style.opacity="1"});
+var nc=document.querySelectorAll(".nav-tab"),sec=document.querySelectorAll(".report-section");
+if(!sec.length)return;
+var so=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting){var id=en.target.getAttribute("id");nc.forEach(function(ch){var h=ch.getAttribute("href");if(h==="#"+id)ch.classList.add("active");else ch.classList.remove("active")})}})},{threshold:.15});
+sec.forEach(function(s){so.observe(s)});
+nc.forEach(function(t){t.addEventListener("click",function(ev){ev.preventDefault();var el=document.querySelector(this.getAttribute("href"));if(el)el.scrollIntoView({behavior:"smooth",block:"start"})})});
+})();
+</script>
+</body>
+</html>
