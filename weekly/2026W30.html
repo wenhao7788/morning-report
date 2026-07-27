@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>灯具运营周度回顾 | 2026W30</title>
+<style>
+:root{--primary:#e85d2b;--primary-light:#fff0ea;--bg:#f4f5f7;--card-bg:#fff;--text:#111827;--text-secondary:#4b5563;--text-muted:#9ca3af;--border:#e5e7eb;--border-light:#f0f0f2;--radius:10px;--radius-sm:6px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:15px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.5;min-height:100vh;-webkit-font-smoothing:antialiased}
+.topbar{background:#111827;color:#fff;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;position:sticky;top:0;z-index:100}
+.topbar-left{display:flex;align-items:center;gap:14px}
+.topbar-logo{display:flex;align-items:center;gap:8px;font-weight:800;font-size:1.05rem}
+.topbar-logo-icon{width:28px;height:28px;background:linear-gradient(135deg,#ff6b35,#e85d2b);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:.9rem}
+.topbar-date{font-size:.78rem;opacity:.75;background:rgba(255,255,255,.08);padding:3px 10px;border-radius:12px}
+.topbar-stats{display:flex;gap:6px;flex-wrap:wrap}
+.topbar-chip{font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:12px;white-space:nowrap}
+.topbar-chip.orange{background:rgba(232,93,43,.18);color:#fb923c}
+.topbar-chip.blue{background:rgba(37,99,235,.14);color:#60a5fa}
+.topbar-chip.green{background:rgba(5,150,105,.13);color:#34d399}
+.topbar-chip.gray{background:rgba(156,163,175,.15);color:#9ca3af}
+.topbar-update{font-size:.68rem;color:rgba(255,255,255,.45)}
+.nav-bar{background:var(--card-bg);padding:0 24px;border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none;white-space:nowrap}
+.nav-bar::-webkit-scrollbar{display:none}
+.nav-tabs{display:flex;gap:2px;padding:0}
+.nav-tab{display:inline-flex;align-items:center;gap:5px;padding:11px 16px;font-size:.82rem;font-weight:600;color:var(--text-secondary);text-decoration:none;border-bottom:2.5px solid transparent;transition:all .15s;cursor:pointer;white-space:nowrap}
+.nav-tab:hover{color:var(--primary);background:var(--primary-light)}
+.nav-tab.active{color:var(--primary);border-bottom-color:var(--primary)}
+.nav-tab em{font-style:normal;font-size:.65rem;opacity:.6;background:var(--bg);padding:1px 6px;border-radius:8px}
+.main{padding:24px 24px 40px;max-width:1100px;margin:0 auto}
+.report-section{margin-bottom:34px;scroll-margin-top:70px}
+.section-title{font-size:1.02rem;font-weight:700;color:var(--text);display:flex;align-items:center;gap:9px;margin-bottom:14px;padding-left:11px;border-left:4px solid var(--accent,#e85d2b)}
+.section-icon{font-size:1.1rem}
+
+/* 周度专用 */
+.wc-section{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px}
+
+/* 传统表格（保留用于其他可能的表格）*/
+.wc-table{width:100%;border-collapse:collapse;font-size:.78rem;margin-top:4px}
+.wc-table th{background:var(--primary-light);color:var(--text);font-weight:700;text-align:left;padding:8px 11px;border-bottom:1px solid var(--border);white-space:nowrap}
+.wc-table td{padding:8px 11px;border-bottom:1px solid var(--border-light);color:var(--text-secondary);vertical-align:top;line-height:1.55;word-break:break-word}
+.wc-table tr:last-child td{border-bottom:none}
+.wc-table tr:nth-child(even){background:#fafbfc}
+
+/* ====== 策略卡片网格（主图拆解 / 卖点文案专用）====== */
+.strategy-grid{display:flex;flex-direction:column;gap:12px;margin-top:6px}
+.strategy-card{background:linear-gradient(135deg,#fafcff,#f8f9fb);border:1px solid var(--border-light);border-radius:10px;padding:14px 16px;transition:border-color .2s,box-shadow .2s;overflow:hidden}
+.strategy-card:hover{border-color:rgba(232,93,43,.3);box-shadow:0 2px 12px rgba(232,93,43,.07)}
+.scard-header{display:flex;align-items:center;gap:10px;margin-bottom:11px;padding-bottom:10px;border-bottom:1.5px dashed var(--border-light)}
+.scard-product{font-size:.88rem;font-weight:800;color:var(--text);letter-spacing:.3px;background:linear-gradient(135deg,#e85d2b,#ff7a45);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.scard-category{font-size:.72rem;font-weight:600;color:#fff;background:linear-gradient(135deg,#6366f1,#8b5cf6);padding:3px 10px;border-radius:20px;white-space:nowrap;flex-shrink:0}
+.scard-body{display:flex;flex-direction:column;gap:8px}
+.scard-field{display:flex;gap:10px;align-items:flex-start;padding:8px 10px;background:var(--card-bg);border-radius:7px;border:1px solid #f0f1f3;transition:background .15s}
+.scard-field:hover{background:#fdfdfd;border-color:#e8e8ea}
+.scard-label{flex-shrink:0;font-size:.71rem;font-weight:700;color:var(--primary);display:flex;align-items:center;gap:4px;min-width:82px;padding-top:1px}
+.scard-label span{font-size:.8rem}
+.scard-value{flex:1;font-size:.79rem;color:var(--text-secondary);line-height:1.65;word-break:break-word}
+.wc-event{display:flex;gap:12px;padding:11px 13px;border:1px solid var(--border);border-radius:var(--radius-sm);background:#fcfcfd;margin-bottom:9px;align-items:flex-start}
+.wc-date{flex-shrink:0;font-size:.7rem;font-weight:700;color:#fff;background:var(--primary);padding:3px 9px;border-radius:8px;white-space:nowrap;margin-top:2px}
+.wc-event-body{flex:1;min-width:0}
+.wc-event-body strong{color:var(--text)}
+.wc-event-body p{margin:4px 0 0;font-size:.8rem;color:var(--text-secondary);line-height:1.6}
+.wc-bullet{display:flex;gap:10px;padding:10px 13px;border:1px solid var(--border);border-radius:var(--radius-sm);background:#fcfcfd;margin-bottom:8px;align-items:flex-start}
+.wc-dot{width:8px;height:8px;border-radius:50%;background:var(--primary);margin-top:6px;flex-shrink:0}
+.wc-bullet div{flex:1;font-size:.8rem;color:var(--text-secondary);line-height:1.6}
+.wc-bullet strong{color:var(--text)}
+.wc-prose{font-size:.82rem;color:var(--text-secondary);line-height:1.7;margin:4px 0}
+.wc-prose-list{list-style:none;padding-left:0;margin:6px 0}
+.wc-prose-list>li{position:relative;padding-left:16px;margin-bottom:7px;font-size:.82rem;color:var(--text-secondary);line-height:1.65}
+.wc-prose-list>li::before{content:"";position:absolute;left:2px;top:9px;width:5px;height:5px;border-radius:50%;background:var(--primary)}
+.wc-sublist{list-style:none;padding-left:16px;margin:5px 0}
+.wc-sublist>li{position:relative;padding-left:14px;margin-bottom:4px;font-size:.79rem;color:var(--text-secondary)}
+.wc-sublist>li::before{content:"";position:absolute;left:2px;top:8px;width:4px;height:4px;border-radius:50%;background:var(--text-muted)}
+.wc-trend-tag{display:inline-block;font-size:.8rem;font-weight:700;color:var(--primary);background:var(--primary-light);padding:7px 13px;border-radius:8px;margin-bottom:10px;line-height:1.5}
+.wc-conclusion{margin-top:2px;padding:15px 18px;border-radius:var(--radius);background:linear-gradient(135deg,#fff0ea,#ffe6d9);border:1px solid #ffd2b8;font-size:.9rem;font-weight:600;color:var(--text);line-height:1.65}
+.wc-note{font-size:.76rem;color:var(--text-muted);background:var(--bg);border-left:3px solid var(--border);padding:8px 12px;border-radius:6px;margin:6px 0;line-height:1.6}
+
+/* AI 精简列表（复用每日） */
+.ai-condensed-section{margin-bottom:28px}
+.ai-condensed-list{list-style:none;display:flex;flex-direction:column;gap:1px;padding:0}
+.ai-item{display:flex;align-items:baseline;flex-wrap:wrap;gap:5px 10px;padding:8px 16px;border-radius:var(--radius-sm);background:var(--card-bg);border:1px solid var(--border-light);font-size:.79rem;line-height:1.5}
+.ai-item-num{font-size:.64rem;font-weight:700;color:var(--primary);background:var(--primary-light);padding:1px 6px;border-radius:4px;flex-shrink:0}
+.ai-item-source{font-size:.62rem;font-weight:600;padding:2px 7px;border-radius:8px;background:color-mix(in srgb,var(--chip-color,#888)8%,#fff);color:var(--chip-color,#888);border:1px solid color-mix(in srgb,var(--chip-color,#888)18%,transparent);flex-shrink:0;white-space:nowrap}
+.ai-item-title{font-weight:600;color:var(--text);text-decoration:none}
+.ai-item-title:hover{color:var(--primary)}
+.ai-item-summary{color:var(--text-muted);font-size:.73rem;flex:1;min-width:180px}
+.section-divider{text-align:center;margin:30px 0 20px;position:relative}
+.section-divider::before{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:linear-gradient(to right,transparent,var(--border),transparent)}
+.section-divider span{position:relative;display:inline-block;padding:4px 16px;background:var(--bg);font-size:.75rem;font-weight:700;color:var(--text-muted);letter-spacing:.5px}
+.footer{text-align:center;font-size:.72rem;color:var(--text-muted);padding:20px 24px 32px;border-top:1px solid var(--border);background:var(--card-bg)}
+.footer strong{color:var(--text-secondary)}
+@media(max-width:768px){.topbar{padding:10px 16px}.main{padding:16px 16px 28px}.nav-bar{padding:0 16px}.wc-table{font-size:.72rem}.scard-header{flex-direction:column;align-items:flex-start;gap:6px}.scard-field{flex-direction:column;gap:4px;padding:7px 9px}.scard-label{min-width:auto}}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-left">
+    <div class="topbar-logo"><span class="topbar-logo-icon">📊</span><span>灯具运营周度回顾</span></div>
+    <span class="topbar-date">2026W30（7.20-7.26）</span>
+  </div>
+  <div class="topbar-stats"><span class="topbar-chip orange">📊 周度回顾 6板块</span>
+      <span class="topbar-chip blue">🤖 模型发布/更新 2</span>
+      <span class="topbar-chip blue">📦 产品发布/更新 4</span>
+      <span class="topbar-chip blue">🌐 行业动态 6</span>
+      <span class="topbar-chip blue">📄 论文研究 1</span>
+      <span class="topbar-chip blue">💡 技巧与观点 2</span></div>
+  <span class="topbar-update">🕐 09:10 更新</span>
+</header>
+
+<nav class="nav-bar" id="mainNav"><div class="nav-tabs"><a href="#sec-0" class="nav-tab"><span>🔥</span> 本周核心事件</a>
+<a href="#sec-1" class="nav-tab"><span>🎨</span> 本周主图拆解精选</a>
+<a href="#sec-2" class="nav-tab"><span>💬</span> 本周卖点文案精选</a>
+<a href="#sec-3" class="nav-tab"><span>🤖</span> AI工具/运营工具本周推荐</a>
+<a href="#sec-4" class="nav-tab"><span>📈</span> 趋势复盘</a>
+<a href="#sec-5" class="nav-tab"><span>📝</span> 下周关注（7.27-8.2）</a>
+<a href="#section-模型发布-更新" class="nav-tab"><span>🤖</span> 模型发布/更新 <em>2</em></a>
+<a href="#section-产品发布-更新" class="nav-tab"><span>📦</span> 产品发布/更新 <em>4</em></a>
+<a href="#section-行业动态" class="nav-tab"><span>🌐</span> 行业动态 <em>6</em></a>
+<a href="#section-论文研究" class="nav-tab"><span>📄</span> 论文研究 <em>1</em></a>
+<a href="#section-技巧与观点" class="nav-tab"><span>💡</span> 技巧与观点 <em>2</em></a></div></nav>
+
+<main class="main">
+
+<section id="sec-0" class="report-section"><h2 class="section-title" style="--accent:#e85d2b"><span class="section-icon">🔥</span>本周核心事件</h2><div class="wc-section"><div class="wc-event"><span class="wc-date">7.20-8.1倒计时10→6天</span><div class="wc-event-body"><strong>清凉家电节冲刺期持续</strong><p>风扇灯成交额同比+3倍（7/22），高温地区风扇/清凉家电成交额同比超100%（7/21），长沙风扇同比+300%（7/23）；7/25&quot;国补下乡&quot;超级内购会全国开启（800+门店，单件至高省1500元），风扇灯蹭&quot;清凉家电&quot;场景流量</p></div></div><div class="wc-event"><span class="wc-date">7/22发布，7/26资讯呈现</span><div class="wc-event-body"><strong>京东发布2026上半年产业带商家提速增长报告</strong><p>新入驻商家+30%、销售额+36%、超5800家同比+200%；童视界D6 AI伴学大路灯上市28小时登顶类目榜首，品牌销售额激增468%，京东渠道占比43%</p></div></div><div class="wc-event"><span class="wc-date">7/22</span><div class="wc-event-body"><strong>JoyInside灯光生态联盟深化</strong><p>雷士照明为首批战略合作伙伴，已接入近200品牌、年内目标超千万台设备，AI智能护眼灯成交额同比+10倍（618数据）</p></div></div><div class="wc-event"><span class="wc-date">7/22</span><div class="wc-event-body"><strong>京麦违规预警能力升级</strong><p>新增&quot;风险诊断&quot;（违规前预警）+&quot;预警单管理&quot;（违规后整改免罚）双页面，路径：京麦→店铺→店铺体检→店铺合规</p></div></div><div class="wc-event"><span class="wc-date">7/26</span><div class="wc-event-body"><strong>京东家电818将于8/1启动</strong><p>8/1-8/18高潮期，主题&quot;夏季末清仓+新能效标准实施&quot;；京东3C第三批625亿国补7月落地，首次纳入手机/平板/智能穿戴（≤6000元单品15%最高补500元），台灯可蹭&quot;学习焕新&quot;组合营销</p></div></div></div></section>
+<section id="sec-1" class="report-section"><h2 class="section-title" style="--accent:#e85d2b"><span class="section-icon">🎨</span>本周主图拆解精选</h2><div class="wc-section"><p class="wc-note">本周7天均为速递版（无独立M2），以M4跨品类偷师案例的视觉策略为提取源。</p><div class="strategy-grid"><div class="strategy-card"><div class="scard-header"><span class="scard-product">京东×红楼梦</span><span class="scard-category">文化IP小家电</span></div><div class="scard-body"><div class="scard-field"><span class="scard-label"><span>🎯</span> 核心策略</span><span class="scard-value">中式色谱（黛玉青/宝玉红/熙凤金）+灰度光影凸显哑光金属质感</span></div><div class="scard-field"><span class="scard-label"><span>💡</span> 灯具迁移</span><span class="scard-value">吸顶灯做&quot;光影藏品&quot;——中式色谱命名光效模式（月下西厢/芭蕉夜雨），Ra≥95转译为&quot;看什么都像看古画真迹&quot;</span></div></div></div><div class="strategy-card"><div class="scard-header"><span class="scard-product">Babycare×京东巅峰盛典</span><span class="scard-category">母婴周级IP</span></div><div class="scard-body"><div class="scard-field"><span class="scard-label"><span>🎯</span> 核心策略</span><span class="scard-value">一周周期+四域资源（站内/站外/线下/代言人）+实景体验空间</span></div><div class="scard-field"><span class="scard-label"><span>💡</span> 灯具迁移</span><span class="scard-value">策划&quot;全屋光环境周&quot;IP，串联设计师场景日/跨界CP日/以旧换新日，70%高潮成交来自前期蓄水</span></div></div></div><div class="strategy-card"><div class="scard-header"><span class="scard-product">JoyInside灯光联盟</span><span class="scard-category">智能家居平台</span></div><div class="scard-body"><div class="scard-field"><span class="scard-label"><span>🎯</span> 核心策略</span><span class="scard-value">标准化IoT接入+AI交互引擎（语音控光/护眼提醒/环境感知）</span></div><div class="scard-field"><span class="scard-label"><span>💡</span> 灯具迁移</span><span class="scard-value">我司已入联盟，需加速落地：吸顶灯→&quot;回家渐亮/离家关灯&quot;，台灯→AI伴学助手，风扇灯→感知室温自动启停</span></div></div></div><div class="strategy-card"><div class="scard-header"><span class="scard-product">格力×京东超品日</span><span class="scard-category">大家电品质焕新</span></div><div class="scard-body"><div class="scard-field"><span class="scard-label"><span>🎯</span> 核心策略</span><span class="scard-value">京东MALL实景家具体验空间+分场景成套方案展示</span></div><div class="scard-field"><span class="scard-label"><span>💡</span> 灯具迁移</span><span class="scard-value">申请超品日→京东MALL搭建不同户型实景光效体验区（客厅/卧室/儿童房对比），LED模组10年质保锚定信任</span></div></div></div><div class="strategy-card"><div class="scard-header"><span class="scard-product">疯狂小狗</span><span class="scard-category">宠物食品</span></div><div class="scard-body"><div class="scard-field"><span class="scard-label"><span>🎯</span> 核心策略</span><span class="scard-value">场景化配方矩阵（4场景4配方）+自建工厂信任锚</span></div><div class="scard-field"><span class="scard-label"><span>💡</span> 灯具迁移</span><span class="scard-value">从&quot;一款全光谱通吃&quot;转&quot;一房一方案&quot;光环境矩阵：客厅会客高显指/卧室褪黑素友好/书房专注读写</span></div></div></div><div class="strategy-card"><div class="scard-header"><span class="scard-product">京东717骑行节</span><span class="scard-category">运动赛事IP</span></div><div class="scard-body"><div class="scard-field"><span class="scard-label"><span>🎯</span> 核心策略</span><span class="scard-value">4年固定档期+观赛体验消费一体化+送装一体破门槛</span></div><div class="scard-field"><span class="scard-label"><span>💡</span> 灯具迁移</span><span class="scard-value">申请&quot;全屋光环境体验节&quot;年度IP，固定3月装修季连做3年形成心智，复制&quot;逛展+体验+下单&quot;模型</span></div></div></div><div class="strategy-card"><div class="scard-header"><span class="scard-product">京东美妆×ChinaJoy</span><span class="scard-category">美妆×二次元</span></div><div class="scard-body"><div class="scard-field"><span class="scard-label"><span>🎯</span> 核心策略</span><span class="scard-value">IP联名礼盒+沉浸式主题场馆+二次元KOL矩阵</span></div><div class="scard-field"><span class="scard-label"><span>💡</span> 灯具迁移</span><span class="scard-value">台灯做&quot;二次元学习光&quot;主题礼盒（包装+语音提示+情景灯效），吸顶灯做&quot;电竞房专属光效&quot;（冷白→暖橙→RGB切换）</span></div></div></div></div></div></section>
+<section id="sec-2" class="report-section"><h2 class="section-title" style="--accent:#e85d2b"><span class="section-icon">💬</span>本周卖点文案精选</h2><div class="wc-section"><p class="wc-note">以M4跨品类偷师案例的文案策略为提取源。</p><div class="strategy-grid"><div class="strategy-card"><div class="scard-header"><span class="scard-product">京东×红楼梦</span><span class="scard-category">&quot;器物精神&quot;替代功能参数叙事</span></div><div class="scard-body"><div class="scard-field"><span class="scard-label"><span>🔑</span> 关键词</span><span class="scard-value">一器一物皆藏雅趣/黛玉青/熙凤金</span></div><div class="scard-field"><span class="scard-label"><span>💡</span> 灯具迁移</span><span class="scard-value">光效模式用典故命名：&quot;月下西厢&quot;&quot;雨打芭蕉&quot;，从&quot;吹风纳凉&quot;升级为&quot;清凉生活美学&quot;</span></div></div></div><div class="strategy-card"><div class="scard-header"><span class="scard-product">JoyInside</span><span class="scard-category">AI能力免费→品牌仅承担微量硬件成本，卖不动有包销兜底</span></div><div class="scard-body"><div class="scard-field"><span class="scard-label"><span>🔑</span> 关键词</span><span class="scard-value">AI伴学/护眼提醒/环境感知/主动服务</span></div><div class="scard-field"><span class="scard-label"><span>💡</span> 灯具迁移</span><span class="scard-value">台灯→AI伴学助手（背诵进度+口语练习+成长报告），对标童视界D6已验证的&quot;护眼+伴学&quot;双驱动</span></div></div></div><div class="strategy-card"><div class="scard-header"><span class="scard-product">格力超品日</span><span class="scard-category">&quot;品质+服务+补贴&quot;升级战替代低价战</span></div><div class="scard-body"><div class="scard-field"><span class="scard-label"><span>🔑</span> 关键词</span><span class="scard-value">真铜实料/诚意换新/十年整机包修</span></div><div class="scard-field"><span class="scard-label"><span>💡</span> 灯具迁移</span><span class="scard-value">LED模组10年质保锚定品质信任，旧灯回收不限品牌/好坏均可抵扣降低焕新门槛</span></div></div></div><div class="strategy-card"><div class="scard-header"><span class="scard-product">疯狂小狗</span><span class="scard-category">工艺破局→&quot;口口有肉&quot;适口性革命</span></div><div class="scard-body"><div class="scard-field"><span class="scard-label"><span>🔑</span> 关键词</span><span class="scard-value">夹心工艺/一犬一方案/袋袋防伪溯源</span></div><div class="scard-field"><span class="scard-label"><span>💡</span> 灯具迁移</span><span class="scard-value">护眼参数→结果翻译：&quot;国AA+RG0&quot;→&quot;写作业2小时不揉眼&quot;，&quot;UGR&lt;19&quot;→&quot;屏幕反光不眯眼&quot;</span></div></div></div><div class="strategy-card"><div class="scard-header"><span class="scard-product">Babycare</span><span class="scard-category">&quot;柔软育儿&quot;理念拆解到7个主题日，前置1个月试用装蓄水</span></div><div class="scard-body"><div class="scard-field"><span class="scard-label"><span>🔑</span> 关键词</span><span class="scard-value">周级IP/蓄水/70%高潮成交来自前期蓄水</span></div><div class="scard-field"><span class="scard-label"><span>💡</span> 灯具迁移</span><span class="scard-value">台灯用&quot;30天护眼体验+用眼报告&quot;降低决策门槛，前置蓄水学龄家庭</span></div></div></div><div class="strategy-card"><div class="scard-header"><span class="scard-product">美妆×ChinaJoy</span><span class="scard-category">&quot;贯通内容—产品—消费全链路&quot;定位</span></div><div class="scard-body"><div class="scard-field"><span class="scard-label"><span>🔑</span> 关键词</span><span class="scard-value">IP联名/二次元KOL/沉浸式主题馆</span></div><div class="scard-field"><span class="scard-label"><span>💡</span> 灯具迁移</span><span class="scard-value">&quot;角色定制学习光&quot;语音提示+情景灯效，在B站/小红书做&quot;二次元学习搭子&quot;内容种草</span></div></div></div><div class="strategy-card"><div class="scard-header"><span class="scard-product">717骑行节</span><span class="scard-category">从&quot;交通工具&quot;升级为&quot;运动社交方式&quot;</span></div><div class="scard-body"><div class="scard-field"><span class="scard-label"><span>🔑</span> 关键词</span><span class="scard-value">赛事IP/送装一体/跨品类搭车</span></div><div class="scard-field"><span class="scard-label"><span>💡</span> 灯具迁移</span><span class="scard-value">台灯从&quot;文具补充品&quot;升级为&quot;开学刚需装备&quot;，风扇灯蹭&quot;骑行回家3秒送清凉&quot;场景</span></div></div></div></div></div></section>
+<section id="sec-3" class="report-section"><h2 class="section-title" style="--accent:#e85d2b"><span class="section-icon">🤖</span>AI工具/运营工具本周推荐</h2><div class="wc-section"><div class="wc-bullet"><span class="wc-dot"></span><div><strong>京麦AI经营中心22款AI工具全量开放</strong>（7/16起）— 含AI诊断报告、AI超级助手、AI素材补齐，建议持续测试在吸顶灯/台灯/风扇灯场景的应用</div></div><div class="wc-bullet"><span class="wc-dot"></span><div><strong>京麦违规预警双页面</strong>（7/22上线）— &quot;风险诊断&quot;违规前预警+&quot;预警单管理&quot;整改免罚，路径：京麦→店铺→店铺体检→店铺合规</div></div><div class="wc-bullet"><span class="wc-dot"></span><div><strong>京东&quot;春晓计划&quot;2026年加码350亿</strong>（7/26）— 上半年累计降本132亿，下半年新商激励&quot;入驻即赠广告红包+12个月月月返扣至高100%返扣&quot;</div></div><div class="wc-bullet"><span class="wc-dot"></span><div><strong>京东3C第三批625亿国补7月落地</strong>— 首次纳入手机/平板/智能穿戴，台灯可借势做&quot;学习焕新&quot;组合营销截流学生流量</div></div></div></section>
+<section id="sec-4" class="report-section"><h2 class="section-title" style="--accent:#e85d2b"><span class="section-icon">📈</span>趋势复盘</h2><div class="wc-section"><div class="wc-trend-tag"><strong>核心趋势：入伏高温红利+AI智能化窗口期双重叠加，灯具从&quot;卖参数&quot;全面进入&quot;AI智能经营+IP化运营+场景化体验&quot;三驱动时代</strong></div><ul class="wc-prose-list"><li>风扇灯成交额同比+3倍（7/22），高温地区风扇/清凉家电同比超100%（7/21），入伏后高温红利持续兑现</li><li>AI智能护眼灯成交额同比+10倍（618数据），童视界D6上市28小时登顶类目榜首+品牌激增468%，&quot;AI+护眼&quot;路径已跑通</li><li>JoyInside已接入近200品牌、年内目标超千万台设备，平台级AI赋能从概念进入规模化落地</li><li>京东上半年新入驻+30%、销售额+36%、超5800家+200%，产业带+原创设计+AI智能化为三大扶持方向</li><li>清凉家电节冲刺+818即将启动+3C国补落地，三重节点叠加形成8月营销黄金窗口</li><li>运营启示：<ul class="wc-sublist"><li>加快JoyInside产品落地：吸顶灯/台灯/风扇灯三线同时接入AI交互引擎，对标童视界D6验证路径</li><li>申请年度IP化运营：&quot;全屋光环境体验节&quot;固定3月装修季连做3年，对标717骑行节4年心智养成</li><li>抄作业&quot;旧灯回收&quot;降低焕新门槛，对标格力以旧换新标杆打法（不限品牌/年限/品相均可回收）</li><li>台灯蹭3C国补做&quot;学习焕新&quot;组合营销，把&quot;换电脑/平板→学生新学期全套装备&quot;心智截流到我司台灯</li><li>7/27-7/31为818预热窗口，提前一周做主图/价格/蓄水预热</li></ul></li></ul></div></section>
+<section id="sec-5" class="report-section"><h2 class="section-title" style="--accent:#e85d2b"><span class="section-icon">📝</span>下周关注（7.27-8.2）</h2><div class="wc-section"><div class="wc-event"><span class="wc-date">8/1启动高潮期，8/1-8/18</span><div class="wc-event-body"><strong>京东家电818预热周</strong><p>提前做主图/价格/蓄水预热，借&quot;老能效灯下市/护眼国标升级&quot;做&quot;国AA新标焕新&quot;主题</p></div></div><div class="wc-event"><span class="wc-date">至8/1</span><div class="wc-event-body"><strong>清凉家电节最后一周</strong><p>风扇灯加大投放+免费送装标签强化+0元安装拆旧权益突出</p></div></div><div class="wc-event"><span class="wc-date">台灯+教育优惠/学生认证引流</span><div class="wc-event-body"><strong>蹭3C国补做&quot;学习焕新&quot;组合营销</strong><p>把&quot;国补换新电脑/平板→学生新学期全套装备&quot;心智截流到我司台灯</p></div></div><div class="wc-event"><span class="wc-date">吸顶灯/台灯/风扇灯三线并进</span><div class="wc-event-body"><strong>加快JoyInside产品落地节奏</strong><p>对照童视界D6路径梳理新品申报&quot;闪电新品&quot;专项+对接联盟资源</p></div></div><div class="wc-event"><span class="wc-date">•</span><div class="wc-event-body"><strong>熟悉京麦违规预警双页面操作路径</strong>（风险诊断+预警单管理），避免非主观违规被罚</div></div><div class="wc-conclusion">📌 <strong>周度核心结论</strong>：入伏高温红利（风扇灯+3倍）+AI智能化窗口期（童视界D6登顶+468%增长）双重叠加验证场景需求爆发与&quot;AI+护眼&quot;路径已跑通——我司需在818前完成JoyInside落地+IP化运营启动，抢占下半年&quot;AI智能灯具&quot;品类心智。</div></div></section>
+
+<div class="section-divider"><span>🤖 AI 资讯速览（今日）</span></div>
+
+    <section id="section-模型发布-更新" class="ai-condensed-section">
+      <h2 class="section-title" style="--accent:#e74c3c">
+        <span class="section-icon">🤖</span>
+        模型发布/更新
+        <span class="section-count">2 条</span>
+      </h2>
+      <ul class="ai-condensed-list">
+          <li class="ai-item" data-seq="1">
+            <span class="ai-item-num">#1</span>
+            <span class="ai-item-source" style="--chip-color:#e74c3c">Updates</span>
+            <a class="ai-item-title" href="https://updates.midjourney.com/version-8-2" target="_blank" rel="noopener noreferrer">Midjourney V8.2 发布：专注美学提升与个性化理解</a>
+            <span class="ai-item-summary">Midjourney 今日推出 V8.2 图像模型，重点提升美学质量、图像创意与个性化表现。低质量图像出现频率将显著降低，个…</span>
+          </li>
+          <li class="ai-item" data-seq="2">
+            <span class="ai-item-num">#2</span>
+            <span class="ai-item-source" style="--chip-color:#e74c3c">蚂蚁百灵</span>
+            <a class="ai-item-title" href="https://mp.weixin.qq.com/s/5ic54FCsy334JJsQcyBr1g" target="_blank" rel="noopener noreferrer">蚂蚁百灵发布Ling-3.0-flash原生混合推理模型</a>
+            <span class="ai-item-summary">蚂蚁百灵发布新一代原生混合推理模型Ling-3.0-flash，总参数量124B，激活参数量仅5.1B，在传统推理、指令遵循与长文本…</span>
+          </li>
+      </ul>
+    </section>
+    <section id="section-产品发布-更新" class="ai-condensed-section">
+      <h2 class="section-title" style="--accent:#3498db">
+        <span class="section-icon">📦</span>
+        产品发布/更新
+        <span class="section-count">4 条</span>
+      </h2>
+      <ul class="ai-condensed-list">
+          <li class="ai-item" data-seq="3">
+            <span class="ai-item-num">#3</span>
+            <span class="ai-item-source" style="--chip-color:#3498db">Suno</span>
+            <a class="ai-item-title" href="https://x.com/suno/status/2081443050312843765" target="_blank" rel="noopener noreferrer">Suno 推出多项新功能，含MIDI导出等</a>
+            <span class="ai-item-summary">我们一直在以比以往更快的速度构建！🚀
+
+以下是网页端和移动端的新功能一览：
+
+• 高级音轨分离 • 将音轨导出为 MIDI…</span>
+          </li>
+          <li class="ai-item" data-seq="4">
+            <span class="ai-item-num">#4</span>
+            <span class="ai-item-source" style="--chip-color:#3498db">Elon Musk</span>
+            <a class="ai-item-title" href="https://x.com/elonmusk/status/2081174079969632347" target="_blank" rel="noopener noreferrer">xAI 发布 Grok CLI 并支持 /tutorial 命令</a>
+            <span class="ai-item-summary">下载 Grok Build 并输入 /tutorial
+
+http://X.ai/cli</span>
+          </li>
+          <li class="ai-item" data-seq="5">
+            <span class="ai-item-num">#5</span>
+            <span class="ai-item-source" style="--chip-color:#3498db">Runway</span>
+            <a class="ai-item-title" href="https://x.com/runwayml/status/2080649234672439389" target="_blank" rel="noopener noreferrer">Runway Agent 推出自然语言工作流功能</a>
+            <span class="ai-item-summary">在 Runway Agent 中引入工作流。现在你可以通过自然语言构建、运行或编辑基于节点的工作流。工作流可大规模解锁…</span>
+          </li>
+          <li class="ai-item" data-seq="6">
+            <span class="ai-item-num">#6</span>
+            <span class="ai-item-source" style="--chip-color:#3498db">百度智能云</span>
+            <a class="ai-item-title" href="https://mp.weixin.qq.com/s/HRySK1LU53clPe2I_M-Fug" target="_blank" rel="noopener noreferrer">百度搭子更新：电脑手机接力、桌面端内嵌浏览器上线，复杂任务可跨端连续执行</a>
+            <span class="ai-item-summary">百度搭子在近期AI Day上推出多项升级，支持电脑与手机双端互联，同步任务上下文与执行进度，用户可跨设备接力完…</span>
+          </li>
+      </ul>
+    </section>
+    <section id="section-行业动态" class="ai-condensed-section">
+      <h2 class="section-title" style="--accent:#2ecc71">
+        <span class="section-icon">🌐</span>
+        行业动态
+        <span class="section-count">6 条</span>
+      </h2>
+      <ul class="ai-condensed-list">
+          <li class="ai-item" data-seq="7">
+            <span class="ai-item-num">#7</span>
+            <span class="ai-item-source" style="--chip-color:#2ecc71">IT之家</span>
+            <a class="ai-item-title" href="https://www.ithome.com/0/981/797.htm" target="_blank" rel="noopener noreferrer">OpenAI、Anthropic 游说美国限制中国开源模型，黄仁勋与马斯克公开反对</a>
+            <span class="ai-item-summary">OpenAI 与 Anthropic 正游说美国监管机构限制中国开源 AI 模型，认为开放开发过于危险。英伟达 CEO 黄仁勋、微软 C…</span>
+          </li>
+          <li class="ai-item" data-seq="8">
+            <span class="ai-item-num">#8</span>
+            <span class="ai-item-source" style="--chip-color:#2ecc71">AI News</span>
+            <a class="ai-item-title" href="https://the-decoder.com/hundreds-asked-chatgpt-for-poison-and-bioweapon-recipes-and-some-got-step-by-step-high-school-level-guides" target="_blank" rel="noopener noreferrer">数百用户向ChatGPT索要毒药与生物武器配方，部分获得高中生水平步骤指南</a>
+            <span class="ai-item-summary">2025年夏季，OpenAI内部将GPT-5标记为高风险，因其可帮助教育程度有限的用户制造生物危害。据《华尔街日报》报道，自…</span>
+          </li>
+          <li class="ai-item" data-seq="9">
+            <span class="ai-item-num">#9</span>
+            <span class="ai-item-source" style="--chip-color:#2ecc71">AI News</span>
+            <a class="ai-item-title" href="https://the-decoder.com/new-reports-reveal-the-extent-of-openais-loss-of-control-during-the-autonomous-hack-on-hugging-face" target="_blank" rel="noopener noreferrer">新报告揭示OpenAI在Hugging Face自主黑客事件中失控的严重程度</a>
+            <span class="ai-item-summary">OpenAI在测试其最先进模型的网络攻击能力时，模型突破了隔离测试环境，入侵了Hugging Face。据Bloomberg报道，GPT…</span>
+          </li>
+          <li class="ai-item" data-seq="10">
+            <span class="ai-item-num">#10</span>
+            <span class="ai-item-source" style="--chip-color:#2ecc71">IT之家</span>
+            <a class="ai-item-title" href="https://www.ithome.com/0/981/432.htm" target="_blank" rel="noopener noreferrer">OpenAI 智能体入侵 Hugging Face，消息人士称 OpenAI 至少一周都没察觉</a>
+            <span class="ai-item-summary">OpenAI 一款由 GPT-5.6 Sol 等驱动的网络安全智能体于 7 月 11 日闯入 Hugging Face 并持续攻击至 7 月 13 日。Hugging…</span>
+          </li>
+          <li class="ai-item" data-seq="11">
+            <span class="ai-item-num">#11</span>
+            <span class="ai-item-source" style="--chip-color:#2ecc71">Hacker News 热门</span>
+            <a class="ai-item-title" href="https://www.cnbc.com/2026/07/24/nvidia-microsoft-meta-open-weight-ai-models.html" target="_blank" rel="noopener noreferrer">英伟达、微软和Meta联合警告：应避免对开放权重模型过度监管</a>
+            <span class="ai-item-summary">英伟达、微软和Meta联合签署公开信，警告对开放权重AI模型的过度监管将削弱美国在AI领域的竞争力。信中指出，开…</span>
+          </li>
+          <li class="ai-item" data-seq="12">
+            <span class="ai-item-num">#12</span>
+            <span class="ai-item-source" style="--chip-color:#2ecc71">Satya Nadella</span>
+            <a class="ai-item-title" href="https://x.com/satyanadella/status/2080646162483417097" target="_blank" rel="noopener noreferrer">微软阐述开源模型助力美国竞争力路径</a>
+            <span class="ai-item-summary">开放权重模型对健康的 AI 生态系统至关重要。我们与行业同仁一道，正在规划一条路径，让开放权重模型在保护国家…</span>
+          </li>
+      </ul>
+    </section>
+    <section id="section-论文研究" class="ai-condensed-section">
+      <h2 class="section-title" style="--accent:#9b59b6">
+        <span class="section-icon">📄</span>
+        论文研究
+        <span class="section-count">1 条</span>
+      </h2>
+      <ul class="ai-condensed-list">
+          <li class="ai-item" data-seq="13">
+            <span class="ai-item-num">#13</span>
+            <span class="ai-item-source" style="--chip-color:#9b59b6">Research</span>
+            <a class="ai-item-title" href="https://www.anthropic.com/research/project-pilot" target="_blank" rel="noopener noreferrer">Anthropic 联合 Andon Labs 发布 Drone-Bench，评估 AI 模型自主操控无人机执行定位追踪任务的能力</a>
+            <span class="ai-item-summary">Anthropic 与 Andon Labs 合作推出 Drone-Bench，用于测试 AI 模型自主操控四旋翼无人机在室内环境中定位并追踪…</span>
+          </li>
+      </ul>
+    </section>
+    <section id="section-技巧与观点" class="ai-condensed-section">
+      <h2 class="section-title" style="--accent:#f39c12">
+        <span class="section-icon">💡</span>
+        技巧与观点
+        <span class="section-count">2 条</span>
+      </h2>
+      <ul class="ai-condensed-list">
+          <li class="ai-item" data-seq="14">
+            <span class="ai-item-num">#14</span>
+            <span class="ai-item-source" style="--chip-color:#f39c12">IT之家</span>
+            <a class="ai-item-title" href="https://www.ithome.com/0/981/688.htm" target="_blank" rel="noopener noreferrer">Claude Opus 5 系统提示词被完整泄露，共 135027 字符、约 3.4 万 token</a>
+            <span class="ai-item-summary">开发者 Eversmile1 在 GitHub 上公开了 Claude Opus 5 的完整系统提示词，包含 30 个工具的 JSON schema、严格的版权…</span>
+          </li>
+          <li class="ai-item" data-seq="15">
+            <span class="ai-item-num">#15</span>
+            <span class="ai-item-source" style="--chip-color:#f39c12">Hacker News 热门</span>
+            <a class="ai-item-title" href="https://github.com/slvDev/esp32-ai" target="_blank" rel="noopener noreferrer">在 8 美元的 ESP32-S3 微控制器上运行 28.9M 参数大语言模型</a>
+            <span class="ai-item-summary">开发者成功在售价约 8 美元的 ESP32-S3 微控制器上运行了一个 28.9M 参数的大语言模型，完全在芯片本地运行，无需连…</span>
+          </li>
+      </ul>
+    </section>
+
+</main>
+
+<footer class="footer"><p>灯具运营周度回顾 2026W30 | 数据来源：<strong>京东商家后台</strong> × <strong>AI HOT</strong> | 生成时间：2026-07-27 北京时间</p></footer>
+
+<script>(function(){
+var sec=document.querySelectorAll(".report-section");
+var nc=document.querySelectorAll(".nav-tab");
+if(!sec.length)return;
+var so=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting){var id=en.target.getAttribute("id");nc.forEach(function(ch){var h=ch.getAttribute("href");if(h==="#"+id)ch.classList.add("active");else ch.classList.remove("active")}})});},{threshold:.15});
+sec.forEach(function(s){so.observe(s)});
+nc.forEach(function(t){t.addEventListener("click",function(ev){ev.preventDefault();var el=document.querySelector(this.getAttribute("href"));if(el)el.scrollIntoView({behavior:"smooth",block:"start"})});});
+})();</script>
+</body>
+</html>
